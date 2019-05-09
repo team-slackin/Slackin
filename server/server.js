@@ -30,6 +30,7 @@ massive(CONNECTION_STRING).then(db=>{
 
 //register and login
 
+
 //authenticator
 app.use(authenticate.auth);
 
