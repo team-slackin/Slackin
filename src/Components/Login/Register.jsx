@@ -23,12 +23,13 @@ function Register(props) {
     console.log(userInfo[name]);
   };
 
-  function handleRegister(e){
+  async function handleRegister(e){
     e.preventDefault();
     const {email, password, confirm_password, user_display_name, last_name, first_name} = userInfo;
     if(password === confirm_password) {
       console.log(email)
-      props.register({email, password, user_display_name, last_name, first_name});
+      await props.register({email, password, user_display_name, last_name, first_name});
+      props.history.push('/account')
     } else {
       alert('passwords not matching');
     };
@@ -36,15 +37,15 @@ function Register(props) {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form>
         <input name="email" placeholder="email" onChange={(e)=>{userInfoHandle(e)}} />
-        <input name="password" palceholder="password" onChange={(e)=>{userInfoHandle(e)}} />
+        <input name="password" type='password' placeholder="password" onChange={(e)=>{userInfoHandle(e)}} />
         <input name="confirm_password" placeholder="confirm your password" onChange={(e)=>{userInfoHandle(e)}} />
-        <input name="user_display_name" placeholder="" onChange={(e)=>{userInfoHandle(e)}} />
+        <input name="user_display_name" placeholder="user_display_name" onChange={(e)=>{userInfoHandle(e)}} />
         <input name="first_name" placeholder="first name" onChange={(e)=>{userInfoHandle(e)}} />
         <input name="last_name" placeholder="last name" onChange={(e)=>{userInfoHandle(e)}} />
-        <button onClick={(e)=> handleRegister(e)}>Login</button>
+        <button onClick={(e)=> handleRegister(e)}>Register</button>
         <Link to="/">Click here to login</Link>
       </form>
     </div>
