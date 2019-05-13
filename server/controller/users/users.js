@@ -54,7 +54,7 @@ module.exports = {
 
     logout(req,res){
       req.session.destroy()
-      res.redirect('https://localhost:3000/#/')
+      return res.redirect('https://localhost:3000/#/')
     }
 
 

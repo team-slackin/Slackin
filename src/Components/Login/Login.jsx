@@ -18,9 +18,10 @@ function Login(props) {
   });
 };
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    props.login(userInfo);
+    await props.login(userInfo);
+    props.history.push('/landingpage')
   };
 
   return (
