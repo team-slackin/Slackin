@@ -1,4 +1,5 @@
 SELECT 
+user_id,
 email,
 user_display_name,
 first_name,

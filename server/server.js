@@ -65,3 +65,6 @@ app.get('/api/logout', users.logout)
 
 //rest of functions
 
+
+// channel endpoints
+app.get(`/api/channels/:id`, channel.getChannels)
