@@ -61,7 +61,7 @@ function LandingPage(props) {
       </div>
       {props.currentChannel ? (
         <>
-          <SubChannelNav />{" "}
+          <SubChannelNav channel_id={props.channel_id} />{" "}
         </>
       ) : null}
     </>
