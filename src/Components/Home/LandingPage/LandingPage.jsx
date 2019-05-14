@@ -60,9 +60,9 @@ function LandingPage(props) {
         <Link to="/">To Home Page Temp</Link>
       </div>
       {props.currentChannel ? (
-        <>
+        <div>
           <SubChannelNav channel_id={props.channel_id} />{" "}
-        </>
+        </div>
       ) : null}
     </>
   )
