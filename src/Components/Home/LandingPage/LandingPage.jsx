@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Switch } from "react-router-dom";
 import io from "socket.io-client";
+import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 
 function LandingPage() {
   const [messages, setMessages] = useState([]);
@@ -9,11 +10,11 @@ function LandingPage() {
 
   useEffect(() => {
     start()
-    console.log('USE EFFECT')
+    // console.log('USE EFFECT')
   },[])
     
 function start(){
-  console.log('START')
+  // console.log('START')
   socket.emit('getMessages', () => {
     socket.on('getMessages', (messages) => {
       setMessages([...messages]);
@@ -22,9 +23,9 @@ function start(){
 }
 
   socket.on("getMessages", function(messages) {
-      console.log("SOCKET RESPONSE", messages);
+      // console.log("SOCKET RESPONSE", messages);
       setMessages([...messages]);
-      console.log("STATE", messages);
+      // console.log("STATE", messages);
     });
  
 
@@ -39,14 +40,17 @@ function start(){
       inputText: text
     });
   }
+  
 
   return (
     <div>
       {/* Where you go When you start up the application/afterlogging in */}
       <h1>LandingPage</h1>
-      {messages.map(message => (
+      {/* {messages.map(message => (
         <p>{message.messages}</p>
-      ))}
+      ))} */}
+      
+      <MainChannelNav />
       <form>
         <input
           type="text"
