@@ -29,7 +29,7 @@ function Login(props) {
       <h1>Login</h1>
       <form>
         <input name="email" placeholder="email" onChange={(e)=>{userInfoHandle(e)}} />
-        <input name="password" palceholder="password" onChange={(e)=>{userInfoHandle(e)}} />
+        <input type='password' name="password" placeholder="password" onChange={(e)=>{userInfoHandle(e)}} />
         <button onClick={(e)=> handleLogin(e)}>Login</button>
       </form>
       <Link to="/register">Don't have an account? Click here to register.</Link>

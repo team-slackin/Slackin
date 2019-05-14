@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-function MainChannelConstructor() {
+function MainChannelConstructor(props) {
   return (
-    <Link>
+    <Link to={`/landingpage/${props.name}`}>
       <div>
-        <img src="" alt="" />
-        <h1>main channel constructor</h1>
+        <img src={props.image} alt="" />
+        <h1>{props.name}</h1>
       </div>
     </Link>
   );

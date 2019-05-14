@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const initialState = {
-  userChannels: []
+  userChannels: [], 
+  currentChannel: null,
+  userSubChannels: [],
+  currentSubChannel: null
 };
 
 // Eventually we will have deleteChannels and editChannels functions
@@ -21,7 +24,7 @@ export default function reducer(state = initialState, action) {
       return { ...state };
     case GRAB_CHANNELS + "_FULFILLED":
       console.log(`from channelReducer line 24`, payload);
-      return { ...state, userChannels: payload.data };
+      return { ...state, userChannels: payload.data, currrentChannel: payload.data[0] };
     default:
       return { ...state };
   }
