@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 function MainChannelConstructor(props) {
   return (
-    <Link to={`/landingpage/${props.name}`}>
+    <Link onClick={()=>{props.setChannel(props.id)}} to={`/landingpage/${props.name}`}>
       <div>
         <img src={props.image} alt="" />
         <h1>{props.name}</h1>

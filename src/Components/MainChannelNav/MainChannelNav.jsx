@@ -21,6 +21,10 @@ function MainChannelNav(props) {
   //   getSomeData()
   //  }, [])
 
+  function setChannel(channel_id){
+    props.setChannel(channel_id)
+  }
+
 
   console.log("CHANNELS: ", props.channelReducer.userChannels);
   return (
@@ -29,7 +33,7 @@ function MainChannelNav(props) {
       {/* map over props userChannels to send channels constructor the channels */}
       <h1>{JSON.stringify(props.channelReducer.userChannels)}</h1>
       <div>{props.channelReducer.userChannels[0] ? (<div>
-        {props.channelReducer.userChannels.map((val, i)=>{return (<MainChannelConstructor key={val.channel_name} name={val.channel_name} image={val.channel_image} />)})}
+        {props.channelReducer.userChannels.map((val, i)=>{return (<MainChannelConstructor key={val.channel_name} name={val.channel_name} image={val.channel_image} id={val.channel_id} />)})}
       </div>) : (<div>No Channels to display</div>)}</div>
     </>
   );

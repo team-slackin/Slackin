@@ -11,7 +11,7 @@ function Login(props) {
 
   function userInfoHandle(e) {
     const {name, value} = e.target;
-    console.log(userInfo[name])
+    if(e.target.name !== 'password')console.log(userInfo[name])
     setUserInfo({
       ...userInfo,
       [name]: value

@@ -7,6 +7,7 @@ function Account(props) {
 
   async function handleLogout(){
     await props.logout();
+    props.history.push('/')
     alert('Logout successful')
   }
 
