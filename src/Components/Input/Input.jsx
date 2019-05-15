@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 function Input(props) {
-  const {placeholder, name, changeState} = props;//required props
+  const {placeholder, name, changeState, type} = props;//required props
   const [input, setInput] = useState({});
   // creates a variable input and a function setInput which we use like this.setState();
 
@@ -19,7 +19,7 @@ function Input(props) {
 
   return (
     <div>
-      <input name={name} placeholder={placeholder} onChange={(e)=>{setInput({[e.target.name]: e.target.value})}} />
+      <input type={type} name={name} placeholder={placeholder} onChange={(e)=>{setInput({[e.target.name]: e.target.value})}} />
     </div>
   );
 };

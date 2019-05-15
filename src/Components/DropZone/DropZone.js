@@ -5,8 +5,8 @@ import Dropzone from 'react-dropzone';
 import {v4 as randomString} from 'uuid';
 //will aslo import this as well
 
-function Drop() {
-
+function Drop(props) {
+  const {type, channel_id} = props;//THESE NEED TO EXIST
   _onDrop = async(file) => {
     file = file[0]; //the files in drop zone can have multiple uploaded so it hapens to be [{}] like that <--  so were grabbing the first one
 
@@ -35,8 +35,10 @@ function Drop() {
   };
 
   uploadToDb = async(url) => {
-    //was going to send an object called body, but since for this we only need the url to the image/file uploaded ill just put it in an object
-    await axios.post('/api/database/amazon-url', {url}).catch(err=>console.log(err));
+    //was going to send an object called body, but since for this we only need the url to the image/file uploaded ill just put it in an object.
+
+                                                                //type is either user or channel and the channel_id is added as an option but not needed.
+    await axios.post(`/api/database/amazon-url/${type}`, {url, channel_id}).catch(err=>console.log(err));
     //this will go to a function on our server which will update our database with the url
     //i do not know what that will look like so i am ending it here.
   };
@@ -55,3 +57,5 @@ function Drop() {
     </div>
   );
 };
+
+export default Drop;

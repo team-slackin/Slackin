@@ -41,5 +41,22 @@ module.exports = {
     });
 
     
+  },
+    uploadFileToDbForUser: async(req, res) => {
+	  	//uploads our user profile picture
+	  const db = req.app.get('db');
+	  const {url} = req.body;
+	  await db.upload_url_for_user(url, req.session.use.user_id)
+	  	.catch(err=>console.log(err));
+	  res.sendStatus(200);
+  },
+  
+  uploadFileToDbForChannel: async(req, res) => {  
+	  	//uploads our channels picture
+	  const db = req.app.get('db');
+	  const {url, channel_id} = req.body;
+	  await db.upload_url_for_channel(url, channel_id)
+	  	.catch(err=>console.log(err));;
+	  res.sendStatus(200);
   }
 }
