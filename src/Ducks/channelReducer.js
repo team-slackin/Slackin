@@ -4,7 +4,6 @@ const initialState = {
   userChannels: [],
   currentChannel: null,
   userSubChannels: [],
-  currentSubChannel: null
 }
 
 // Eventually we will have deleteChannels and editChannels functions
