@@ -66,4 +66,12 @@ ALTER TABLE Sub_channel_messages ADD CONSTRAINT Sub_channel_messages_fk1 FOREIGN
 ALTER TABLE User_channels ADD CONSTRAINT User_channels_fk0 FOREIGN KEY (user_id) REFERENCES Users(user_id);
 ALTER TABLE User_channels ADD CONSTRAINT User_channels_fk1 FOREIGN KEY (channel_id) REFERENCES Channels(channel_id);
 ALTER TABLE Sub_channel_group ADD CONSTRAINT Sub_channel_group_fk0 FOREIGN KEY (channel_id) REFERENCES Channels(channel_id);
-ALTER TABLE Sub_channel_group ADD CONSTRAINT Sub_channel_group_fk1 FOREIGN KEY (sub_channel_id) REFERENCES Sub_channels(sub_channel_id); 
+ALTER TABLE Sub_channel_group ADD CONSTRAINT Sub_channel_group_fk1 FOREIGN KEY (sub_channel_id) REFERENCES Sub_channels(sub_channel_id);
+
+
+
+
+CREATE TABLE dummy (
+    dummy_id SERIAL PRIMARY KEY,
+    messages TEXT
+)

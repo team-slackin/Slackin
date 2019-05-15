@@ -1,12 +1,27 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {connect} from 'react-redux'
+import {userSelectedSubChannel} from './../../Ducks/subChannelReducer'
 
-function SubChannelConstructor() {
+function SubChannelConstructor(props) {
   return (
-    <Link>{/* Makes the SubChannels (text chats)  */}
-      <h1>Sub Channel Constructor</h1>
-    </Link>
+    <>
+      <Link 
+      onClick={() => props.userSelectedSubChannel(props.subChannel.sub_channel_id)}
+      to={`/landingpage/${props.subChannel.sub_channel_name}`}>
+      <h3>#{props.subChannel.sub_channel_name}</h3>
+      </Link>
+    </>
   );
-};
+}
 
-export default SubChannelConstructor;
+const mapToPropsState = reduxState => reduxState.subChannelReducer
+
+export default connect(mapToPropsState, {userSelectedSubChannel})(SubChannelConstructor);
+
+{
+  /* <Link>
+      Makes the SubChannels (text chats)
+      <h3>#{props.subChannel.sub_channel_name}</h3>
+</Link>  */
+}
