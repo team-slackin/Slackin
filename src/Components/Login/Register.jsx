@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import { register } from "../../Ducks/userReducer"
 import { Link } from "react-router-dom"
 
+import RegisterForm from './RegisterForm';
+import './LoginRegister.scss';
+
 function Register(props) {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -46,55 +49,9 @@ function Register(props) {
   }
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form>
-        <input
-          name="email"
-          placeholder="email"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          name="confirm_password"
-          placeholder="confirm your password"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          name="user_display_name"
-          placeholder="user_display_name"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          name="first_name"
-          placeholder="first name"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          name="last_name"
-          placeholder="last name"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <button onClick={e => handleRegister(e)}>Register</button>
-        <Link to="/">Click here to login</Link>
-      </form>
+    <div className="login-register">
+      <RegisterForm userInfoHandle={userInfoHandle} handleSubmit={handleRegister} />
+      <Link to="/">Already have an account? Click here to sign in.</Link>
     </div>
   )
 }
