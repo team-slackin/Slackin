@@ -5,7 +5,7 @@ import MainChannelNav from "../../MainChannelNav/MainChannelNav"
 import { connect } from "react-redux"
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav"
 
-function LandingPage(props) {
+function Container(props) {
   const [messages, setMessages] = useState([])
   const [text, setText] = useState("")
   const socket = io("http://localhost:3838")
@@ -39,32 +39,15 @@ function LandingPage(props) {
 
   return (
     <>
-      <div>
-        {/* Where you go When you start up the application/afterlogging in */}
-        <h1>LandingPage</h1>
-        {/* {messages.map(message => (
-        <p>{message.messages}</p>
-      ))} */}
         <MainChannelNav />
-        {/* <form>
-          <input
-            type="text"
-            value={text}
-            onChange={e => handleInput(e)}
-            placeholder="some crap"
-          />
-          <button onClick={() => testSocket()}>Submit</button>
-        </form> */}
-
-        <Link to="/account">Go to Account Settings</Link>
-        <Link to="/">To Home Page Temp</Link>
         {console.log('LANDING PAGE PROPS',props.currentChannel)}
-      </div>
       {props.currentChannel ? (
         <>
           <SubChannelNav channel_id={props.currentChannel} />{" "}
         </>
       ) : null}
+      <Link to="/account">Go to Account Settings</Link>
+      <Link to="/">To Home Page Temp</Link>
     </>
   )
 }
@@ -74,4 +57,4 @@ const mapStateToProps = reduxState => reduxState.channelReducer
 export default connect(
   mapStateToProps,
   {}
-)(LandingPage)
+)(Container)

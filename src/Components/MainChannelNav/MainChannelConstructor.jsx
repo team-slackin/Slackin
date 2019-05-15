@@ -9,11 +9,11 @@ function MainChannelConstructor(props) {
     <>
       <Link
         onClick={() => props.userSelectedChannel(props.channel.channel_id)}
-        to={`/landingpage/${props.channel.channel_name}`}
+        to={`/container/${props.channel.channel_name}`}
       >
         <div>
           <img src={props.channel.channel_image} alt="" />
-          <h1>{props.channel.channel_name}</h1>
+          <h4>{props.channel.channel_name}</h4>
         </div>
       </Link>
     </>

@@ -75,7 +75,7 @@ div.App header {
 	height: fit-content;
 }
 
-div.App div.whole-app-flex-box {
+div.App div.main-content-flex-box {
 	flex-grow: 1;
 	display: flex;
 	flex-direction: row;
