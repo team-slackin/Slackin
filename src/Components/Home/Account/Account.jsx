@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import { logout, login, register, updateUserInfo } from './../../../Ducks/userReducer'
+import Drop from './../../DropZone/DropZone'
 
 function Account(props) {
   const [editFlag, setEditFlag] = useState(false)
@@ -42,11 +43,13 @@ function Account(props) {
 
   return (
     <>
+    
     {/* Displays User Info */}
     {editFlag ? (<div className='editing'>
         <div>
           <div>
             <img src={props.user.user_image} alt='change avatar' width='200'  />
+            <Drop type={'user'} />
           </div>
           <div>
 
