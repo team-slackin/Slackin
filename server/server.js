@@ -23,7 +23,7 @@ massive(CONNECTION_STRING).then(db => {
   app.set("db", db)
   console.log(db.listTables())
   server.listen(SERVER_PORT, () => {
-    console.log(`[Server up and running on port ${SERVER_PORT}]`)
+    console.log(`[Server up and running on port ${SERVER_PORT}, you may now try for requests]`)
   })
 })
 
@@ -56,7 +56,7 @@ io.on("connection", socket => {
 //register and login
 app.post("/api/register", users.register)
 app.post("/api/login", users.login)
-app.get("/api/logout", users.logout)
+app.post(`/api/logout`, users.logout)
 
 //rest of functions
 
@@ -65,3 +65,6 @@ app.get(`/api/channels/:id`, channel.getChannels)
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels)
+
+// functions in account page
+app.put(`/api/updateuserinfo`, users.updateUserInfo)

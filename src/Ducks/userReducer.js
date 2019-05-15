@@ -9,6 +9,16 @@ const initialState = {
 export const LOGIN = "LOGIN"
 export const REGISTER = "REGISTER"
 export const LOGOUT = "LOGOUT"
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
+
+export const updateUserInfo = (userInfoObject) =>{
+  return {
+    type: UPDATE_USER_INFO,
+    payload: axios.put(`/api/updateuserinfo`, userInfoObject)
+    .then(res => res.data.user)
+    .catch((err)=>console.log(err))
+  }
+}
 
 export const login = ({ email, password }) => ({
   type: LOGIN,
@@ -39,12 +49,8 @@ export const register = ({
 })
 
 export const logout = () => {
-  axios
-    .get(`/api/logout`)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => console.log(err))
+  axios.post(`/api/logout`).then(res=>console.log(res.data.message))
+  .catch(err => console.log(err))
   return { type: LOGOUT, payload: "im out" }
 }
 
@@ -63,6 +69,12 @@ export default function reducer(state = initialState, action) {
 
     case REGISTER + "_FULFILLED":
       return { ...state, ...payload }
+
+    case UPDATE_USER_INFO + "_PENDING":
+      return { ...state }
+
+    case UPDATE_USER_INFO + "_FULFILLED":
+      return { ...state, user: payload }
 
     case LOGOUT + "_PENDING":
       return { ...state }

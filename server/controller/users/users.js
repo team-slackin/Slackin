@@ -67,9 +67,36 @@ module.exports = {
       .status(200)
       .send({ message: "Logged In", user: req.session.user, loggedIn: true })
   },
+  async updateUserInfo(req, res){
+    let { id: user_id, username, password: newPassword } = req.body;
+    let db = req.app.get('db')
+    
+    if (username){
+      db.update_user_display_name([user_id, username]);
+    }
+    
+    if (newPassword){
+      const salt = bcrypt.genSaltSync(10)
+      const hash = bcrypt.hashSync(newPassword, salt)
+      console.log(`line 81`, newPassword)
+      db.update_user_password([user_id, hash])
+    }
 
+    const updatedUserInfo = await db.retrieve_user_info(user_id)
+    req.session.user = {
+      user_id: updatedUserInfo[0].user_id,
+      email: updatedUserInfo[0].email,
+      first_name: updatedUserInfo[0].first_name,
+      last_name: updatedUserInfo[0].last_name,
+      user_display_name: updatedUserInfo[0].user_display_name,
+      user_image: updatedUserInfo[0].user_image,
+      user_status: updatedUserInfo[0].user_status
+    }
+    console.log(`line 92`, req.session.user)
+    return res.status(200).send({ message: "user info was updated", user: req.session.user, loggedIn: true })
+  },
   logout(req, res) {
     req.session.destroy()
-    return res.redirect("https://localhost:3000/#/")
+    return res.status(200).send({ message: "you have successfully logged out" })
   }
 }
