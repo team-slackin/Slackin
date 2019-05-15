@@ -3,13 +3,17 @@ import { connect } from "react-redux"
 import { login } from "../../Ducks/userReducer"
 import { Link } from "react-router-dom"
 
+import LoginForm from './LoginForm';
+
+import './LoginRegister.scss';
+
 function Login(props) {
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: ""
   })
 
-  function userInfoHandle(e) {
+  const userInfoHandle = (e) => {
     const { name, value } = e.target
     setUserInfo({
       ...userInfo,
@@ -17,7 +21,7 @@ function Login(props) {
     })
   }
 
-  async function handleLogin(e) {
+  const handleLogin = async(e) => {
     e.preventDefault()
     await props.login(userInfo)
   }
@@ -27,30 +31,13 @@ function Login(props) {
   } else {}
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form>
-        <input
-          name="email"
-          placeholder="email"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={e => {
-            userInfoHandle(e)
-          }}
-        />
-        <button onClick={e => handleLogin(e)}>Login</button>
-      </form>
-      <Link to="/register">Don't have an account? Click here to register.</Link>
+    <div className="login-register">
+        <LoginForm userInfoHandle={userInfoHandle} handleSubmit={handleLogin} />
+          <Link to="/register">Don't have an account, click here to register.</Link>
     </div>
   )
 }
+
 
 const mapStateToProps = reduxState => reduxState.userReducer
 

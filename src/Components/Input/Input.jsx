@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 function Input(props) {
   const {placeholder, name, changeState} = props;//required props
   const [input, setInput] = useState({});
