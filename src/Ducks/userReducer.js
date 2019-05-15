@@ -10,6 +10,14 @@ export const LOGIN = "LOGIN"
 export const REGISTER = "REGISTER"
 export const LOGOUT = "LOGOUT"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
+export const UPLOAD_USER_IMAGE_TO_DB = "UPLOAD_USER_IMAGE_TO_DB"
+
+export const uploadUserImageToDb = (type, url)=>{
+  return { 
+    type: UPLOAD_USER_IMAGE_TO_DB,
+    payload: axios.post(`/api/database/amazon-url/${type}`, { url }).then(res => res.data).catch(err=>console.log(err))
+   }
+}
 
 export const updateUserInfo = (userInfoObject) =>{
   return {
@@ -64,6 +72,12 @@ export default function reducer(state = initialState, action) {
       return { ...state }
 
     case LOGIN + "_FULFILLED":
+      return { ...state, ...payload }
+
+    case UPLOAD_USER_IMAGE_TO_DB + "_PENDING":
+      return { ...state }
+
+    case UPLOAD_USER_IMAGE_TO_DB + "_FULFILLED":
       return { ...state, ...payload }
 
     case REGISTER + "_PENDING":

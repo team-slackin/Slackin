@@ -3,7 +3,7 @@ const massive = require("massive")
 const express = require("express")
 const session = require("express-session")
 const socketCtrl = require("./controller/SocketCtrl/socketCtrl")
-
+const amazon = require('./controller/amazon/amazon')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 const app = express()
 
@@ -57,7 +57,7 @@ io.on("connection", socket => {
 app.post("/api/register", users.register);
 app.post("/api/login", users.login);
 app.post(`/api/logout`, users.logout);
-app.post('/api/databasre/amazon-url/user', amazon.uploadFileToDbForUser);
+app.post('/api/database/amazon-url/user', amazon.uploadFileToDbForUser);
 app.post('/api/database/amazon-url/channel', amazon.uploadFileToDbForChannel);
 
 //rest of functions
@@ -70,3 +70,6 @@ app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels)
 
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo)
+
+// amazon endpoints
+app.post(`/api/amazon`, amazon.getAws)
