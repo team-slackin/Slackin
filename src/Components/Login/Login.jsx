@@ -20,8 +20,11 @@ function Login(props) {
   async function handleLogin(e) {
     e.preventDefault()
     await props.login(userInfo)
-    props.history.push("/landingpage")
   }
+
+  if(props.loggedIn) {
+    props.history.push("/landingpage")
+  } else {}
 
   return (
     <div>
