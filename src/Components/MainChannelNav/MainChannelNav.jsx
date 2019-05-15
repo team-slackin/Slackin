@@ -23,7 +23,6 @@ function MainChannelNav(props) {
     <>
       {/* The Main channel navigation bar, Maps out MainChannelConstructor */}
       {/* map over props userChannels to send channels constructor the channels */}
-      <h1>{JSON.stringify(props.channelReducer.userChannels)}</h1>
       <div>
         {props.channelReducer.userChannels[0] ? (
           <div>

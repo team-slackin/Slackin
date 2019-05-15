@@ -10,32 +10,32 @@ function LandingPage(props) {
   const [text, setText] = useState("")
   const socket = io("http://localhost:3838")
 
-  useEffect(() => {
-    start()
-  }, [])
+  // useEffect(() => {
+  //   start()
+  // }, [])
 
-  function start() {
-    socket.emit("getMessages", () => {
-      socket.on("getMessages", messages => {
-        setMessages([...messages])
-      })
-    })
-  }
+  // function start() {
+  //   socket.emit("getMessages", () => {
+  //     socket.on("getMessages", messages => {
+  //       setMessages([...messages])
+  //     })
+  //   })
+  // }
 
-  socket.on("getMessages", function(messages) {
-    setMessages([...messages])
-  })
+  // socket.on("getMessages", function(messages) {
+  //   setMessages([...messages])
+  // })
 
-  function handleInput(e) {
-    e.preventDefault()
-    setText(e.target.value)
-  }
+  // function handleInput(e) {
+  //   e.preventDefault()
+  //   setText(e.target.value)
+  // }
 
-  async function testSocket() {
-    await socket.emit("text", {
-      inputText: text
-    })
-  }
+  // async function testSocket() {
+  //   await socket.emit("text", {
+  //     inputText: text
+  //   })
+  // }
 
   return (
     <>
@@ -46,7 +46,7 @@ function LandingPage(props) {
         <p>{message.messages}</p>
       ))} */}
         <MainChannelNav />
-        <form>
+        {/* <form>
           <input
             type="text"
             value={text}
@@ -54,15 +54,16 @@ function LandingPage(props) {
             placeholder="some crap"
           />
           <button onClick={() => testSocket()}>Submit</button>
-        </form>
+        </form> */}
 
         <Link to="/account">Go to Account Settings</Link>
         <Link to="/">To Home Page Temp</Link>
+        {console.log('LANDING PAGE PROPS',props.currentChannel)}
       </div>
       {props.currentChannel ? (
-        <div>
+        <>
           <SubChannelNav channel_id={props.currentChannel} />{" "}
-        </div>
+        </>
       ) : null}
     </>
   )

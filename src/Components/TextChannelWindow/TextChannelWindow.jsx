@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import axios from 'axios'
+import {connect} from 'react-redux'
 
 function TextChannelWindow() {
   return (
