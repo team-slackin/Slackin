@@ -54,9 +54,11 @@ io.on("connection", socket => {
 })
 
 //register and login
-app.post("/api/register", users.register)
-app.post("/api/login", users.login)
-app.post(`/api/logout`, users.logout)
+app.post("/api/register", users.register);
+app.post("/api/login", users.login);
+app.post(`/api/logout`, users.logout);
+app.post('/api/databasre/amazon-url/user', amazon.uploadFileToDbForUser);
+app.post('/api/database/amazon-url/channel', amazon.uploadFileToDbForChannel);
 
 //rest of functions
 
