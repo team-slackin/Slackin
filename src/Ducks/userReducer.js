@@ -20,13 +20,15 @@ export const updateUserInfo = (userInfoObject) =>{
   }
 }
 
-export const login = ({ email, password }) => ({
+export const login = ({ email, password }) => {
+  console.log(email,password)
+  return {
   type: LOGIN,
   payload: axios
     .post("/api/login", { email, password })
     .then(res => res.data)
     .catch(err => console.log(err))
-})
+}}
 
 export const register = ({
   email,
@@ -76,10 +78,7 @@ export default function reducer(state = initialState, action) {
     case UPDATE_USER_INFO + "_FULFILLED":
       return { ...state, user: payload }
 
-    case LOGOUT + "_PENDING":
-      return { ...state }
-
-    case LOGOUT + "_FULFILLED":
+    case LOGOUT:
       return { ...state, user: {}, message: "", loggedIn: false }
 
     default:
