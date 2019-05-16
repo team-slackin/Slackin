@@ -4,8 +4,13 @@ const express = require("express")
 const session = require("express-session")
 const socketCtrl = require("./controller/SocketCtrl/socketCtrl")
 const amazon = require('./controller/amazon/amazon')
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, CHATKIT_INSTANCE_LOCATOR, CHATKIT_SECRET_KEY } = process.env
 const app = express()
+
+//CHATKIT
+const Chatkit = require('@pusher/chatkit-server')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 //SOCKET.IO
 const server = require("http").Server(app)
@@ -16,7 +21,9 @@ const channel = require("./controller/channels/channels")
 const authenticate = require("./controller/authenticate/authenticate")
 const subChannels = require("./controller/subChannels/subChannels")
 
-app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cors())
 // app.use(express.static(`${__dirname}/../build`)); Uncomment when hosting
 
 massive(CONNECTION_STRING).then(db => {
@@ -38,20 +45,59 @@ app.use(
   })
 )
 
-io.on("connection", socket => {
-  const db = app.get("db")
 
-  socket.on("text", async message => {
-    await socketCtrl.addDummy(db, message)
-    let messages = await socketCtrl.getDummy(db)
-    io.emit("getMessages", messages)
+const chatkit = new Chatkit.default({
+    instanceLocator: CHATKIT_INSTANCE_LOCATOR,
+   key: CHATKIT_SECRET_KEY,
   })
 
-  socket.on("getMessages", async () => {
-    let messages = await socketCtrl.getDummy(db)
-    io.emit("getMessages", messages)
+
+//Chatkit endpoints
+
+app.post('/chatkit/users', (req, res) => {
+  //Check once working if can use session instead of passing along body info
+  //When username is sent along it will be the logged in username + id
+    const { user_display_name, user_id } = req.body
+    chatkit
+      .createUser({
+        id: user_id,
+        name: user_display_name
+      })
+      .then((response) => res.id)
+      .catch(error => {
+        if (error.error === 'services/chatkit/user_already_exists') {
+          res.sendStatus(200)
+        } else {
+          res.status(error.status).json(error)
+        }
+      })
   })
-})
+  
+  app.post('/chatkit/authenticate', (req, res) => {
+    console.log('DIS BE QUERY',req.query)
+    console.log('11111111111111111',chatkit.authenticate)
+    const authData = chatkit.authenticate({ userId: req.query.user_id })
+    console.log('WE DO GOOD', authData)
+    res.status(authData.status).send(authData.body)
+  })
+
+  app.post('/chatkit/createroom', (req,res) => {
+    console.log('CREATE ROOM RUNNING?????????')
+    const { user_id, roomName, roomStatus, channel_id } = req.body
+    chatkit.createRoom({
+			creatorId: user_id,
+      name: roomName,
+      isPrivate: roomStatus
+		  })
+			.then((res) => {
+        const db = req.app.get('db')
+        db.set_subchannel_info([res.id, res.name, res.private, channel_id])
+			  console.log('Room created successfully');
+			}).catch((err) => {
+			  console.log(err);
+			});
+  })
+
 
 //register and login
 app.post("/api/register", users.register);
