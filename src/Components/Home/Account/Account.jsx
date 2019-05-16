@@ -87,7 +87,7 @@ function Account(props) {
         </div>
       </div>)}
 
-      <Link to='/landingpage' >Go to LandingPage</Link>
+      <Link to='/container' >Go to LandingPage</Link>
       <button onClick={()=>{handleLogout()}}>Logout</button>
     </>
   );

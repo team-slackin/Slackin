@@ -7,7 +7,10 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
+      <header><span>Slackin</span></header>
+        <div className="main-content-flex-box">
         {routes}
+        </div>
       </div>
     </HashRouter>
   );

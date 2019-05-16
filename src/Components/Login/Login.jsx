@@ -27,7 +27,7 @@ function Login(props) {
   }
 
   if(props.loggedIn) {
-    props.history.push("/landingpage")
+    props.history.push("/container")
   } else {}
 
   return (

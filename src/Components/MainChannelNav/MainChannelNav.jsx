@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 import Axios from "axios"
 import MainChannelConstructor from "./MainChannelConstructor"
 
+import './MainChannelNav.scss';
+
 function MainChannelNav(props) {
   useEffect(() => {
     props.grabChannels(props.userReducer.user.user_id)
@@ -23,7 +25,7 @@ function MainChannelNav(props) {
     <>
       {/* The Main channel navigation bar, Maps out MainChannelConstructor */}
       {/* map over props userChannels to send channels constructor the channels */}
-      <div>
+      <div className="main-channel-nav">
         {props.channelReducer.userChannels[0] ? (
           <div>
             {props.channelReducer.userChannels.map((channel, i) => {
