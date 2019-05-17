@@ -70,11 +70,9 @@ function TextChannelWindow(props) {
       <div className="main-text-window">{/* Each Individual Messege */}
       <div className="main-screen">text channel message Screen</div>
       <div className="main-text-input">
-        <div>
           <form>
             <Input placeholder={`message ${'sub channel name'}`} onChange={(e) => createMessage(e)} value={message} fullWidth />
           </form>
-        </div>
       </div>
       </div>
 
