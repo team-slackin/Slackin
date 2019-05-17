@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { Link} from "react-router-dom";
 import io from "socket.io-client";
 import { connect } from "react-redux";
+import Dropzone from '../../DropZone/DropZone';
 
 import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
@@ -52,6 +53,7 @@ function Container(props) {
 
       <Link to="/account">Go to Account Settings</Link>
       <Link to="/">To Home Page Temp</Link>
+      <Dropzone type="channel" channel_id={props.currentChannel} />
     </>
   )
 }
