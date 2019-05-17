@@ -7,6 +7,7 @@ import Dropzone from '../../DropZone/DropZone';
 import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from '../../SubPrivateNav/SubPrivateNav';
+import UserToolbar from './../../UserToolbar/UserToolbar';
 
 function Container(props) {
   const [messages, setMessages] = useState([]);
@@ -42,6 +43,7 @@ function Container(props) {
 
   return (
     <>
+       
         <MainChannelNav />
 
         <section className="sub-nav">

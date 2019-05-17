@@ -93,6 +93,13 @@ module.exports = {
     }
     return res.status(200).send({ message: "user info was updated", user: req.session.user, loggedIn: true })
   },
+  setUserStatus: (req, res)=>{
+    let { status:user_status } = req.body;
+    let { user_id } = req.session.user;
+    let db = req.app.get('db');
+    db.update_user_status([user_id, user_status])
+    return res.status(200).send({ message:`the users status is now ${user_status}` })
+  },
   logout(req, res) {
     req.session.destroy()
     return res.status(200).send({ message: "you have successfully logged out" })
