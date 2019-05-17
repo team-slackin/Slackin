@@ -1,3 +1,8 @@
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {Input} from '@material-ui/core';
+
 import TextChannelMessegeScreen from './TextChannelMessegeScreen';
 
 import Chatkit from '@pusher/chatkit-client'
