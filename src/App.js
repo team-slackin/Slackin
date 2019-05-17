@@ -30,6 +30,6 @@ function App() {
     </HashRouter>
     </MuiThemeProvider>
   );
-}
+};
 
 export default App;
