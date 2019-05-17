@@ -4,18 +4,20 @@ import {HashRouter} from 'react-router-dom'
 import routes from './routes'
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core';
-import {pink, orange, purple} from '@material-ui/core/colors';
+import {lightGreen, orange, cyan, lightBlue, amber} from '@material-ui/core/colors';
 import {Input, Button} from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
-    primary: pink,
+    primary: lightGreen,
     secondary: orange
   },
   typography: {
     useNextVariants: true,
   },
 });
+
+console.log(lightGreen)
 
 function App() {
   return (

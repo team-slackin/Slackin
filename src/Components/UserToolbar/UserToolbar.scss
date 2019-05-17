@@ -2,6 +2,8 @@ aside.user-tool-bar {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background-color: #2b2c31;
+  padding: 5px;
   div.user-tool-bar-information {
     display: flex;
     flex-direction: row;
