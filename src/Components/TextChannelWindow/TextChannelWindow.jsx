@@ -7,7 +7,8 @@ function TextChannelWindow(props) {
 
 
   useEffect(() => {
-    const {user_display_name, user_id} = props
+    console.log(props)
+    const {user_display_name, user_id} = props.user;
        async function setUpChatkitUser() {
         await axios.post('/chatkit/users', {user_display_name, user_id })
        }
@@ -17,9 +18,14 @@ function TextChannelWindow(props) {
 
 
   return (
-    <div>{/* Where everything comes together */}
+    <>{/* Where everything comes together */}
+      <header>Sub Channel name</header>
+      <div className="text-channel-flex-box">
       <TextChannelMessegeScreen />
-    </div>
+      <aside>users</aside>
+
+      </div>
+    </>
   );
 };
 
