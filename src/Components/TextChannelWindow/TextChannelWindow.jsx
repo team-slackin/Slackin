@@ -29,7 +29,7 @@ function TextChannelWindow(props) {
   useEffect(() => {
     const {user_display_name, user_id} = props.userReducer.user
        async function setUpChatkitUser() {
-        await axios.post('/chatkit/users', {user_display_name, user_id })
+        await axios.post('/chatkit/users', { user_display_name, user_id })
        }
        setUpChatkitUser()
       }, [])

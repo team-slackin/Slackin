@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import {userSelectedSubChannel} from './../../Ducks/subChannelReducer'
+import { userSelectedChannel } from "./../../Ducks/channelReducer"
 
 function SubChannelConstructor(props) {
   return (
@@ -15,7 +16,10 @@ function SubChannelConstructor(props) {
   );
 }
 
-const mapToPropsState = reduxState => reduxState.subChannelReducer
+const mapToPropsState = reduxState => ({
+  channelReducer: reduxState.channelReducer,
+  subChannelReducer: reduxState.subChannelReducer
+})
 
 export default connect(mapToPropsState, {userSelectedSubChannel})(SubChannelConstructor);
 
