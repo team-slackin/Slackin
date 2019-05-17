@@ -3,8 +3,23 @@ import './App.css';
 import {HashRouter} from 'react-router-dom'
 import routes from './routes'
 
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core';
+import {pink, orange, purple} from '@material-ui/core/colors';
+import {Input, Button} from '@material-ui/core';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: pink,
+    secondary: orange
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
 function App() {
   return (
+    <MuiThemeProvider theme={theme}>
     <HashRouter>
       <div className="App">
       <header><span>Slackin</span></header>
@@ -13,6 +28,7 @@ function App() {
         </div>
       </div>
     </HashRouter>
+    </MuiThemeProvider>
   );
 }
 
