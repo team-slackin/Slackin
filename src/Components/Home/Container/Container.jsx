@@ -22,13 +22,13 @@ function Container(props) {
         <MainChannelNav />
 
         <main className="main-container">
-          <>
+          <section className="sub-nav">
             {props.currentChannel ? (
               <SubChannelNav channel_id={props.currentChannel} />
             ) :
              <SubPrivateNav />
               }
-          </>
+          </section>
 
           <section className="text-channel-window">
             <TextChannelWindow />

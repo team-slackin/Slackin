@@ -60,10 +60,11 @@ function SubChannelNav(props) {
       <div className="sub-nav-search">
         <Search placeholder="Search for a channel" onChange={onChange} />
       </div>
-
+    <div className="sub-channel-constructor">
       {props.subChannelReducer.subChannels.map((subChannel, i) => {
         return <SubChannelConstructor key={i} subChannel={subChannel} />;
       })}
+      </div>
 
       <div onClick={() => addSubChannel()}>
         <p>+Add a room</p>
