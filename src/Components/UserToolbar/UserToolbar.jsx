@@ -6,30 +6,56 @@ import {Link} from 'react-router-dom'
 
 import './UserToolbar.scss';
 
+
 function UserToolbar(props) {
     const [editStatusFlag, setEditStatusFlag] = useState(false)
     const [currentUserStatus, setCurrentUserStatus] = useState('online')
+    const [currentUserStatusColor, setCurrentUserStatusColor] = useState('green')
 
     let toggleStatusEdit = ()=>{
         setEditStatusFlag(!editStatusFlag);
       }
-
+      console.log(props)
   return (
     <aside className="user-tool-bar">
-        <div onClick={()=>{toggleStatusEdit()}}className='image-container'>
-            <img style={{ borderRadius:'50%' }} src={props.userReducer.user.user_image} alt='user' width='100'/>
+      {editStatusFlag ? ( 
+        <div className="edit-status-container">
+          <button onClick={()=>{
+            props.setUserStatus('online');
+            setCurrentUserStatusColor('green');
+            
+            }}>Online</button>
+          <button onClick={()=>{
+            props.setUserStatus('idle');
+            setCurrentUserStatusColor('white');
+            
+            }}>Idle</button>
+          <button onClick={()=>{
+            props.setUserStatus('do not disturb');
+            setCurrentUserStatusColor('red');
+            
+            }}>Do Not Disturb</button>
+          <button onClick={()=>{
+            props.setUserStatus('Invisible');
+            setCurrentUserStatusColor('gray');
+            
+            }}>Invisible</button>
         </div>
-        <div>{props.userReducer.user.user_display_name}</div>
-        <div>{props.userReducer.user.user_status}</div>
+        ) : (null)
+       }
+
+        <div class="user-tool-bar-information">
+          <div onClick={()=>{toggleStatusEdit()}}className='image-container'>
+            <img src={props.userReducer.user.user_image} className="user-tool-bar-image" />
+          </div>
+
+          <div className="user-tool-bar-username">{props.userReducer.user.user_display_name}</div>
+          <div className="user-tool-bar-status" style={{backgroundColor: `${currentUserStatusColor}`}}></div>
+        
+          <div className="user-tool-bar-cog" onClick={toggleStatusEdit}>COG</div>
+        </div>
+
         <Link to='/account'>Go to Settings</Link>
-        <div>
-            { editStatusFlag ? ( <div className="edit-status-container">
-                <button onClick={()=>{props.setUserStatus('online')}}>Online</button>
-                <button onClick={()=>{props.setUserStatus('idle')}}>Idle</button>
-                <button onClick={()=>{props.setUserStatus('do not disturb')}}>Do Not Disturb</button>
-                <button onClick={()=>{props.setUserStatus('Invisible')}}>Invisible</button>
-            </div> ) : (null) }
-        </div>
     </aside>
   )
 }
