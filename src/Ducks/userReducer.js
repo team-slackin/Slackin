@@ -29,7 +29,6 @@ export const updateUserInfo = (userInfoObject) =>{
 }
 
 export const login = ({ email, password }) => {
-  console.log(email,password)
   return {
   type: LOGIN,
   payload: axios

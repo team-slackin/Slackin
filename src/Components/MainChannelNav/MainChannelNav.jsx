@@ -12,6 +12,8 @@ function MainChannelNav(props) {
     props.grabChannels(props.userReducer.user.user_id)
   }, [])
 
+  
+
   // useEffect(() => {
   //   async function getSomeData() {
   //     const { data } = await Axios.get('someurl')
@@ -20,7 +22,6 @@ function MainChannelNav(props) {
   //   }
   //   getSomeData()
   //  }, [])
-
   return (
     <>
       {/* The Main channel navigation bar, Maps out MainChannelConstructor */}
