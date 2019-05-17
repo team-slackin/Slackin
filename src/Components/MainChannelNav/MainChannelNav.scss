@@ -4,4 +4,13 @@ div.main-channel-nav {
   display: flex;
   flex-direction: column;
   border-right: 1px solid white;
+  img.main-channel-img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: center;
+    object-fit: cover;
+    margin-top: 10px;
+  };
 };
