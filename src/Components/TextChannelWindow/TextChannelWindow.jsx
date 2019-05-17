@@ -1,3 +1,8 @@
+import TextChannelMessegeScreen from './TextChannelMessegeScreen';
+
+import Chatkit from '@pusher/chatkit-client'
+import UserToolbar from '../UserToolbar/UserToolbar';
+
 function TextChannelWindow(props) {
 
   const [message, setMessage] = useState('')
@@ -15,7 +20,6 @@ function TextChannelWindow(props) {
   // STOP HAVING IT ROUTE INCORRECTLY
   // RUN SOME CHECKS FOR THE CONNECT TO SEE IF IT IS ACTUALLY CREATING THE USER BEFORE IT CREATE CURRENT USER
   // MIGHT HAVE TO SET CURRENT USER TO LOCAL STATE IN THIS CASE
-
 
   useEffect(() => {
     const {user_display_name, user_id} = props.userReducer.user
@@ -73,9 +77,16 @@ function TextChannelWindow(props) {
 
       </div>
     </>
+
   );
 };
 
-const mapStateToProps = reduxState => reduxState.userReducer
+const mapStateToProps = reduxState => {
+  return {
+    userReducer: reduxState.userReducer,
+    subChannelReducer: reduxState.subChannelReducer,
+    textChannelReducer: reduxState.textChannelReducer
+  }
+}
 
 export default connect(mapStateToProps, {})(TextChannelWindow);
