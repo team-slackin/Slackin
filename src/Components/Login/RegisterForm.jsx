@@ -32,7 +32,7 @@ const styles = theme => {
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
+    marginTop: '0px',
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
@@ -43,39 +43,39 @@ function RegisterForm(props) {
   const { classes, userInfoHandle, handleSubmit } = props;
   
   return (
-    <main className={classes.main}>
+    <main className={classes.main} style={{marginTop: '0px'}}>
       <CssBaseline />
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} style={{marginTop: '0px'}}>
         <Typography component="h1" variant="h5" >
           <span style={{color: 'white'}}>Register</span>
         </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
+        <form className={classes.form} >
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} id="email" name="email" autoComplete="email" autoFocus/>
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel>Display Name</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} name="user_display_name"/>
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel>First Name</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} name="first_name"/>
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel>Last Name</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} name="last_name"/>
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
             <InputLabel htmlFor="password">Confirm Password</InputLabel>
             <Input onChange={e=>{userInfoHandle(e)}} name="confirm_password" type="password" id="password" autoComplete="current-password" />
           </FormControl>

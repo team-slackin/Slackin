@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+
 import TextChannelMessegeScreen from './TextChannelMessegeScreen';
+import UserToolbar from '../UserToolbar/UserToolbar';
 
 function TextChannelWindow(props) {
 
@@ -22,7 +24,7 @@ function TextChannelWindow(props) {
       <header>Sub Channel name</header>
       <div className="text-channel-flex-box">
       <TextChannelMessegeScreen />
-      <aside>users</aside>
+      <aside>Users</aside>
 
       </div>
     </>
