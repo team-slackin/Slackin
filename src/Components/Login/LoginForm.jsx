@@ -45,7 +45,7 @@ function LoginForm(props) {
   return (
     <main className={classes.main}>
       <CssBaseline />
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} style={{marginTop: '0px'}}>
         <Typography component="h1" variant="h5" >
           <span style={{color: 'white'}}>Sign in</span>
         </Typography>

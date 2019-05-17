@@ -64,7 +64,9 @@ table {
 
 div.App {
 	width: 100vw;
+	min-width: 938px;
 	height: 100vh;
+	min-height: 498px;
 	display: flex;
 	flex-direction: column;
 	background-color: var(--main-background-color);
