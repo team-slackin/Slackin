@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { grabSubChannels } from "./../../Ducks/subChannelReducer";
-import SubChannelConstructor from "./SubChannelConstructor";
 import Search from "../Search/Search";
 import axios from "axios";
-
 import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+
+import SubChannelConstructor from "./SubChannelConstructor";
+import UserToolbar from '../UserToolbar/UserToolbar';
+
 import "./SubChannelNav.scss";
+
 require('dotenv').config()
 
 var chatManager;
@@ -66,6 +69,7 @@ function SubChannelNav(props) {
         <p>+Add a room</p>
       </div>
 
+      <UserToolbar/>
     </>
   );
 }

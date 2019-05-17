@@ -4,6 +4,7 @@ import { grabChannels } from "./../../Ducks/channelReducer"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 import MainChannelConstructor from "./MainChannelConstructor"
+import UserToolbar from './../UserToolbar/UserToolbar'
 
 import './MainChannelNav.scss';
 

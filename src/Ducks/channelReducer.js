@@ -7,13 +7,11 @@ const initialState = {
 }
 
 // Eventually we will have deleteChannels and editChannels functions
-const GRAB_CHANNELS = "GRAB_CHANNELS"
-const USER_SELECTED_CHANNEL = "USER_SELECTED_CHANNEL"
-const UPLOAD_CHANNEL_IMAGE_TO_DB = "UPLOAD_CHANNEL_IMAGE_TO_DB"
+const GRAB_CHANNELS = "GRAB_CHANNELS";
+const USER_SELECTED_CHANNEL = "USER_SELECTED_CHANNEL";
+const UPLOAD_CHANNEL_IMAGE_TO_DB = "UPLOAD_CHANNEL_IMAGE_TO_DB";
 
-export const uploadChannelImageToDb = (type, url, channel_id) => {
-
-}
+export const uploadChannelImageToDb = (type, url, channel_id) => ({type: UPLOAD_CHANNEL_IMAGE_TO_DB, payload: axios.post(`/api/database/amazon-url/${type}`, {url, channel_id}).then(res => res.data).catch(err=>console.log(err))});
 
 export const grabChannels = user_id => {
   const res = axios.get(`/api/channels/${user_id}`)
@@ -39,6 +37,13 @@ export default function reducer(state = initialState, action) {
       }
     case USER_SELECTED_CHANNEL:
       return { ...state, currentChannel: payload }
+
+    case UPLOAD_CHANNEL_IMAGE_TO_DB + '_PENDING': {
+      return {...state};
+    };
+    case UPLOAD_CHANNEL_IMAGE_TO_DB + '_PENDING': {
+      return {...state};
+    };
     default:
       return { ...state }
   }

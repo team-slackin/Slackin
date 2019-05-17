@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+
 import TextChannelMessegeScreen from './TextChannelMessegeScreen';
+
 import Chatkit from '@pusher/chatkit-client'
+import UserToolbar from '../UserToolbar/UserToolbar';
+
 
 function TextChannelWindow(props) {
 
@@ -70,6 +74,7 @@ function TextChannelWindow(props) {
       </form>
     </div>
     </div>
+
   );
 };
 

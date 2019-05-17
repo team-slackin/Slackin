@@ -113,6 +113,7 @@ app.post("/api/login", users.login);
 app.post(`/api/logout`, users.logout);
 app.post("/api/database/amazon-url/user", amazon.uploadFileToDbForUser);
 app.post("/api/database/amazon-url/channel", amazon.uploadFileToDbForChannel);
+app.post("/api/setuserstatus", users.setUserStatus);
 
 //rest of functions
 
