@@ -28,7 +28,7 @@ function SubChannelNav(props) {
   const ChangeChatManager = () => {
     chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:80870939-de37-40f2-aadc-dd3ee990b173',
-      userId: '1',
+      userId: `${props.userReducer.user.user_id}`,
       tokenProvider: new Chatkit.TokenProvider({
         url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token",
       })

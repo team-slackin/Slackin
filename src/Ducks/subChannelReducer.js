@@ -2,7 +2,8 @@ import axios from "axios"
 
 const initialState = {
   subChannels: [],
-  currentSubChannel: null
+  currentSubChannel: null,
+  currentSubChannelChatKitId: null,
 }
 
 const GRAB_SUBCHANNELS = "GRAB_SUBCHANNELS"
@@ -15,15 +16,17 @@ export const grabSubChannels = channel_id => {
   }
 }
 
-export const userSelectedSubChannel = subchannel_id => {
+export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id) => {
+  const data = {subchannel_id, sub_channel_chatkit_id}
   return {
     type: USER_SELECTED_SUBCHANNEL,
-    payload: subchannel_id
+    payload: data
   }
 }
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
+  console.log('subchanell reducer',payload)
   switch (type) {
     case GRAB_SUBCHANNELS + "_PENDING":
       return { ...state }
@@ -33,7 +36,7 @@ export default function reducer(state = initialState, action) {
         subChannels: payload.data
       }
       case USER_SELECTED_SUBCHANNEL:
-      return {...state, currentSubChannel: payload}
+      return {...state, currentSubChannel: payload.subchannel_id, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
     default:
       return { ...state }
   }
