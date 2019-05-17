@@ -11,11 +11,20 @@ export const REGISTER = "REGISTER"
 export const LOGOUT = "LOGOUT"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const UPLOAD_USER_IMAGE_TO_DB = "UPLOAD_USER_IMAGE_TO_DB"
+export const SET_USER_STATUS = "SET_USER_STATUS"
 
 export const uploadUserImageToDb = (type, url)=>{
   return { 
     type: UPLOAD_USER_IMAGE_TO_DB,
     payload: axios.post(`/api/database/amazon-url/${type}`, { url }).then(res => res.data).catch(err=>console.log(err))
+   }
+}
+
+export const setUserStatus = (status)=>{
+  let data = axios.post(`/api/setuserstatus`, { status }).then(res=>console.log(res.data)).catch(err=>console.log(err))
+  return { 
+    type: SET_USER_STATUS,
+    payload: status
    }
 }
 
@@ -93,6 +102,18 @@ export default function reducer(state = initialState, action) {
 
     case LOGOUT:
       return { ...state, user: {}, message: "", loggedIn: false }
+
+    case SET_USER_STATUS:
+      return { ...state, user: { 
+        user_id: state.user.user_id,
+        email: state.user.email,
+        first_name: state.user.first_name,
+        last_name: state.user.last_name,
+        user_display_name: state.user.user_display_name,
+        user_image: state.user.user_image,
+        user_status: payload
+       } 
+      }
 
     default:
       return { ...state }

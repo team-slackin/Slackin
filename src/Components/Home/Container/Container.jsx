@@ -7,6 +7,7 @@ import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from '../../SubPrivateNav/SubPrivateNav';
 import TextChannelWindow from '../../TextChannelWindow/TextChannelWindow';
+import UserToolbar from './../../UserToolbar/UserToolbar';
 
 import './Container.scss';
 
@@ -17,6 +18,7 @@ function Container(props) {
  */
   return (
     <>
+       
         <MainChannelNav />
 
         <main className="main-container">
