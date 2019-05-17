@@ -22,9 +22,9 @@ function App() {
     <MuiThemeProvider theme={theme}>
     <HashRouter>
       <div className="App">
-      <header><span>Slackin</span></header>
+      <header className="App-header"><span style={{color: 'white', marginLeft: '10px'}}>Slackin</span></header>
         <div className="main-content-flex-box">
-        {routes}
+          {routes}
         </div>
       </div>
     </HashRouter>

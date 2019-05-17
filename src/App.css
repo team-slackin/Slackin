@@ -70,9 +70,12 @@ div.App {
 	background-color: var(--main-background-color);
 }
 
-div.App header {
+div.App header.App-header {
 	width: 100vw;
 	height: fit-content;
+	height: 20px;
+	display: flex; 
+	align-items: center;
 }
 
 div.App div.main-content-flex-box {
