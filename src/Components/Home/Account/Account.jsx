@@ -9,7 +9,8 @@ function Account(props) {
 
   const [userInfo, setUserInfo] = useState({
     username: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   })
 
   async function handleLogout(){
@@ -28,16 +29,20 @@ function Account(props) {
       ...userInfo,
       [name]: value
     })
-    if (name !== 'password') console.log(userInfo)
+
   }
 
   async function handleUpdateUserInfo(){
-    await props.updateUserInfo({
+    if(userInfo.password === userInfo.confirmPassword && userInfo.password && userInfo.confirmPassword){await props.updateUserInfo({
       id: props.user.user_id,
       username: userInfo.username,
       password: userInfo.password
     })
+    alert(`PASSWORD UPDATED`)
     toggleEdit();
+    } else {
+      alert('PASSWORDS DONT MATCH')
+    }
   }
 
 
@@ -48,7 +53,7 @@ function Account(props) {
     {editFlag ? (<div className='editing'>
         <div>
           <div>
-            <img src={props.user.user_image} alt='change avatar' width='200'  />
+            <img style={{ borderRadius: '50%' }} src={props.user.user_image} alt='change avatar' width='100'  />
             <Drop type={'user'} />
           </div>
           <div>
@@ -62,6 +67,10 @@ function Account(props) {
               <input onChange={e => {
                 userInfoHandle(e)
               }} name='password' type='password' />
+              <div>CONFIRM PASSWORD</div>
+              <input onChange={e => {
+                userInfoHandle(e)
+              }} name='confirmPassword' type='password' />
             </form>
 
           </div>
@@ -73,7 +82,7 @@ function Account(props) {
       </div>) : ( <div className='edit-container'>
         <div>
           <div>
-            <img src={props.user.user_image} alt='users profile pic' width='200' />
+            <img style={{ borderRadius: '50%' }} src={props.user.user_image} alt='users profile pic' width='100' />
           </div>
           <div>
             <div>USERNAME</div>
@@ -87,7 +96,7 @@ function Account(props) {
         </div>
       </div>)}
 
-      <Link to='/landingpage' >Go to LandingPage</Link>
+      <Link to='/container' >Go to LandingPage</Link>
       <button onClick={()=>{handleLogout()}}>Logout</button>
     </>
   );

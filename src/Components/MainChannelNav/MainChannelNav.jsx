@@ -4,11 +4,16 @@ import { grabChannels } from "./../../Ducks/channelReducer"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 import MainChannelConstructor from "./MainChannelConstructor"
+import UserToolbar from './../UserToolbar/UserToolbar'
+
+import './MainChannelNav.scss';
 
 function MainChannelNav(props) {
   useEffect(() => {
     props.grabChannels(props.userReducer.user.user_id)
   }, [])
+
+  
 
   // useEffect(() => {
   //   async function getSomeData() {
@@ -18,12 +23,11 @@ function MainChannelNav(props) {
   //   }
   //   getSomeData()
   //  }, [])
-
   return (
     <>
       {/* The Main channel navigation bar, Maps out MainChannelConstructor */}
       {/* map over props userChannels to send channels constructor the channels */}
-      <div>
+      <div className="main-channel-nav">
         {props.channelReducer.userChannels[0] ? (
           <div>
             {props.channelReducer.userChannels.map((channel, i) => {
@@ -34,6 +38,7 @@ function MainChannelNav(props) {
           <div>No Channels to display</div>
         )}
       </div>
+      <UserToolbar/>
     </>
   )
 }

@@ -5,15 +5,15 @@ import { connect } from "react-redux"
 import { userSelectedChannel } from "./../../Ducks/channelReducer"
 
 function MainChannelConstructor(props) {
+  console.log(props.channel.channel_id)
   return (
     <>
       <Link
         onClick={() => props.userSelectedChannel(props.channel.channel_id)}
-        to={`/landingpage/${props.channel.channel_name}`}
+        to={`/container/${props.channel.channel_name}`}
       >
         <div>
-          <img src={props.channel.channel_image} alt="" />
-          <h1>{props.channel.channel_name}</h1>
+          <img src={props.channel.channel_image} className="main-channel-img" />
         </div>
       </Link>
     </>

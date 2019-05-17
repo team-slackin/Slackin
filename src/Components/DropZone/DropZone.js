@@ -15,7 +15,6 @@ function Drop(props) {
     file = file[0]; //the files in drop zone can have multiple uploaded so it hapens to be [{},{},....] like that <--  so were grabbing the first one
 
     const returnData = await grabS3urls(file);//the returnData from server.js getAws()
-    console.log(`line 18`, returnData)
     const {signedRequest, url} = returnData;
     const options = {headers: {'Content-Type': file.type}};
 
