@@ -1,12 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios'
-import {connect} from 'react-redux';
-
 import TextChannelMessegeScreen from './TextChannelMessegeScreen';
 
 import Chatkit from '@pusher/chatkit-client'
 import UserToolbar from '../UserToolbar/UserToolbar';
-
 
 function TextChannelWindow(props) {
 
@@ -25,7 +20,6 @@ function TextChannelWindow(props) {
   // STOP HAVING IT ROUTE INCORRECTLY
   // RUN SOME CHECKS FOR THE CONNECT TO SEE IF IT IS ACTUALLY CREATING THE USER BEFORE IT CREATE CURRENT USER
   // MIGHT HAVE TO SET CURRENT USER TO LOCAL STATE IN THIS CASE
-
 
   useEffect(() => {
     const {user_display_name, user_id} = props.userReducer.user
@@ -62,18 +56,27 @@ function TextChannelWindow(props) {
           .catch(error => console.error('error', error))
       },[props.subChannelReducer.currentSubChannel])
 
-
   return (
-    <div>{/* Where everything comes together */}
-    <div>
-      <TextChannelMessegeScreen messages={roomMessages}/>
-    </div>
-    <div>
-      <form action="">
-      <input onChange={(e) => createMessage(e)} placeholder='Enter Message' value={message} type="text"/>
-      </form>
-    </div>
-    </div>
+    <>{/* Where everything comes together */}
+    
+      <header>Sub Channel name</header>
+      <div className="text-channel-flex-box">
+      
+      <div className="main-text-window">{/* Each Individual Messege */}
+      <div className="main-screen">text channel message Screen</div>
+      <div className="main-text-input">
+        <div>
+          <form>
+            <Input placeholder={`message ${'sub channel name'}`} onChange={(e) => createMessage(e)} value={message} fullWidth />
+          </form>
+        </div>
+      </div>
+      </div>
+
+      <aside>Users</aside>
+
+      </div>
+    </>
 
   );
 };
