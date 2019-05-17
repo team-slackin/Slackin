@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
 import Search from '../Search/Search';
+import UserToolbar from '../UserToolbar/UserToolbar';
 
 
 function SubPrivateNav(props) {
@@ -28,6 +29,7 @@ function SubPrivateNav(props) {
         <Search placeholder="Search for a friend" onChange={onChange} />
       </div>
       {/* based of of the search value display the friends names / group chat names */}
+      <UserToolbar />
     </section>
   );
 };

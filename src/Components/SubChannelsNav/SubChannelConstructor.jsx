@@ -8,9 +8,9 @@ function SubChannelConstructor(props) {
   return (
     <>
       <Link 
-      onClick={() => props.userSelectedSubChannel(props.subChannelReducer.subChannel.sub_channel_id)}
-      to={`/container/${props.channelReducer}/${props.subChannel.sub_channel_name}`}>
-        <h3>#{props.subChannel.sub_channel_name}</h3>
+      onClick={() => props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id)}
+      to={`/container/${props.subChannel.sub_channel_name}`}>
+      <h3>#{props.subChannel.sub_channel_name}</h3>
       </Link>
     </>
   );

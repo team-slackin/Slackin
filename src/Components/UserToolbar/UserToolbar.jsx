@@ -4,6 +4,8 @@ import { grabChannels } from "./../../Ducks/channelReducer"
 import { setUserStatus } from "./../../Ducks/userReducer"
 import {Link} from 'react-router-dom'
 
+import './UserToolbar.scss';
+
 function UserToolbar(props) {
     const [editStatusFlag, setEditStatusFlag] = useState(false)
     const [currentUserStatus, setCurrentUserStatus] = useState('online')
@@ -13,7 +15,7 @@ function UserToolbar(props) {
       }
 
   return (
-    <div className='toolbar'>
+    <aside className="user-tool-bar">
         <div onClick={()=>{toggleStatusEdit()}}className='image-container'>
             <img style={{ borderRadius:'50%' }} src={props.userReducer.user.user_image} alt='user' width='100'/>
         </div>
@@ -28,7 +30,7 @@ function UserToolbar(props) {
                 <button onClick={()=>{props.setUserStatus('Invisible')}}>Invisible</button>
             </div> ) : (null) }
         </div>
-    </div>
+    </aside>
   )
 }
 

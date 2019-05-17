@@ -38,7 +38,6 @@ function MainChannelNav(props) {
           <div>No Channels to display</div>
         )}
       </div>
-      <UserToolbar/>
     </>
   )
 }
