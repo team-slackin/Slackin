@@ -4,4 +4,7 @@ section.sub-nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  .sub-channel-constructor {
+    overflow-y: scroll;
+  }
 };
