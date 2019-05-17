@@ -78,7 +78,6 @@ module.exports = {
     if (newPassword){
       const salt = bcrypt.genSaltSync(10)
       const hash = bcrypt.hashSync(newPassword, salt)
-      console.log(`line 81`, newPassword)
       db.update_user_password([user_id, hash])
     }
 
@@ -92,7 +91,6 @@ module.exports = {
       user_image: updatedUserInfo[0].user_image,
       user_status: updatedUserInfo[0].user_status
     }
-    console.log(`line 92`, req.session.user)
     return res.status(200).send({ message: "user info was updated", user: req.session.user, loggedIn: true })
   },
   logout(req, res) {

@@ -19,42 +19,37 @@ function SubChannelNav(props) {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    console.log('AM I EVER HIT REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
     ChangeChatManager()
   }, [])
 
   const ChangeChatManager = () => {
     chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:80870939-de37-40f2-aadc-dd3ee990b173',
-      userId: `${props.userReducer.user.user_id}`,
+      userId: '1',
       tokenProvider: new Chatkit.TokenProvider({
-        url: `http://localhost:3838/chatkit/authenticate?user_id=${props.userReducer.user.user_id}`,
+        url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token",
       })
     })
-    console.log('Line 34 WHY U NO FUQING WORK',chatManager.tokenProvider)
   }
 
   const onChange = e => {
     const { value } = e.target;
-
     setSearch(value);
   };
 
   const addSubChannel = () => {
-    console.log('TOP OF ADDSUBCHANNEL')
     const { channel_id } = props
-    const {user_id } = props.userReducer
+    const {user_id } = props.userReducer.user
     let input = prompt("input channel name");
     if (input === null || input === undefined) {
       return alert("please put a name");
     } else {
-      console.log('Line 51',chatManager)
       chatManager.connect().then((currentUser) => {
-        console.log('currentUser',currentUser)
         axios.post("/chatkit/createroom", { user_id, roomName: input, roomStatus: false, channel_id });
+      }).then(() => { 
+        setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))
     }
-    props.grabSubChannels(props.channel_id);
   };
 
   return (
@@ -64,7 +59,6 @@ function SubChannelNav(props) {
       </div>
 
       {props.subChannelReducer.subChannels.map((subChannel, i) => {
-        console.log(subChannel);
         return <SubChannelConstructor key={i} subChannel={subChannel} />;
       })}
 

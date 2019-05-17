@@ -22,7 +22,6 @@ function MainChannelNav(props) {
   //   }
   //   getSomeData()
   //  }, [])
-console.log(props)
   return (
     <>
       {/* The Main channel navigation bar, Maps out MainChannelConstructor */}
