@@ -100,7 +100,10 @@ module.exports = {
     db.update_user_status([user_id, user_status])
     return res.status(200).send({ message:`the users status is now ${user_status}` })
   },
-  logout(req, res) {
+  async logout(req, res) {
+    let { user_id } = req.session.user
+    let db = req.app.get('db')
+    await db.user_logs_out(user_id)
     req.session.destroy()
     return res.status(200).send({ message: "you have successfully logged out" })
   }

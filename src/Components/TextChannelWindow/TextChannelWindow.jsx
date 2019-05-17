@@ -10,7 +10,7 @@ function TextChannelWindow(props) {
     console.log(props)
     const {user_display_name, user_id} = props.user;
        async function setUpChatkitUser() {
-        await axios.post('/chatkit/users', {user_display_name, user_id })
+        await axios.post('/chatkit/users', { user_display_name, user_id })
        }
        setUpChatkitUser()
       }, [])
