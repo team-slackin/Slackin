@@ -12,5 +12,12 @@ div.main-channel-nav {
     position: center;
     object-fit: cover;
     margin-top: 10px;
+    cursor: pointer;
+  };
+  div.main-channel-nav-seperator {
+    height: Calc(fit-content + 10px);
+    flex-grow: 0;
+    width: fit-content;
+    border-bottom: 1px solid black;
   };
 };
