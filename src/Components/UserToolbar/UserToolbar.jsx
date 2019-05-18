@@ -55,7 +55,7 @@ function UserToolbar(props) {
           <div className="user-tool-bar-cog" onClick={toggleStatusEdit}>COG</div>
         </div>
 
-        <Link to='/account'>Go to Settings</Link>
+        <Link to='/container/account'>Go to Settings</Link>
     </aside>
   )
 }
