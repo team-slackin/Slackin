@@ -1,0 +1,24 @@
+div.friends-list-flex-box {
+  display: flex;
+  flex-direction: row;
+  img.friends-list-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    margin-left: 10px;
+  };
+  span {
+    margin-left: 10px;
+    align-self: center;
+  };
+  div.friend-status {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    margin-top: 7px;
+    margin-left: 38px;
+    border-radius: 50%;
+  };
+};
