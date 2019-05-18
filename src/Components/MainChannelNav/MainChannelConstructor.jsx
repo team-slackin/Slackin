@@ -5,8 +5,6 @@ import { connect } from "react-redux"
 import { userSelectedChannel } from "./../../Ducks/channelReducer"
 
 function MainChannelConstructor(props) {
-  console.log(props.channel_id)
-  console.log(props.currentChannel)
   return (
     <>
       <Link onClick={() => props.userSelectedChannel(props.channel.channel_id)}
