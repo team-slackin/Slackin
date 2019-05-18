@@ -36,7 +36,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         userChannels: payload.data,
-        currrentChannel: payload.data[0]
+        currentChannel: payload.data[0]
       }
 
 
