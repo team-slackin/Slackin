@@ -4,6 +4,7 @@ aside.user-tool-bar {
   flex-direction: column;
   background-color: #2b2c31;
   padding: 5px;
+  justify-self: flex-end;
   div.user-tool-bar-information {
     display: flex;
     flex-direction: row;

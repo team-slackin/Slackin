@@ -54,22 +54,28 @@ function SubChannelNav(props) {
       }).catch(err => console.log(err))
     }
   };
+  const {subChannels} = props.subChannelReducer;
+  const displaySearch =  subChannels.map((subChannel, index)=>{
+      console.log('123123123123', props.subChannelReducer);
+      if (subChannel.sub_channel_name.toLowerCase().includes(search.toLowerCase())) {
+        return <SubChannelConstructor key={`SubChannel:${index}`} subChannel={subChannel} />;
+      } else {
+        return;
+      }});
 
   return (
     <>
       <div className="sub-nav-search">
         <Search placeholder="Search for a channel" onChange={onChange} />
       </div>
-    <div className="sub-channel-constructor">
-      {props.subChannelReducer.subChannels.map((subChannel, i) => {
-        return <SubChannelConstructor key={i} subChannel={subChannel} />;
-      })}
-      </div>
 
-      <div onClick={() => addSubChannel()}>
-        <p>+Add a room</p>
+      <div className="sub-channel-constructor">
+        {displaySearch}
+        <div onClick={() => addSubChannel()} style={{cursor: 'pointer'}}>
+          +Add a room
+        </div>
       </div>
-
+      <div></div>
       <UserToolbar/>
     </>
   );
