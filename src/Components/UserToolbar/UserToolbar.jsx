@@ -36,7 +36,7 @@ function UserToolbar(props) {
             
             }}>Do Not Disturb</button>
           <button onClick={()=>{
-            props.setUserStatus('Invisible');
+            props.setUserStatus('invisible');
             setCurrentUserStatusColor('gray');
             
             }}>Invisible</button>

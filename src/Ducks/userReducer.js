@@ -12,6 +12,14 @@ export const LOGOUT = "LOGOUT"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const UPLOAD_USER_IMAGE_TO_DB = "UPLOAD_USER_IMAGE_TO_DB"
 export const SET_USER_STATUS = "SET_USER_STATUS"
+export const UPDATE_IS_USER_LOGGED_IN = "UPDATE_IS_USER_LOGGED_IN";
+
+export const updateIsUserLoggedIn = (data)=>{
+  return {
+    type: UPDATE_IS_USER_LOGGED_IN,
+    payload: data
+  }
+}
 
 export const uploadUserImageToDb = (type, url)=>{
   return { 
@@ -114,6 +122,8 @@ export default function reducer(state = initialState, action) {
         user_status: payload
        } 
       }
+      case UPDATE_IS_USER_LOGGED_IN:
+      return {...state, user: payload, loggedIn: true}
 
     default:
       return { ...state }

@@ -8,6 +8,8 @@ import TextChannelMessegeScreen from './TextChannelMessegeScreen';
 import Chatkit from '@pusher/chatkit-client'
 import UserToolbar from '../UserToolbar/UserToolbar';
 
+import FriendsList from './../FriendsList/FriendsList'
+
 function TextChannelWindow(props) {
 
   const [message, setMessage] = useState('')
@@ -33,6 +35,16 @@ function TextChannelWindow(props) {
        }
        setUpChatkitUser()
       }, [])
+
+
+
+
+
+
+
+
+
+
 
 
       useEffect(() => {
@@ -78,7 +90,10 @@ function TextChannelWindow(props) {
       </div>
       </div>
 
-      <aside>Users</aside>
+      <aside>
+        Friends:
+        <FriendsList />
+      </aside>
 
       </div>
     </>
