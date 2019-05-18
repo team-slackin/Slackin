@@ -90,7 +90,7 @@ function TextChannelWindow(props) {
 
       <aside>
         Friends:
-        <FriendsList />
+        
       </aside>
 
       </div>

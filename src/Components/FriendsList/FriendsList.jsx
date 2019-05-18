@@ -9,7 +9,7 @@ function FriendsList(props) {
 
     useEffect(()=>{
         props.grabFriends()
-      }, [])
+      }, [props.friends])
 
   return (
     <>

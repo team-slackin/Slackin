@@ -23,10 +23,15 @@ function App(props) {
 
   useEffect(()=>{
 
-    axios.get(`/retrievesession/`).then(res=>{
+
+    axios.get(`/retrievesession/`)
+    .then((res)=>{
       if(res.data.user_id){
         props.updateIsUserLoggedIn(res.data);
-      }}).catch(err=>console.log(`Something happened while checking for req.session ${err}`));
+      };
+    })
+    .catch(err=>console.log(`Something happened while checking for req.session ${err}`));
+
   }, []);
   
   return (
