@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {connect} from 'react-redux'
 import { grabFriends } from './../../Ducks/friendReducer'
 import { login } from './../../Ducks/userReducer'
-import FriendsConstructor from './../FriendsContstructor/FriendsConstructor'
 
+import FriendsConstructor from '../FriendsConstructor/FriendsConstructor'
+
+import './FriendsList.scss';
 
 function FriendsList(props) {
 
@@ -13,11 +15,10 @@ function FriendsList(props) {
 
   return (
     <>
-      <div>
-          { props.friendReducer.friends[0] ? ( <div>
-              {props.friendReducer.friends.map((friend, i)=>{ return (<FriendsConstructor key={i} friend={friend} />) })}
-          </div> ) : ( <div> NO FRIENDS TO DISPLAY YOU LOSER </div> ) }
-      </div>
+          { props.friendReducer.friends[0] ? 
+          (props.friendReducer.friends.map((friend, i)=> (
+            <FriendsConstructor key={i} friend={friend} /> ))
+          ) : ( <span> Find some friends to add!</span> ) }
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
+import FriendsList from './../FriendsList/FriendsList';
 import Search from '../Search/Search';
 import UserToolbar from '../UserToolbar/UserToolbar';
 
@@ -31,7 +32,7 @@ function SubPrivateNav(props) {
       </div>
 
       <div className="sub-nav-friends">
-
+        <FriendsList />
       </div>
       
       <UserToolbar />

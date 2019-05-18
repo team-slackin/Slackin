@@ -4,7 +4,6 @@ import { grabSubChannels } from "./../../Ducks/subChannelReducer";
 import Search from "../Search/Search";
 import axios from "axios";
 import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
-import FriendsList from './../FriendsList/FriendsList'
 
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
@@ -76,8 +75,7 @@ function SubChannelNav(props) {
           +Add a room
         </div>
       </div>
-      <div></div>
-      <FriendsList />
+
       <UserToolbar/>
     </>
   );

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { logout, login, register, updateUserInfo } from './../../../Ducks/userReducer';
+import {removeSelectedChannel} from '../../../Ducks/channelReducer';
 import {Input} from '@material-ui/core';
 
 import Drop from './../../DropZone/DropZone'
@@ -19,6 +20,7 @@ function Account(props) {
 
   async function handleLogout(){
     await props.logout();
+    await props.removeSelectedChannel();
     props.history.push('/')
   };
 
@@ -111,4 +113,4 @@ function Account(props) {
 
 const mapStateToProps = (reduxState) => reduxState.userReducer;
 
-export default connect(mapStateToProps, { logout, login, register, updateUserInfo })(Account);
+export default connect(mapStateToProps, { logout, login, register, updateUserInfo, removeSelectedChannel })(Account);
