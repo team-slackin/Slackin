@@ -7,11 +7,11 @@ import { connect } from 'react-redux'
 import { updateIsUserLoggedIn } from './Ducks/userReducer'
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core';
-import {lightGreen, orange, cyan, lightBlue, amber} from '@material-ui/core/colors';
+import {orange} from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: lightGreen,
+    primary: orange,
     secondary: orange
   },
   typography: {
