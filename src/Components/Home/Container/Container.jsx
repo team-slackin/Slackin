@@ -1,8 +1,5 @@
-import React, { useState} from "react";
-import { Link} from "react-router-dom";
-import io from "socket.io-client";
+import React from "react";
 import { connect } from "react-redux";
-import {withRouter} from 'react-router';
 
 import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
@@ -12,6 +9,7 @@ import TextChannelWindow from '../../TextChannelWindow/TextChannelWindow';
 import './Container.scss';
 
 function Container(props) {
+  console.log(props);
   return (
     <> 
       <MainChannelNav />
