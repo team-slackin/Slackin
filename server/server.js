@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const socketCtrl = require("./controller/SocketCtrl/socketCtrl");
 const amazon = require("./controller/amazon/amazon");
+const friends = require('./controller/friends/friends');
 const {
   SERVER_PORT,
   CONNECTION_STRING,
@@ -51,6 +52,18 @@ app.use(
     }
   })
 );
+
+
+
+
+// CODE BELOW PREVENTS USER FROM LOGGING OUT WHEN REFRESHING -LOUIE
+app.get(`/retrievesession/`, (req, res)=>{
+  return res.status(200).send(req.session.user);
+})
+// CODE ABOVE PREVENTS USER FROM LOGGING OUT WHEN REFRESHING -LOUIE
+
+
+
 
 const chatkit = new Chatkit.default({
   instanceLocator: CHATKIT_INSTANCE_LOCATOR,
@@ -128,3 +141,6 @@ app.put(`/api/updateuserinfo`, users.updateUserInfo);
 
 // amazon endpoints
 app.post(`/api/amazon`, amazon.getAws);
+
+// friends endpoints
+app.get(`/api/grabfriends`, friends.grabFriends)
