@@ -12,7 +12,6 @@ section.account {
     padding: 20px;
     background-color: #2f3136;
     border-radius: 5px;
-    text-align: center;
     box-shadow: var(--boxShadow);
     border: 1px solid black;
     display: flex;
@@ -40,11 +39,25 @@ section.account {
         };
       };
     };
-    div.account-settings {
-      flex: 1;
+    .account-settings {
+      height: 300px;
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      background-color: #36393f;
+      border-radius: 5px;
+      box-shadow: var(--boxShadow);
+      div.input-border {
+        margin: 5px;
+        padding: 8px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.095);
+      };
     };
     div.account-bottom-bar {
       width: 90%;

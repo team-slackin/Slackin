@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Route} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import { logout, login, register, updateUserInfo } from './../../../Ducks/userReducer'
+import { logout, login, register, updateUserInfo } from './../../../Ducks/userReducer';
+import {Input} from '@material-ui/core';
+
 import Drop from './../../DropZone/DropZone'
 
 import './Account.scss';
@@ -10,7 +12,7 @@ function Account(props) {
   const [editFlag, setEditFlag] = useState(false)
 
   const [userInfo, setUserInfo] = useState({
-    username: "",
+    username: `${props.user.user_display_name}`,
     password: "",
     confirmPassword: ""
   });
@@ -33,35 +35,49 @@ function Account(props) {
     if(userInfo.password === userInfo.confirmPassword && userInfo.password && userInfo.confirmPassword) {
       await props.updateUserInfo({
         id: props.user.user_id,
-        username: userInfo.username,
+        username: userInfo.username || props.user.user_display_name,
         password: userInfo.password
       });
       alert(`Updated password!`);
       toggleEdit();
     } else {
-      alert('Passwords do not match!');
+      alert('Please Leave no feild empty');
     };
   };
 
 
   return (
     <section className="account">
+
       {editFlag ? (
       <div className="account-main">
-        <img style={{ borderRadius: '50%' }} src={props.user.user_image} alt='change avatar' width='100'  />
-        <Drop type={'user'} />
 
-        <form>
-          <h2>USERNAME</h2>
-          <input onChange={e=>{userInfoHandle(e)}} name='username' placeholder={props.user.user_display_name} />
-          <h2>CURRENT PASSWORD</h2>
-          <input onChange={e=>{userInfoHandle(e)}} name='password' type='password' />
-          <h2>CONFIRM PASSWORD</h2>
-          <input onChange={e=>{userInfoHandle(e)}} name='confirmPassword' type='password' />
+        <div className="image-name-holder">
+          <div>
+            <img style={{ borderRadius: '50%' }} src={props.user.user_image} alt='change avatar' width='100'  />
+            <h1>{props.user.user_display_name}</h1>
+          </div>
+          <Drop type={'user'} />
+        </div>
+
+        <form className="account-settings">
+          <div className="input-border">
+            <Input onChange={e=>{userInfoHandle(e)}} name='username' placeholder="New user name" />
+          </div>
+
+          <div className="input-border">
+            <Input onChange={e=>{userInfoHandle(e)}} name='password' type='password' placeholder="New password" />
+          </div>
+
+          <div className="input-border">
+            <Input onChange={e=>{userInfoHandle(e)}} name='confirmPassword' type='password' placeholder="Confirm password" />        
+          </div>
         </form>
 
+        <div className="account-bottom-bar">
           <button onClick={()=>{toggleEdit()}}>Cancel</button>
           <button onClick={()=>{handleUpdateUserInfo()}}>Save</button>
+        </div>
           
       </div> 
       
@@ -88,7 +104,6 @@ function Account(props) {
 
       </div>
       )}
-
 
     </section>
   );
