@@ -5,11 +5,11 @@ import { connect } from "react-redux"
 import { userSelectedChannel } from "./../../Ducks/channelReducer"
 
 function MainChannelConstructor(props) {
-  console.log(props.channel.channel_id)
+  console.log(props.channel_id)
+  console.log(props.currentChannel)
   return (
     <>
-      <Link
-        onClick={() => props.userSelectedChannel(props.channel.channel_id)}
+      <Link onClick={() => props.userSelectedChannel(props.channel.channel_id)}
         to={`/container/${props.channel.channel_name}`}
       >
         <div>
@@ -17,12 +17,9 @@ function MainChannelConstructor(props) {
         </div>
       </Link>
     </>
-  )
-}
+  );
+};
 
-const mapStateToProps = reduxState => reduxState.channelReducer
+const mapStateToProps = reduxState => reduxState.channelReducer;
 
-export default connect(
-  mapStateToProps,
-  { userSelectedChannel }
-)(MainChannelConstructor)
+export default connect(mapStateToProps,{userSelectedChannel})(MainChannelConstructor);

@@ -23,6 +23,7 @@ function App(props) {
 
   useEffect(()=>{
 
+
     axios.get(`/retrievesession/`)
     .then((res)=>{
       if(res.data.user_id){
@@ -30,6 +31,7 @@ function App(props) {
       };
     })
     .catch(err=>console.log(`Something happened while checking for req.session ${err}`));
+
   }, []);
   
   return (
