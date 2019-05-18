@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import {HashRouter} from 'react-router-dom'
+import {HashRouter, Link} from 'react-router-dom'
 import routes from './routes'
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core';
 import {lightGreen, orange, cyan, lightBlue, amber} from '@material-ui/core/colors';
-import {Input, Button} from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
@@ -24,7 +23,11 @@ function App() {
     <MuiThemeProvider theme={theme}>
     <HashRouter>
       <div className="App">
-      <header className="App-header"><span style={{color: 'white', marginLeft: '10px'}}>Slackin</span></header>
+      <header className="App-header">
+        <span>
+          <Link to='/container' style={{color: 'white', marginLeft: '20px', textDecorationLine: 'none'}}>Slackin</Link>
+          </span>
+        </header>
         <div className="main-content-flex-box">
           {routes}
         </div>
