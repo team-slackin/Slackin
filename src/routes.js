@@ -11,7 +11,7 @@ export default (
 <>
   <Route exact path='/' component={Login} />
   <Route path='/register' component={Register} />
-  <Route path='/account' component={Account} />
+  <Route path='/container/account' component={Account} />
   <Route path='/container' component={LandingPage} />
 </>
 )

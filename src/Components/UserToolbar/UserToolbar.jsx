@@ -10,7 +10,7 @@ import './UserToolbar.scss';
 function UserToolbar(props) {
     const [editStatusFlag, setEditStatusFlag] = useState(false)
     const [currentUserStatus, setCurrentUserStatus] = useState('online')
-    const [currentUserStatusColor, setCurrentUserStatusColor] = useState('green')
+    const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38')
 
     let toggleStatusEdit = ()=>{
         setEditStatusFlag(!editStatusFlag);
@@ -22,7 +22,7 @@ function UserToolbar(props) {
         <div className="edit-status-container">
           <button onClick={()=>{
             props.setUserStatus('online');
-            setCurrentUserStatusColor('green');
+            setCurrentUserStatusColor('#689f38');
             
             }}>Online</button>
           <button onClick={()=>{
@@ -55,7 +55,7 @@ function UserToolbar(props) {
           <div className="user-tool-bar-cog" onClick={toggleStatusEdit}>COG</div>
         </div>
 
-        <Link to='/account'>Go to Settings</Link>
+        <Link to='/container/account'>Go to Settings</Link>
     </aside>
   )
 }
