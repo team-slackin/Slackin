@@ -24,11 +24,16 @@ function SubPrivateNav(props) {
   // });
 
   return (
-    <section className="sub-nav">{/* see SubChannelNav.scss */}
+    <section className="sub-nav">
+
       <div className="sub-nav-search">
         <Search placeholder="Search for a friend" onChange={onChange} />
       </div>
-      {/* based of of the search value display the friends names / group chat names */}
+
+      <div className="sub-nav-friends">
+
+      </div>
+      
       <UserToolbar />
     </section>
   );
