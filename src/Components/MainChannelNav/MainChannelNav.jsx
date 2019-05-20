@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 import {grabChannels, removeSelectedChannel} from "./../../Ducks/channelReducer";
 import {Link} from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
 
 import MainChannelConstructor from "./MainChannelConstructor"
 
@@ -35,7 +36,11 @@ function MainChannelNav(props) {
           onClick={()=>{
             props.removeSelectedChannel();
           }} 
-          style={{borderRadius: `${borderRadius}%`}}
+          style={{
+            borderRadius: `${borderRadius}%`,
+            width: '80px',
+            height: '80px'
+          }}
           />
           </Link>
         </div>
@@ -47,6 +52,13 @@ function MainChannelNav(props) {
           channel={channel} 
           />
         )) : (<></>)}
+        <div className="plus-sign-div">
+          <Icon style={{
+            fontSize: '3em',
+            color: 'var(--main-color)',
+            textShadow: 'var(--text-icon-shadow)'
+          }}>add</Icon>
+        </div>
 
       </div>
     </>

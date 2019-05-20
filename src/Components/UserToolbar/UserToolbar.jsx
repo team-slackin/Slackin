@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { grabChannels } from "./../../Ducks/channelReducer"
 import { setUserStatus } from "./../../Ducks/userReducer"
 import {Link} from 'react-router-dom'
-
+import Icon from '@material-ui/core/Icon';
 import './UserToolbar.scss';
 
 
@@ -52,7 +52,13 @@ function UserToolbar(props) {
           <div className="user-tool-bar-username">{props.userReducer.user.user_display_name}</div>
           <div className="user-tool-bar-status" style={{backgroundColor: `${currentUserStatusColor}`}}></div>
         
-          <div className="user-tool-bar-cog" onClick={toggleStatusEdit}>COG</div>
+          <div className="user-tool-bar-cog" onClick={toggleStatusEdit}>
+            <Icon style={{
+              fontSize: '2em',
+              color: 'var(--main-color)',
+              textShadow: 'var(--text-icon-shadow)'
+            }}>settings</Icon>
+          </div>
         </div>
 
         <Link to='/container/account'>Go to Settings</Link>
