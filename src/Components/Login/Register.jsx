@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 import { register } from "../../Ducks/userReducer"
 import { Link } from "react-router-dom"
-
+import axios from 'axios'
 import RegisterForm from './RegisterForm';
 import './LoginRegister.scss';
 
@@ -24,6 +24,10 @@ function Register(props) {
     })
   }
 
+  function registerChatKitUser(user_display_name) {
+    axios.post("/chatkit/users", { user_display_name });
+  }
+
   async function handleRegister(e) {
     e.preventDefault()
     const {
@@ -35,6 +39,7 @@ function Register(props) {
       first_name
     } = userInfo
     if (password === confirm_password) {
+      registerChatKitUser(user_display_name)
       await props.register({
         email,
         password,

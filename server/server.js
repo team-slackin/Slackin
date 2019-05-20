@@ -75,20 +75,14 @@ const chatkit = new Chatkit.default({
 app.post("/chatkit/users", (req, res) => {
   //Check once working if can use session instead of passing along body info
   //When username is sent along it will be the logged in username + id
-  const { user_display_name, user_id } = req.body;
+  const { user_display_name } = req.body;
   chatkit
     .createUser({
-      id: user_id,
+      id: user_display_name,
       name: user_display_name
     })
-    .then(response => res.id)
-    .catch(error => {
-      if (error.error === "services/chatkit/user_already_exists") {
-        res.sendStatus(200);
-      } else {
-        res.status(error.status).json(error);
-      }
-    });
+    .then(() => console.log('user created successfully'))
+    .catch(err => console.log('Bad juju, no user made',err));
 });
 
 app.post("/chatkit/authenticate", (req, res) => {
@@ -132,6 +126,7 @@ app.post("/api/setuserstatus", users.setUserStatus);
 
 // channel endpoints
 app.get(`/api/channels/:id`, channel.getChannels);
+app.get(`/api/grabusersfromchannel/:channel_id`, channel.grabUsersFromChannel);
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
