@@ -8,7 +8,7 @@
 }
 
 :root {
-
+	--main-color: #e96745;
   --main-background-color: #202225;
   --secondary-background-color: #36393f;
   --border: 1px solid var(--black);
@@ -147,9 +147,8 @@ div.App {
   height: 100vh;
   min-height: 498px;
   display: flex;
-  flex-direction: column;
-  background: var(--main-background-color)
-    url("./Assets/slackin-background.svg") no-repeat fixed bottom;
+	flex-direction: column;
+	background: var(--main-background-color);
 }
 
 div.App header.App-header {
@@ -164,13 +163,10 @@ div.App div.main-content-flex-box {
 	flex-grow: 1;
 	display: flex;
 	flex-direction: row;
-	background-image: url('./Assets/slackin-background.svg');
-	background-position: center;
-	background-size: cover;
 }
 
 div.App button {
-	background-color: #ff9800;
+	background-color: #e96745;
 	color: rgba(0, 0, 0, 0.87);
 	box-shadow: var(--boxShadow);
 	transition: 

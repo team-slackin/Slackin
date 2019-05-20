@@ -1,18 +1,26 @@
-import React, {useEffect } from "react"
-import { connect } from "react-redux"
-import {grabChannels,removeSelectedChannel} from "./../../Ducks/channelReducer"
-import {search} from '@material-ui/icons/';
+import React, {useEffect, useState} from "react";
+import { connect } from "react-redux";
+import {grabChannels, removeSelectedChannel} from "./../../Ducks/channelReducer";
 
 import MainChannelConstructor from "./MainChannelConstructor"
 
 import './MainChannelNav.scss';
 
 function MainChannelNav(props) {
-const {user} = props.userReducer;
+  const {user} = props.userReducer;
+  const [borderRadius, setBorderRadius] = useState('25');
 
   useEffect(() => {
     props.grabChannels(props.userReducer.user.user_id);
   }, []);
+
+  useEffect(()=>{
+    if (props.channelReducer.currentChannel) {
+      setBorderRadius('50');
+    } else {
+      setBorderRadius('25');
+    }
+  },[props.channelReducer.currentChannel])
 
   return (
     <>
@@ -22,12 +30,20 @@ const {user} = props.userReducer;
           <img 
           src={user.user_image} 
           className="main-channel-img"
-          onClick={()=>{removeSelectedChannel()}} />
+          onClick={()=>{
+            removeSelectedChannel();
+          }} 
+          style={{borderRadius: `${borderRadius}%`}}
+          />
+
         </div>
 
         {props.channelReducer.userChannels[0] ?
         props.channelReducer.userChannels.map((channel, i) => (
-        <MainChannelConstructor key={i} channel={channel} />
+        <MainChannelConstructor 
+          key={i} 
+          channel={channel} 
+          />
         )) : (<></>)}
 
       </div>
@@ -37,7 +53,8 @@ const {user} = props.userReducer;
 
 const mapStateToProps = reduxState => ({
     channelReducer: reduxState.channelReducer,
-    userReducer: reduxState.userReducer
+    userReducer: reduxState.userReducer,
+    mainChannelReducer: reduxState.mainChannelReducer
 });
 
 export default connect(mapStateToProps, {grabChannels, removeSelectedChannel})(MainChannelNav);
