@@ -8,6 +8,8 @@ div.friends-list-flex-box {
     object-fit: cover;
     margin-top: 10px;
     margin-left: 10px;
+    box-shadow: 2px 2px 1px;
+    color:  rgba(24, 24, 24, 0.619);
   };
   span {
     margin-left: 10px;
@@ -15,10 +17,18 @@ div.friends-list-flex-box {
   };
   div.friend-status {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    margin-top: 7px;
+    margin-top: 35px;
     margin-left: 38px;
     border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--trinary-background-color);
+    div {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    };
   };
 };

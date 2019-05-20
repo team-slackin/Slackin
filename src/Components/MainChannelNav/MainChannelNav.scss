@@ -5,19 +5,28 @@ div.main-channel-nav {
   flex-direction: column;
   align-items: center;
   img.main-channel-img {
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     border: 1px solid black;
     border-radius: 50%;
     position: center;
     object-fit: cover;
     margin-top: 10px;
     cursor: pointer;
+    box-shadow: 2px 2px 1px;
+    color:  rgba(24, 24, 24, 0.619);
   };
   div.main-channel-nav-seperator {
     height: 100px;
     flex-grow: 0;
     width: fit-content;
     border-bottom: 1.5px solid var(--main-color);
+  };
+  div.plus-sign-div {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   };
 };
