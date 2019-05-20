@@ -42,7 +42,7 @@ function Register(props) {
         last_name,
         first_name
       })
-      props.history.push("/account")
+      props.history.push("/container")
     } else {
       alert("passwords not matching")
     }

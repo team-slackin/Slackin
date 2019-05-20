@@ -29,7 +29,8 @@ function Container(props) {
 
         </main>
     </>
-);
+  );
+};
 
 const mapStateToProps = reduxState => reduxState.channelReducer;
 
