@@ -17,19 +17,8 @@ function TextChannelWindow(props) {
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
-  const createMessage = e => {
-    const { value } = e.target;
-    setMessage(value);
-  };
-
-  // useEffect(() => {
-  //   const { user_display_name, user_id } = props.userReducer.user;
-  //   async function setUpChatkitUser() {
-  //     await axios.post("/chatkit/users", { user_display_name, user_id });
-  //   }
-  //   setUpChatkitUser();
-  // }, []);
-
+  const [input, setInput] = useState(`Send message here.`);
+  
   useEffect(() => {
     setRoomMessages([]);
   }, [props.subChannelReducer.currentSubChannelChatKitId]);
@@ -64,6 +53,26 @@ function TextChannelWindow(props) {
     }
   }, [props.subChannelReducer.currentSubChannel]);
 
+  const createMessage = e => {
+    const { value } = e.target;
+    setMessage(value);
+  };
+  
+  
+  const changeInput = (e) => {
+    const {value} = e.target;
+    if (value === '') {
+      setInput('Send message here.');
+    } else {
+      setInput(value);
+    };
+  };
+  
+  const sendMessageChangeInput = () => {
+    setInput('Send message here.');
+  };
+
+
   const sendMessage = (text, e) => {
     e.preventDefault();
     currentUser.currentUser.sendMessage({
@@ -88,14 +97,21 @@ function TextChannelWindow(props) {
           <div className="main-text-input">
             <form>
               <Input
-                placeholder={`message ${"sub channel name"}`}
-                onChange={e => createMessage(e)}
+                placeholder={input}
+                onChange={e => {
+                  changeInput(e);
+                  createMessage(e);
+                }}
                 value={inputMessage}
                 fullWidth
               />
               <button
                 onClick={e => {
+                  sendMessageChangeInput();
                   sendMessage(inputMessage, e);
+                }}
+                style={{
+                  display: 'none'
                 }}
               >
                 Temp Submit
