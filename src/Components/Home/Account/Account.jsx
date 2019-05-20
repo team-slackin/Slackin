@@ -3,7 +3,7 @@ import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { logout, login, register, updateUserInfo } from './../../../Ducks/userReducer';
 import {removeSelectedChannel} from '../../../Ducks/channelReducer';
-import {Input} from '@material-ui/core';
+import {Input, Button} from '@material-ui/core';
 
 import Drop from './../../DropZone/DropZone'
 
@@ -77,8 +77,8 @@ function Account(props) {
         </form>
 
         <div className="account-bottom-bar">
-          <button onClick={()=>{toggleEdit()}}>Cancel</button>
-          <button onClick={()=>{handleUpdateUserInfo()}}>Save</button>
+          <Button onClick={()=>{toggleEdit()}}>Cancel</Button>
+          <Button onClick={()=>{handleUpdateUserInfo()}}>Save</Button>
         </div>
           
       </div> 
@@ -92,7 +92,7 @@ function Account(props) {
           <img src={props.user.user_image} alt='users profile pic' />
           <h1>{props.user.user_display_name}</h1>
         </div>
-        <button onClick={()=>{toggleEdit()}}>Edit</button>
+        <Button onClick={()=>{toggleEdit()}}>Edit</Button>
       </div>
         
         <div className="account-settings">
@@ -100,7 +100,7 @@ function Account(props) {
         </div>
 
         <div className="account-bottom-bar">
-          <button onClick={()=>{handleLogout()}}>Logout</button>
+          <Button onClick={()=>{handleLogout()}}>Logout</Button>
           <Link to='/container'>Go back</Link>
         </div>
 
