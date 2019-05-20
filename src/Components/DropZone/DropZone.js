@@ -7,7 +7,7 @@ import {v4 as randomString} from 'uuid';
 import { connect } from 'react-redux';
 import { uploadUserImageToDb } from './../../Ducks/userReducer'
 import { uploadChannelImageToDb } from './../../Ducks/channelReducer'
-
+import {Button} from '@material-ui/core';
 
 function Drop(props) {
   const {type, channel_id} = props;//THESE NEED TO EXIST
@@ -43,8 +43,7 @@ function Drop(props) {
                                                                 //type is either user or channel and the channel_id is added as an option but not needed.
     if (channel_id && type == 'channel' ){
       props.uploadChannelImageToDb(type, url, channel_id)
-    } else if (type == 'user')
-    { console.log(`line 48`, props)
+    } else if (type == 'user') {
     props.uploadUserImageToDb(type, url) }
     //this will go to a function on our server which will update our database with the url
     //i do not know what that will look like so i am ending it here.
@@ -57,7 +56,7 @@ function Drop(props) {
         ({getRootProps, getInputProps})=>(
           <div {...getRootProps()}>
           <input {...getInputProps()} />
-          <button>Click me to add image file</button>
+          <Button>Click me to add image file</Button>
           </div>
         )}
       </Dropzone>
