@@ -4,7 +4,7 @@ import channelReducer from "./Ducks/channelReducer";
 import friendReducer from "./Ducks/friendReducer";
 import userReducer from "./Ducks/userReducer";
 import subChannelReducer from "./Ducks/subChannelReducer";
-
+import textChannelReducer from "./Ducks/textChannelReducer";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
   channelReducer,
   friendReducer,
   userReducer,
-  subChannelReducer
+  subChannelReducer,
+  textChannelReducer
 });
 
 export default createStore(
