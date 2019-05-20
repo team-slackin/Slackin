@@ -126,6 +126,7 @@ app.post("/api/setuserstatus", users.setUserStatus);
 
 // channel endpoints
 app.get(`/api/channels/:id`, channel.getChannels);
+app.get(`/api/grabusersfromchannel/:channel_id`, channel.grabUsersFromChannel);
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);

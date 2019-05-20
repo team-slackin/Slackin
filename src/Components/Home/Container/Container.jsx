@@ -6,9 +6,11 @@ import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from "../../SubPrivateNav/SubPrivateNav";
 import TextChannelWindow from "../../TextChannelWindow/TextChannelWindow";
 
+
 import "./Container.scss";
 
 function Container(props) {
+  console.log(props);
   return (
     <>
       <MainChannelNav />
