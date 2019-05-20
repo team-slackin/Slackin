@@ -39,7 +39,7 @@ function App(props) {
       .catch(err =>
         console.log(`Something happened while checking for req.session ${err}`)
       )
-  }, [])
+  }, []);
 
   return (
     <MuiThemeProvider theme={theme}>

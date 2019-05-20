@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, {useEffect } from "react"
 import { connect } from "react-redux"
 import {grabChannels,removeSelectedChannel} from "./../../Ducks/channelReducer"
-import {Redirect} from "react-router-dom"
-import Axios from "axios"
+import {search} from '@material-ui/icons/';
 
 import MainChannelConstructor from "./MainChannelConstructor"
 
