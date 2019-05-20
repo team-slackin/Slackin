@@ -37,7 +37,7 @@ function TextChannelWindow(props) {
     if (props.subChannelReducer.currentSubChannelChatKitId) {
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
-        userId: `${props.userReducer.user.user_id}`,
+        userId: `${props.userReducer.user.user_display_name}`,
         tokenProvider: new Chatkit.TokenProvider({
           url:
             "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token"
