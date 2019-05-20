@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 import {grabChannels, removeSelectedChannel} from "./../../Ducks/channelReducer";
+import {Link} from 'react-router-dom';
 
 import MainChannelConstructor from "./MainChannelConstructor"
 
@@ -27,15 +28,16 @@ function MainChannelNav(props) {
       <div className="main-channel-nav">
 
         <div className="main-channel-nav-seperator">
+          <Link to="/container">
           <img 
           src={user.user_image} 
           className="main-channel-img"
           onClick={()=>{
-            removeSelectedChannel();
+            props.removeSelectedChannel();
           }} 
           style={{borderRadius: `${borderRadius}%`}}
           />
-
+          </Link>
         </div>
 
         {props.channelReducer.userChannels[0] ?
