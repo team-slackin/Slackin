@@ -56,7 +56,6 @@ export default function reducer(state = initialState, action) {
     };
       
     case REMOVE_SELECTED_CHANNEL: {
-      console.log(`AAAAAA${state}AAAAAAAA`)
       return {...state, currentChannel: payload};
     };
 
