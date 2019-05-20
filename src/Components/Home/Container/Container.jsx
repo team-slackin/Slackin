@@ -8,6 +8,7 @@ import TextChannelWindow from '../../TextChannelWindow/TextChannelWindow';
 
 import './Container.scss';
 
+
 function Container(props) {
   return (
     <> 
@@ -28,8 +29,7 @@ function Container(props) {
 
         </main>
     </>
-  );
-};
+);
 
 const mapStateToProps = reduxState => reduxState.channelReducer;
 

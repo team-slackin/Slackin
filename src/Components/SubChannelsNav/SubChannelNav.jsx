@@ -52,9 +52,11 @@ function SubChannelNav(props) {
       }).then(() => { 
         setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))
-    }
+    };
   };
+
   const {subChannels} = props.subChannelReducer;
+
   const displaySearch =  subChannels.map((subChannel, index)=>{
       if (subChannel.sub_channel_name.toLowerCase().includes(search.toLowerCase())) {
         return <SubChannelConstructor key={`SubChannel:${index}`} subChannel={subChannel} />;

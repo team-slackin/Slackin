@@ -5,15 +5,15 @@ import FriendsList from './../FriendsList/FriendsList';
 import Search from '../Search/Search';
 import UserToolbar from '../UserToolbar/UserToolbar';
 
-
 function SubPrivateNav(props) {
   const [search, setSearch] = useState('');
+  
   const onChange = (e) => {
     const {value} = e.target;
     setSearch(value)
   };
 
-  const {friends} = props;
+  // const {friends} = props;
 
   // const displayFriends = friends.map((friend, index) => {
   //   const {user_display_name} = friend;

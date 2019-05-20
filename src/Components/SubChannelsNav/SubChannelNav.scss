@@ -10,4 +10,17 @@ section.sub-nav {
   div.sub-nav-friends {
     flex: 1;
   };
+  .sub-nav-search {
+    width: 220px;
+    height: 50px;
+    box-shadow:1px 0px 2px 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: bottom;
+    .icon-absolute {
+      position: absolute;
+      margin-left: 185px;
+    };
+  };
 };

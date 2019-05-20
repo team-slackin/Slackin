@@ -37,7 +37,9 @@ const FriendsConstructor = (props) => {
         alt={props.friend.user_display_name} 
       />
       <span>{`${props.friend.user_display_name}`}</span>
-      <div className="friend-status" style={{backgroundColor: `${currentUserStatusColor}`}}></div>
+      <div className="friend-status">
+        <div style={{backgroundColor: `${currentUserStatusColor}`}}></div>
+      </div>
     </div>
   );
 };
