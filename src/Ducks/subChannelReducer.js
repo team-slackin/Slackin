@@ -26,7 +26,6 @@ export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id) =>
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
-  console.log('subchanell reducer',payload)
   switch (type) {
     case GRAB_SUBCHANNELS + "_PENDING":
       return { ...state }

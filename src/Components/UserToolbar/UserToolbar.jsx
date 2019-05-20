@@ -15,7 +15,6 @@ function UserToolbar(props) {
     let toggleStatusEdit = ()=>{
         setEditStatusFlag(!editStatusFlag);
       }
-      console.log(props)
   return (
     <aside className="user-tool-bar">
       {editStatusFlag ? ( 

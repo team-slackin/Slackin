@@ -5,7 +5,6 @@ const FriendsConstructor = (props) => {
 
   useEffect(()=>{
     const {user_status} = props.friend;
-    console.log(props.friend)
     switch(user_status) {
       case 'online': {
         setCurrentUserStatusColor('#689f38');

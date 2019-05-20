@@ -8,9 +8,10 @@ import TextChannelWindow from '../../TextChannelWindow/TextChannelWindow';
 
 import './Container.scss';
 
-const Container = (props) => (
-  <> 
-      {console.log('11111',props.currentChannel,'11111')}
+
+function Container(props) {
+  return (
+    <> 
       <MainChannelNav />
 
         <main className="main-container">
