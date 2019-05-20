@@ -15,8 +15,9 @@ function MainChannelNav(props) {
   useEffect(() => {
     props.grabChannels(props.userReducer.user.user_id);
   }, []);
-
+  
   useEffect(()=>{
+    console.log(`from MainChannelNav`, props.channelReducer)
     if (props.channelReducer.currentChannel) {
       setBorderRadius('50');
     } else {

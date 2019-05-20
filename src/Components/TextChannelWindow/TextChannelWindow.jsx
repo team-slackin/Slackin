@@ -7,8 +7,10 @@ import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
 
 import Chatkit from "@pusher/chatkit-client";
 import UserToolbar from "../UserToolbar/UserToolbar";
+// import UsersInChannel from "../UsersInChannel/UsersInChannel";
 
 import FriendsList from "./../FriendsList/FriendsList";
+import UsersInChannel from "../UsersInChannel/UsersInChannel";
 
 function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
@@ -102,7 +104,9 @@ function TextChannelWindow(props) {
           </div>
         </div>
 
-        <aside>Friends:</aside>
+        <aside>Friends:
+                <UsersInChannel />
+        </aside>
       </div>
     </>
   );
