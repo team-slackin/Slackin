@@ -8,10 +8,9 @@ import TextChannelWindow from '../../TextChannelWindow/TextChannelWindow';
 
 import './Container.scss';
 
-function Container(props) {
-  console.log(props);
-  return (
-    <> 
+const Container = (props) => (
+  <> 
+      {console.log('11111',props.currentChannel,'11111')}
       <MainChannelNav />
 
         <main className="main-container">
@@ -29,8 +28,7 @@ function Container(props) {
 
         </main>
     </>
-  );
-};
+);
 
 const mapStateToProps = reduxState => reduxState.channelReducer;
 
