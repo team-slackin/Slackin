@@ -43,7 +43,7 @@ function Account(props) {
       alert(`Updated password!`);
       toggleEdit();
     } else {
-      alert('Please Leave no feild empty');
+      alert('Please Leave no field empty');
     };
   };
 

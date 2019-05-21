@@ -70,6 +70,7 @@ function TextChannelWindow(props) {
       text,
       roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`
     });
+    setMessage('')
   };
 
   return (

@@ -61,13 +61,13 @@ module.exports = {
       }
 	  res.status(200).send({ message: 'user info was updated', user: req.session.user, loggedIn: true })
   },
-  
-  uploadFileToDbForChannel: async(req, res) => {  
-	  	//uploads our channels picture
-	  const db = req.app.get('db');
-	  const {url, channel_id} = req.body;
-	  await db.upload_url_for_channel(url, channel_id)
-	  	.catch(err=>console.log(err));;
-	  res.sendStatus(200);
+  uploadFileToDbForChannel: async(req, res) => {
+    const db = req.app.get('db');
+    const { url, channel_id } = req.body;
+    const { user_id } = req.session;
+    let updatedUserChannels = await db.upload_url_for_channel([url, channel_id, user_id]).catch(err=>console.log(err))
+    return res.status(200).send(updatedUserChannels)
   }
+  
+
 }

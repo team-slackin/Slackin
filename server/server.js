@@ -5,6 +5,7 @@ const session = require("express-session");
 const socketCtrl = require("./controller/SocketCtrl/socketCtrl");
 const amazon = require("./controller/amazon/amazon");
 const friends = require('./controller/friends/friends');
+
 const {
   SERVER_PORT,
   CONNECTION_STRING,
@@ -12,6 +13,7 @@ const {
   CHATKIT_INSTANCE_LOCATOR,
   CHATKIT_SECRET_KEY
 } = process.env;
+
 const app = express();
 
 //CHATKIT
@@ -119,7 +121,8 @@ app.post("/api/register", users.register);
 app.post("/api/login", users.login);
 app.post(`/api/logout`, users.logout);
 app.post("/api/database/amazon-url/user", amazon.uploadFileToDbForUser);
-app.post("/api/database/amazon-url/channel", amazon.uploadFileToDbForChannel);
+app.post("/api/database/updatechannel", amazon.uploadFileToDbForChannel);
+app.post("/api/database/createchannel", channel.createChannel);
 app.post("/api/setuserstatus", users.setUserStatus);
 
 //rest of functions
@@ -127,6 +130,7 @@ app.post("/api/setuserstatus", users.setUserStatus);
 // channel endpoints
 app.get(`/api/channels/:id`, channel.getChannels);
 app.get(`/api/grabusersfromchannel/:channel_id`, channel.grabUsersFromChannel);
+app.get(`/api/queriedchannels`, channel.grabChannelsWithQuery);
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);

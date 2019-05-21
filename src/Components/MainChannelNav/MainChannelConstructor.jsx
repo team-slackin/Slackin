@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
 import { userSelectedChannel } from "./../../Ducks/channelReducer"
+import { login } from "./../../Ducks/userReducer"
 
 function MainChannelConstructor(props) {
   const [borderRadius, setBorderRadius] = useState('50')
@@ -14,9 +15,12 @@ function MainChannelConstructor(props) {
       setBorderRadius('50');
     };
   }, [props.currentChannel])
+
+  
+  
   return (
     <>
-      <Link onClick={() => props.userSelectedChannel(props.channel.channel_id)}
+      <Link onClick={() => props.userSelectedChannel(props.channel.channel_id, props.channel.channel_creator)}
         to={`/container/${props.channel.channel_name}`}
       >
         <div>
@@ -27,10 +31,15 @@ function MainChannelConstructor(props) {
             />
         </div>
       </Link>
+      
+      
     </>
   );
 };
 
-const mapStateToProps = reduxState => reduxState.channelReducer;
+const mapStateToProps = reduxState => ({
+  channelReducer: reduxState.channelReducer,
+  userReducer: reduxState.userReducer
+});
 
-export default connect(mapStateToProps,{userSelectedChannel})(MainChannelConstructor);
+export default connect(mapStateToProps, {userSelectedChannel, login})(MainChannelConstructor);
