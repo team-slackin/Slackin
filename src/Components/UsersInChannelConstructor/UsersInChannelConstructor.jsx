@@ -1,50 +1,55 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react"
 
-import './UsersInChannelConstructor.scss';
+import "./UsersInChannelConstructor.scss"
 
 function UsersInChannelConstructor(props) {
-  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38');
+  const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
+    "#689f38"
+  )
 
-  const { user_image, user_display_name, user_status } = props.user;
-  useEffect(()=>{
-    switch(user_status) {
-      case 'online': {
-        setCurrentUserStatusColor('#689f38');
-        break;
-      };
-      case 'idle': {
-        setCurrentUserStatusColor('yellow');
-        break;
-      };
-      case 'do not disturb': {
-        setCurrentUserStatusColor('red');
-        break;
-      };
+  const { user_image, user_display_name, user_status } = props.user
+  useEffect(() => {
+    switch (user_status) {
+      case "online": {
+        setCurrentUserStatusColor("#43b581")
+        break
+      }
+      case "idle": {
+        setCurrentUserStatusColor("#faa61a")
+        break
+      }
+      case "do not disturb": {
+        setCurrentUserStatusColor("#f04747")
+        break
+      }
       default: {
-        setCurrentUserStatusColor('gray');
-        break;
-      };
-    };
-  }, []);
+        setCurrentUserStatusColor("#747f8d")
+        break
+      }
+    }
+  }, [])
 
-    return (
-    <div className='users-in-channel'>
-      <img 
-        src={user_image} 
-        alt='pic of each user' 
+  return (
+    <div className="users-in-channel">
+      <img
+        src={user_image}
+        alt="pic of each user"
         className="users-in-channel-image"
       />
-      <div 
+      <div
         className="users-in-channel-status"
-        style={{backgroundColor: currentUserStatusColor}}
+        style={{ backgroundColor: currentUserStatusColor }}
+      />
+      <h4
+        style={{
+          marginLeft: "5px",
+          color: "white"
+        }}
       >
-      </div>
-      <h4 style={{
-        marginLeft: '5px',
-        color: 'white'
-      }}>{user_display_name}</h4>
+        {user_display_name}
+      </h4>
     </div>
-  );
-};
+  )
+}
 
-export default UsersInChannelConstructor;
+export default UsersInChannelConstructor

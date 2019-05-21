@@ -17,6 +17,15 @@ div.main-channel-nav {
     box-shadow: 3px 5px 10px #000;
     color: rgba(24, 24, 24, 0.619);
   }
+
+  img.main-channel-img:active {
+    transform: scale(0.95);
+  }
+
+  img.main-channel-img:hover {
+    opacity: 0.5;
+  }
+
   div.main-channel-nav-seperator {
     height: 100px;
     flex-grow: 0;
@@ -29,5 +38,13 @@ div.main-channel-nav {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  div.plus-sign-div:active {
+    transform: scale(0.93);
+  }
+
+  div.plus-sign-div:hover {
+    opacity: 0.5;
   }
 }
