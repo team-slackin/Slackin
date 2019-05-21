@@ -7,16 +7,16 @@ import UsersInChannelConstructor from './../UsersInChannelConstructor/UsersInCha
 function UsersInChannel(props) {
 
   useEffect(()=>{
-    props.grabUsersFromChannel(props.channelReducer.currentChannel)
+    if(props.channelReducer.currentChannel){
+      props.grabUsersFromChannel(props.channelReducer.currentChannel)
+    }
   }, [props.channelReducer.currentChannel])
 
-
   return (<div>
-    { props.channelReducer.currentChannel ? props.channelReducer.usersFromChannel.map((user, i)=>{
+    { props.channelReducer.usersFromChannel ? props.channelReducer.usersFromChannel.map((user, i)=>{
     return ( <UsersInChannelConstructor key={i} user={user} /> )
   }) : <div>Please select a channel</div> }
   </div>)
-  
 }
 
 const mapStateToProps = reduxState => {

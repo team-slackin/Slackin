@@ -28,18 +28,6 @@ const theme = createMuiTheme({
 })
 
 function App(props) {
-  useEffect(() => {
-    axios
-      .get(`/retrievesession/`)
-      .then(res => {
-        if (res.data.user_id) {
-          props.updateIsUserLoggedIn(res.data)
-        }
-      })
-      .catch(err =>
-        console.log(`Something happened while checking for req.session ${err}`)
-      )
-  }, []);
 
   const positionHeaderWhenLoggedIn = () =>{
     if (props.userReducer.loggedIn) {

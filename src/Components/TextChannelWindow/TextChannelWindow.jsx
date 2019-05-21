@@ -26,6 +26,7 @@ function TextChannelWindow(props) {
   //FIX AUTH ERROR being double ran - look at parent
   useEffect(() => {
     if (props.subChannelReducer.currentSubChannelChatKitId) {
+      console.log('am i getting ran over and over')
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
