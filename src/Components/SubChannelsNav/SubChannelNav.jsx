@@ -7,6 +7,7 @@ import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
 
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
+import Drop from './../DropZone/DropZone'
 
 import "./SubChannelNav.scss";
 
@@ -15,6 +16,14 @@ require('dotenv').config()
 var chatManager;
 
 function SubChannelNav(props) {
+
+  const [updateChannelImageToggle, setUpdateChannelImageToggle] = useState(false);
+
+  const toggleUpdateChannelImageToggle = () => {
+    setUpdateChannelImageToggle(!updateChannelImageToggle)
+  }
+
+
   useEffect(() => {
     props.grabSubChannels(props.channel_id);
   }, [props.channel_id]);
@@ -63,12 +72,21 @@ function SubChannelNav(props) {
       } else {
         return;
       }});
-
+  const isUserTheChannelCreator = props.userReducer.user.user_id === props.channelReducer.currentCreator
   return (
     <>
       <div className="sub-nav-search">
         <Search placeholder="Search for a channel" onChange={onChange} />
       </div>
+
+
+      { isUserTheChannelCreator ? ( <div>
+        { updateChannelImageToggle ? (<div>
+          <Drop type={'update'} channel_id={props.channelReducer.currentCreator} />
+          <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
+        </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
+      </div> ) : null }
+
 
       <div className="sub-channel-constructor">
         {displaySearch}
@@ -85,7 +103,8 @@ function SubChannelNav(props) {
 const mapStateToProps = reduxState => {
   return {
     userReducer: reduxState.userReducer,
-    subChannelReducer: reduxState.subChannelReducer
+    subChannelReducer: reduxState.subChannelReducer,
+    channelReducer: reduxState.channelReducer
   }
 };
 

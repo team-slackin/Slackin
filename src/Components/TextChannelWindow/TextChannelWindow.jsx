@@ -67,8 +67,9 @@ function TextChannelWindow(props) {
     currentUser.currentUser.sendMessage({
       text,
       roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`
-    })
-  }
+    });
+    setMessage('')
+  };
 
 
   console.log('TEXT CHANNEL REDUCER 1111111111',props)

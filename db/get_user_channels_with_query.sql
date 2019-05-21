@@ -1,8 +1,4 @@
-update channels
-set channel_image = $1
-where channel_id = $2;
-
 select channels.channel_id, channel_creator, channel_name, channel_image from channels
 join user_channels on channels.channel_id = user_channels.channel_id
 join users on users.user_id = user_channels.user_id
-where users.user_id = $3;
+where users.user_id = $1 and channels.channel_name like '%' || $2 || '%';
