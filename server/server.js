@@ -2,7 +2,6 @@ require("dotenv").config();
 const massive = require("massive");
 const express = require("express");
 const session = require("express-session");
-const socketCtrl = require("./controller/SocketCtrl/socketCtrl");
 const amazon = require("./controller/amazon/amazon");
 const friends = require('./controller/friends/friends');
 
@@ -21,13 +20,10 @@ const Chatkit = require("@pusher/chatkit-server");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-//SOCKET.IO
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
 
+const server = require("http").Server(app);
 const users = require("./controller/users/users");
 const channel = require("./controller/channels/channels");
-const authenticate = require("./controller/authenticate/authenticate");
 const subChannels = require("./controller/subChannels/subChannels");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -96,13 +92,12 @@ app.post("/chatkit/authenticate", (req, res) => {
   res.status(authData.status).send(authData.body);
 });
 
-//Was breaking beacuse creatorId wasnt passing as a string like it req'd JBAE=BEST
+
 app.post("/chatkit/createroom", (req, res) => {
-  const { user_id, roomName, roomStatus, channel_id } = req.body;
-  //FIGURE OUT WHY THE HELL USER_ID PASSING AS INT
+  const { user_display_name, roomName, roomStatus, channel_id } = req.body;
   chatkit
     .createRoom({
-      creatorId: `${user_id}`,
+      creatorId: `${user_display_name}`,
       name: roomName,
       isPrivate: roomStatus
     })

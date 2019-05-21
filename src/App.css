@@ -5,14 +5,16 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
-	--main-color: #e96745;
+  --main-color: #e96745;
   --main-background-color: #202225;
-  --secondary-background-color: #36393f;
+  --secondary-background-color: #36393fd9; /*#36393f*/
   --trinary-background-color: #2f3136;
   --text-icon-shadow: 1px 1px 4px black;
+  --text-icon-shadow-1: 3px 5px 10px #000;
   --border: 1px solid var(--black);
   --boxShadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
@@ -103,7 +105,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -149,8 +150,8 @@ div.App {
   height: 100vh;
   min-height: 498px;
   display: flex;
-	flex-direction: column;
-	background: var(--main-background-color);
+  flex-direction: column;
+  background: var(--main-background-color);
 }
 
 div.App header.App-header {
@@ -162,30 +163,29 @@ div.App header.App-header {
 }
 
 div.App div.main-content-flex-box {
-	flex-grow: 1;
-	display: flex;
-	flex-direction: row;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
 }
 
 div.App button {
-	background-color: #e96745;
-	color: rgba(0, 0, 0, 0.87);
-	box-shadow: var(--boxShadow);
-	transition: 
-		background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-		border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-	line-height: 1.75;
-	font-weight: 500;
-	border-radius: 4px;
-	letter-spacing: 0.02857em;
-	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-};
+  background-color: #e96745;
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: var(--boxShadow);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  line-height: 1.75;
+  font-weight: 500;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
 
 div.App button.button {
-	padding: 16px;
-};
+  padding: 16px;
+}
 
 div.App ::placeholder {
-	color: white;
+  color: white;
 }

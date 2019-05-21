@@ -28,37 +28,51 @@ const theme = createMuiTheme({
 })
 
 function App(props) {
-  useEffect(() => {
-    axios
-      .get(`/retrievesession/`)
-      .then(res => {
-        if (res.data.user_id) {
-          props.updateIsUserLoggedIn(res.data)
-        }
-      })
-      .catch(err =>
-        console.log(`Something happened while checking for req.session ${err}`)
-      )
-  }, []);
+
+  const positionHeaderWhenLoggedIn = () =>{
+    if (props.userReducer.loggedIn) {
+      return (
+        <header className="App-header">
+        <span>
+          <Link
+            to="/container"
+            style={{
+              color: "white",
+              marginLeft: "20px",
+              textDecorationLine: "none"
+            }}
+          >
+            Slackin
+          </Link>
+        </span>
+      </header>
+      );
+    } else {
+      return (
+        <header className="App-header" style={{position: 'absolute', zIndex: 2}}>
+        <span>
+          <Link
+            to="/container"
+            style={{
+              color: "white",
+              marginLeft: "20px",
+              textDecorationLine: "none"
+            }}
+          >
+            Slackin
+          </Link>
+        </span>
+      </header>
+      );
+    };
+  };
+
 
   return (
     <MuiThemeProvider theme={theme}>
       <HashRouter>
         <div className="App">
-          <header className="App-header">
-            <span>
-              <Link
-                to="/container"
-                style={{
-                  color: "white",
-                  marginLeft: "20px",
-                  textDecorationLine: "none"
-                }}
-              >
-                Slackin
-              </Link>
-            </span>
-          </header>
+        {positionHeaderWhenLoggedIn()}
           <div className="main-content-flex-box">{routes}</div>
         </div>
       </HashRouter>

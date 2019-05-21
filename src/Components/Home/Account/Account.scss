@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 section.account {
   position: absolute;
   width: 100vw;
@@ -5,7 +9,10 @@ section.account {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.34);
+  background-color: rgba(0, 0, 0, 0.671);
+  z-index: 4;
+  overflow: hidden;
+
   div.account-main {
     width: 60%;
     height: 60%;
@@ -16,13 +23,15 @@ section.account {
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 2px 8px #000;
+    // z-index: 4;
     div.image-name-holder {
       width: 90%;
       margin-left: 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color:  #2f3136;
+      background-color: #2f3136;
       div {
         display: flex;
         flex-direction: row;
@@ -32,13 +41,14 @@ section.account {
           height: 80px;
           border-radius: 50%;
           border: 1px solid black;
-        };
+          box-shadow: 3px 5px 10px #000;
+        }
         h1 {
           text-align: center;
           margin-left: 20px;
-        };
-      };
-    };
+        }
+      }
+    }
     .account-settings {
       height: 300px;
       width: 300px;
@@ -51,20 +61,21 @@ section.account {
       background-color: #36393f;
       border-radius: 5px;
       box-shadow: var(--boxShadow);
+
       div.input-border {
         margin: 5px;
         padding: 8px;
         border: 1px solid black;
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.095);
-      };
-    };
+      }
+    }
     div.account-bottom-bar {
       width: 90%;
       display: flex;
       padding: 20px;
       justify-self: flex-end;
       justify-content: space-between;
-    };
-  };
-};
+    }
+  }
+}

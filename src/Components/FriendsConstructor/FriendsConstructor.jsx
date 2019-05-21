@@ -11,7 +11,7 @@ const FriendsConstructor = (props) => {
         break;
       };
       case 'idle': {
-        setCurrentUserStatusColor('white');
+        setCurrentUserStatusColor('yellow');
         break;
       };
       case 'do not disturb': {

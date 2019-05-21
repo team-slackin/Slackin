@@ -3,17 +3,21 @@ section.sub-nav {
   max-width: 220px;
   display: flex;
   flex-direction: column;
+
   .sub-channel-constructor {
     overflow-y: scroll;
     flex: 1;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
   div.sub-nav-friends {
     flex: 1;
-  };
+  }
   .sub-nav-search {
     width: 220px;
     height: 50px;
-    box-shadow:1px 0px 2px 1px;
+    box-shadow: 1px 1px 1px #16181a;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,6 +25,6 @@ section.sub-nav {
     .icon-absolute {
       position: absolute;
       margin-left: 185px;
-    };
-  };
-};
+    }
+  }
+}
