@@ -10,7 +10,7 @@
 :root {
 	--main-color: #e96745;
   --main-background-color: #202225;
-  --secondary-background-color: #36393f;
+  --secondary-background-color: #36393fd9;/*#36393f*/
   --trinary-background-color: #2f3136;
   --text-icon-shadow: 1px 1px 4px black;
   --border: 1px solid var(--black);
