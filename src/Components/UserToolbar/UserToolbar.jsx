@@ -14,7 +14,7 @@ function UserToolbar(props) {
   const [visable, setVisable] = useState("hidden")
 
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
-    "#689f38"
+    "#43b581"
   )
 
   let toggleStatusEdit = () => {
@@ -48,61 +48,61 @@ function UserToolbar(props) {
           animationName: fade
         }}
       >
-        <Button
+        <div
+          className="status"
           onClick={() => {
-            props.setUserStatus("online")
-            setCurrentUserStatusColor("#689f38")
+            props.setUserStatus("Online")
+            setCurrentUserStatusColor("#43b581")
           }}
           style={{
-            display: buttonDisplay,
             animationName: fade,
             animationDuration: "1s"
           }}
         >
           Online
-        </Button>
+        </div>
 
-        <Button
+        <div
+          className="status"
           onClick={() => {
-            props.setUserStatus("idle")
-            setCurrentUserStatusColor("yellow")
+            props.setUserStatus("Idle")
+            setCurrentUserStatusColor("#faa61a")
           }}
           style={{
-            display: buttonDisplay,
             animationName: fade,
             animationDuration: "1s"
           }}
         >
           Idle
-        </Button>
+        </div>
 
-        <Button
+        <div
+          className="status"
           onClick={() => {
-            props.setUserStatus("do not disturb")
-            setCurrentUserStatusColor("red")
+            props.setUserStatus("Do Not Disturb")
+            setCurrentUserStatusColor("#f04747")
           }}
           style={{
-            display: buttonDisplay,
             animationName: fade,
             animationDuration: "1s"
           }}
         >
           Do Not Disturb
-        </Button>
+        </div>
 
-        <Button
+        <div
+          className="status"
           onClick={() => {
-            props.setUserStatus("invisible")
-            setCurrentUserStatusColor("gray")
+            props.setUserStatus("Invisible")
+            setCurrentUserStatusColor("#747f8d")
           }}
           style={{
-            display: buttonDisplay,
             animationName: fade,
             animationDuration: "1s"
           }}
         >
           Invisible
-        </Button>
+        </div>
       </div>
 
       <div className="user-tool-bar-information">
