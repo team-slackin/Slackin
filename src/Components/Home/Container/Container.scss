@@ -31,6 +31,7 @@ main.main-container {
     div.text-channel-flex-box {
       flex: 1;
       display: flex;
+
       div.main-text-window {
         flex: 1;
         display: flex;
@@ -38,6 +39,8 @@ main.main-container {
         justify-content: space-between;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+        // -webkit-box-shadow: inset 0 0 10px #000000;
+        // box-shadow: inset 0 0 10px #000000;
 
         div.main-screen {
           flex: 1;
