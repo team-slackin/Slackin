@@ -84,7 +84,7 @@ function App(props) {
     <MuiThemeProvider theme={theme}>
       <HashRouter>
         <div className="App">
-          {positionHeaderWhenLoggedIn()}
+        {positionHeaderWhenLoggedIn()}
           <div className="main-content-flex-box">{routes}</div>
         </div>
       </HashRouter>
