@@ -16,8 +16,6 @@ function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-
-  const [input, setInput] = useState(`Send message here.`);
   
   useEffect(() => {
     setRoomMessages([]);
@@ -57,21 +55,6 @@ function TextChannelWindow(props) {
     const { value } = e.target;
     setMessage(value);
   };
-  
-  
-  const changeInput = (e) => {
-    const {value} = e.target;
-    if (value === '') {
-      setInput('Send message here.');
-    } else {
-      setInput(value);
-    };
-  };
-  
-  const sendMessageChangeInput = () => {
-    setInput('Send message here.');
-  };
-
 
   const sendMessage = (text, e) => {
     e.preventDefault();
@@ -97,9 +80,8 @@ function TextChannelWindow(props) {
           <div className="main-text-input">
             <form>
               <Input
-                placeholder={input}
+                placeholder={'Send message here.'}
                 onChange={e => {
-                  changeInput(e);
                   createMessage(e);
                 }}
                 value={inputMessage}
@@ -107,7 +89,6 @@ function TextChannelWindow(props) {
               />
               <button
                 onClick={e => {
-                  sendMessageChangeInput();
                   sendMessage(inputMessage, e);
                 }}
                 style={{
@@ -120,7 +101,7 @@ function TextChannelWindow(props) {
           </div>
         </div>
 
-        <aside>Friends:
+        <aside>
                 <UsersInChannel />
         </aside>
       </div>
