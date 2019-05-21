@@ -16,7 +16,9 @@ function MainChannelNav(props) {
   const [borderRadius, setBorderRadius] = useState("25")
 
   useEffect(() => {
-    props.grabChannels(props.userReducer.user.user_id)
+    if(props.userReducer.user.user_id){
+      props.grabChannels(props.userReducer.user.user_id)
+    }
   }, [])
 
   useEffect(() => {
