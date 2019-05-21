@@ -51,6 +51,8 @@ function TextChannelWindow(props) {
     }
   }, [props.subChannelReducer.currentSubChannel]);
 
+
+  
   const createMessage = e => {
     const { value } = e.target;
     setMessage(value);

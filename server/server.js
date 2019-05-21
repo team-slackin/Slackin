@@ -94,13 +94,28 @@ app.post("/chatkit/authenticate", (req, res) => {
   res.status(authData.status).send(authData.body);
 });
 
-//Was breaking beacuse creatorId wasnt passing as a string like it req'd JBAE=BEST
+app.post('/chatkit/createroom/friends', (req, res)=> {
+  const {user_display_name, user_id} = req.body;
+  console.log('aaaaaaa', req.session.user.user_display_name, user_display_name)
+  chatkit.createRoom({
+    creatorId: `${req.session.user.user_display_name}`,//current user
+    userIds: [`${user_display_name}`],//friend 
+    name: `${req.session.user.user_display_name} & ${user_display_name}!`,
+    isPrivate: true
+  }).then(
+    res=>{
+      const db = req.app.get('db');
+      db.set_friend_chatkit(res.id, res.name, res.private, user_id, req.session.user.user_id);
+    }
+  ).catch(err=>console.log(err));
+});
+
 app.post("/chatkit/createroom", (req, res) => {
-  const { user_id, roomName, roomStatus, channel_id } = req.body;
-  //FIGURE OUT WHY THE HELL USER_ID PASSING AS INT
+  const {roomName, roomStatus, channel_id} = req.body;
+
   chatkit
     .createRoom({
-      creatorId: `${user_id}`,
+      creatorId: `${req.session.user.user_display_name}`,
       name: roomName,
       isPrivate: roomStatus
     })
@@ -133,7 +148,7 @@ app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
 
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo);
-
+app.put('/api/friend-room-created', friends.roomCreated)
 // amazon endpoints
 app.post(`/api/amazon`, amazon.getAws);
 

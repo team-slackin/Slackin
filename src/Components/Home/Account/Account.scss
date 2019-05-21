@@ -6,6 +6,7 @@ section.account {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.34);
+  z-index: 1000;
   div.account-main {
     width: 60%;
     height: 60%;

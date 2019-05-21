@@ -1,3 +1,6 @@
+-- DROP SCHEMA public CASCADE;
+-- CREATE SCHEMA public;
+
 CREATE TABLE Users (
 	user_id serial NOT NULL,
 	email varchar(80) NOT NULL UNIQUE,
@@ -18,6 +21,11 @@ CREATE TABLE Friends (
 	friends_id serial NOT NULL,
 	user_id int NOT NULL,
 	friend_id int NOT NULL,
+	room_created BOOLEAN DEFAULT false,
+	friends_chatKit_id INT,
+	chatkit_id INT,
+	chatkit_name VARCHAR(80),
+	chatkit_private BOOLEAN,
 	CONSTRAINT Friends_pk PRIMARY KEY (friends_id)
 ) WITH (
   OIDS=FALSE

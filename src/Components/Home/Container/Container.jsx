@@ -5,12 +5,12 @@ import MainChannelNav from "../../MainChannelNav/MainChannelNav";
 import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from "../../SubPrivateNav/SubPrivateNav";
 import TextChannelWindow from "../../TextChannelWindow/TextChannelWindow";
-
+import FriendsChatWindow from "../../FriendsChatWindow/FriendsChatWindow";
 
 import "./Container.scss";
+import { tsPropertySignature } from "@babel/types";
 
 function Container(props) {
-  console.log(props);
   return (
     <>
       <MainChannelNav />
@@ -25,7 +25,11 @@ function Container(props) {
         </section>
 
         <section className="text-channel-window">
-          <TextChannelWindow />
+          {props.currentChannel ? (
+            <TextChannelWindow />
+          ) : (
+            <FriendsChatWindow />
+          )}
         </section>
       </main>
     </>
