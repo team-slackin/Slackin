@@ -4,6 +4,7 @@ div.login-register {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--main-background-color) url("../../Assets/lady.svg")
-    no-repeat fixed bottom;
+  background: var(--main-background-color) url("../../Assets/lady.svg");
+  background-position: center;
+  background-size: cover;
 }
