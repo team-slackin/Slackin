@@ -23,6 +23,7 @@ function TextChannelWindow(props) {
 
   //FIX AUTH ERROR being double ran - look at parent
 
+  useEffect(()=>{
 
       console.log("am i getting ran over and over")
       const chatManager = new Chatkit.ChatManager({
@@ -54,7 +55,6 @@ function TextChannelWindow(props) {
           })
         })
         .catch(error => console.error("error", error))
-    }
   }, [props.subChannelReducer.currentSubChannel])
 
 
