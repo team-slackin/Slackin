@@ -56,8 +56,10 @@ function SubChannelNav(props) {
     if (input === null || input === undefined) {
       return alert("please put a name");
     } else {
-      chatManager.connect().then((currentUser) => {
-        axios.post("/chatkit/createroom", { user_display_name, roomName: input, roomStatus: false, channel_id });
+
+      chatManager.connect().then(() => {
+        axios.post("/chatkit/createroom", {roomName: input, roomStatus: false, channel_id });
+
       }).then(() => { 
         setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))

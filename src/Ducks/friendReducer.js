@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 const initialState = {
-  friends: []
+  friends: [],
+  currentFriend: {}
 };
 
 const FRIENDS = 'FRIENDS';
 const GRAB_FRIENDS = 'GRAB_FRIENDS';
+const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
 
 export const grabFriends = () => {
   return ({
@@ -14,22 +16,30 @@ export const grabFriends = () => {
   })
 }
 
-
+export const makeCurrentFriend = (friend) => ({type: SET_CURRENT_FRIEND, payload: friend})
 
 
 export default function reducer(state=initialState, action) {
   const {type, payload} = action;
   
   switch(type) {
-    case FRIENDS + '_PENDING':
+    case FRIENDS + '_PENDING': {
       return {...state};
-    case FRIENDS + '_FULFILLED':
+    };
+    case FRIENDS + '_FULFILLED': {
       return {...state, ...payload};
-    case GRAB_FRIENDS + '_PENDING':
+    };
+    case GRAB_FRIENDS + '_PENDING': {
       return {...state};
-    case GRAB_FRIENDS + '_FULFILLED':
+    };
+    case GRAB_FRIENDS + '_FULFILLED': {
       return {...state, friends: payload};
-    default: 
+    };
+    case SET_CURRENT_FRIEND: {
+      return {...state, currentFriend: payload};
+    };
+    default: {
       return {...state};
+    };
   };
 };
