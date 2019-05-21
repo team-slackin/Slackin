@@ -19,18 +19,18 @@ aside.user-tool-bar {
 
     button {
       width: 80px;
-      font-size: .5em;
+      font-size: 0.5em;
       padding: 3px;
       margin: 2px;
       width: fit-content;
       height: 20px;
-      
+
       -webkit-transition: display 1s; /* Safari */
       transition: display 1s;
       animation-fill-mode: forwards;
       animation-duration: 1s;
-    };
-  };
+    }
+  }
   div.user-tool-bar-information {
     width: 400px;
     margin: 0;
@@ -39,6 +39,7 @@ aside.user-tool-bar {
     background-color: #2b2c31;
     display: flex;
     flex-direction: row;
+
     img.user-tool-bar-image {
       width: 50px;
       height: 50px;
@@ -46,10 +47,10 @@ aside.user-tool-bar {
       border-radius: 50%;
       border: 1px solid black;
       object-fit: cover;
-      box-shadow: 4px 4px 2px;
-      color:  rgba(24, 24, 24, 0.619);
+      box-shadow: 3px 5px 10px #000;
+      color: rgba(24, 24, 24, 0.619);
       cursor: pointer;
-    }; 
+    }
     div.user-tool-bar-status {
       margin-left: 40px;
       margin-top: 32px;
@@ -58,7 +59,7 @@ aside.user-tool-bar {
       height: 20px;
       border: 2px solid var(--trinary-background-color);
       border-radius: 50%;
-    };
+    }
     div.user-tool-bar-username {
       margin-left: 10px;
       align-self: center;
@@ -69,19 +70,27 @@ aside.user-tool-bar {
       align-self: center;
       justify-self: flex-end;
       margin-left: 30px;
-    };
-  };
+    }
+  }
   a {
     height: fit-content;
-  };
-};
+  }
+}
 
 @keyframes fadeOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
-};
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-};
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
