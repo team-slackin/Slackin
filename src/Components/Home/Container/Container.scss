@@ -5,6 +5,7 @@ main.main-container {
   background-color: #2f3136;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  box-shadow: 0 2px 8px #000;
   section.text-channel-window {
     flex: 1;
     display: flex;
@@ -15,13 +16,13 @@ main.main-container {
       background-color: #36393f;
       box-shadow: 2px 0px 2px 1px;
       z-index: 2;
-    };
+    }
     aside {
       flex: 1;
       max-width: 220px;
       background-color: #2f3136;
       justify-self: flex-end;
-    };
+    }
     div.text-channel-flex-box {
       flex: 1;
       display: flex;
@@ -35,7 +36,7 @@ main.main-container {
         div.main-screen {
           flex: 1;
           background-color: #36393f;
-        };
+        }
         div.main-text-input {
           flex: 1;
           max-height: 90px;
@@ -52,10 +53,10 @@ main.main-container {
             align-items: center;
             input {
               height: 40px;
-            };
-          };
-        };
-      };
+            }
+          }
+        }
+      }
     }
-  };
-};
+  }
+}
