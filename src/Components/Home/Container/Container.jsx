@@ -10,7 +10,6 @@ import TextChannelWindow from "../../TextChannelWindow/TextChannelWindow";
 import "./Container.scss";
 
 function Container(props) {
-  console.log(props);
   return (
     <>
       <MainChannelNav />

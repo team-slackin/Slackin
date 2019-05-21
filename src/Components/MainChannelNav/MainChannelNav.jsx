@@ -20,7 +20,6 @@ function MainChannelNav(props) {
   }, [])
 
   useEffect(() => {
-    console.log(`from MainChannelNav`, props.channelReducer)
     if (props.channelReducer.currentChannel) {
       setBorderRadius("50")
     } else {
