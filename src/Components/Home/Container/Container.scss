@@ -14,14 +14,16 @@ main.main-container {
       width: 100%;
       height: 50px;
       background-color: #36393f;
-      box-shadow: 2px 0px 2px 1px;
+      box-shadow: 1px 1px 1px #16181a;
       z-index: 2;
+      color: #858991;
     }
     aside {
       flex: 1;
       max-width: 220px;
       background-color: #2f3136;
       justify-self: flex-end;
+      color: #858991;
     }
     div.text-channel-flex-box {
       flex: 1;
@@ -33,6 +35,7 @@ main.main-container {
         justify-content: space-between;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+
         div.main-screen {
           flex: 1;
           background-color: #36393f;
@@ -47,7 +50,7 @@ main.main-container {
           form {
             width: 95%;
             height: 100%;
-            border-top: 1px solid black;
+            border-top: 1px solid#16181a;
             display: flex;
             justify-content: center;
             align-items: center;
