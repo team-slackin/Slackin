@@ -7,6 +7,7 @@ import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
 
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
+import Drop from './../DropZone/DropZone'
 
 import "./SubChannelNav.scss";
 
@@ -15,6 +16,14 @@ require('dotenv').config()
 var chatManager;
 
 function SubChannelNav(props) {
+
+  const [updateChannelImageToggle, setUpdateChannelImageToggle] = useState(false);
+
+  const toggleUpdateChannelImageToggle = () => {
+    setUpdateChannelImageToggle(!updateChannelImageToggle)
+  }
+
+
   useEffect(() => {
     props.grabSubChannels(props.channel_id);
   }, [props.channel_id]);
@@ -28,7 +37,7 @@ function SubChannelNav(props) {
   const ChangeChatManager = () => {
     chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:80870939-de37-40f2-aadc-dd3ee990b173',
-      userId: `${props.userReducer.user.user_id}`,
+      userId: `${props.userReducer.user.user_display_name}`,
       tokenProvider: new Chatkit.TokenProvider({
         url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token",
       })
@@ -42,13 +51,15 @@ function SubChannelNav(props) {
 
   const addSubChannel = () => {
     const { channel_id } = props
-    const {user_id } = props.userReducer.user
+    const {user_display_name } = props.userReducer.user
     let input = prompt("input channel name");
     if (input === null || input === undefined) {
       return alert("please put a name");
     } else {
+
       chatManager.connect().then(() => {
         axios.post("/chatkit/createroom", {roomName: input, roomStatus: false, channel_id });
+
       }).then(() => { 
         setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))
@@ -63,12 +74,21 @@ function SubChannelNav(props) {
       } else {
         return;
       }});
-
+  const isUserTheChannelCreator = props.userReducer.user.user_id === props.channelReducer.currentCreator
   return (
     <>
       <div className="sub-nav-search">
         <Search placeholder="Search for a channel" onChange={onChange} />
       </div>
+
+
+      { isUserTheChannelCreator ? ( <div>
+        { updateChannelImageToggle ? (<div>
+          <Drop type={'update'} channel_id={props.channelReducer.currentCreator} />
+          <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
+        </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
+      </div> ) : null }
+
 
       <div className="sub-channel-constructor">
         {displaySearch}
@@ -85,7 +105,8 @@ function SubChannelNav(props) {
 const mapStateToProps = reduxState => {
   return {
     userReducer: reduxState.userReducer,
-    subChannelReducer: reduxState.subChannelReducer
+    subChannelReducer: reduxState.subChannelReducer,
+    channelReducer: reduxState.channelReducer
   }
 };
 

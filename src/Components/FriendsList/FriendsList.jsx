@@ -10,8 +10,10 @@ import './FriendsList.scss';
 function FriendsList(props) {
 
     useEffect(()=>{
-        props.grabFriends();
-      }, []);
+      if(props.friendReducer.friends){
+        props.grabFriends() //git hub fix, my code does not look like this right here
+      }
+      }, [])
 
   return (
     <>

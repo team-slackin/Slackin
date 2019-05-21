@@ -4,26 +4,41 @@ aside.user-tool-bar {
   justify-self: flex-end;
 
   div.edit-status-container {
-    width: 180px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+    height: auto;
+
     margin: 0 auto;
     margin-bottom: 10px;
     background-color: #2b2c31;
-    padding: 15px;
     border-radius: 5px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     visibility: hidden;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 
-    button {
-      width: 80px;
-      font-size: 0.5em;
-      padding: 3px;
-      margin: 2px;
-      width: fit-content;
-      height: 20px;
+    div.status {
+      width: 200px;
+      font-size: 16px;
+      color: hsla(0, 0%, 100%, 0.6);
+      // padding: 3px;
+      // margin: 2px;
+      // width: fit-content;
+      height: auto;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding: 10px 14px;
+      cursor: pointer;
+      margin: 0;
+      font-size: 15px;
+      line-height: 18px;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
 
       -webkit-transition: display 1s; /* Safari */
       transition: display 1s;
@@ -31,8 +46,8 @@ aside.user-tool-bar {
       animation-duration: 1s;
     }
   }
+
   div.user-tool-bar-information {
-    width: 400px;
     margin: 0;
     height: fit-content;
     padding: 5px;
@@ -51,6 +66,15 @@ aside.user-tool-bar {
       color: rgba(24, 24, 24, 0.619);
       cursor: pointer;
     }
+
+    img.user-tool-bar-image:active {
+      transform: scale(0.95);
+    }
+
+    img.user-tool-bar-image:hover {
+      opacity: 0.5;
+    }
+
     div.user-tool-bar-status {
       margin-left: 40px;
       margin-top: 32px;
@@ -60,19 +84,30 @@ aside.user-tool-bar {
       border: 2px solid var(--trinary-background-color);
       border-radius: 50%;
     }
+
     div.user-tool-bar-username {
       margin-left: 10px;
       align-self: center;
       font-size: 1.5em;
       font-weight: 300;
-      color: #858991;
+      color: hsla(0, 0%, 100%, 0.6);
     }
+
     .user-tool-bar-cog {
       align-self: center;
       justify-self: flex-end;
       margin-left: 30px;
     }
+
+    .user-tool-bar-cog:active {
+      transform: scale(0.93);
+    }
+
+    .user-tool-bar-cog:hover {
+      opacity: 0.5;
+    }
   }
+
   a {
     height: fit-content;
   }
