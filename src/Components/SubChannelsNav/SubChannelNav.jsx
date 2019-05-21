@@ -28,7 +28,7 @@ function SubChannelNav(props) {
   const ChangeChatManager = () => {
     chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:80870939-de37-40f2-aadc-dd3ee990b173',
-      userId: `${props.userReducer.user.user_id}`,
+      userId: `${props.userReducer.user.user_display_name}`,
       tokenProvider: new Chatkit.TokenProvider({
         url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token",
       })
@@ -42,13 +42,13 @@ function SubChannelNav(props) {
 
   const addSubChannel = () => {
     const { channel_id } = props
-    const {user_id } = props.userReducer.user
+    const {user_display_name } = props.userReducer.user
     let input = prompt("input channel name");
     if (input === null || input === undefined) {
       return alert("please put a name");
     } else {
       chatManager.connect().then((currentUser) => {
-        axios.post("/chatkit/createroom", { user_id, roomName: input, roomStatus: false, channel_id });
+        axios.post("/chatkit/createroom", { user_display_name, roomName: input, roomStatus: false, channel_id });
       }).then(() => { 
         setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))

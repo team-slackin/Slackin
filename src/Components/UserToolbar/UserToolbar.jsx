@@ -65,7 +65,7 @@ function UserToolbar(props) {
         <Button
           onClick={() => {
             props.setUserStatus("idle")
-            setCurrentUserStatusColor("white")
+            setCurrentUserStatusColor("yellow")
           }}
           style={{
             display: buttonDisplay,

@@ -16,8 +16,6 @@ function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-
-  const [input, setInput] = useState(`Send message here.`);
   
   useEffect(() => {
     setRoomMessages([]);
@@ -26,6 +24,7 @@ function TextChannelWindow(props) {
   //FIX AUTH ERROR being double ran - look at parent
   useEffect(() => {
     if (props.subChannelReducer.currentSubChannelChatKitId) {
+      console.log('am i getting ran over and over')
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
@@ -57,21 +56,6 @@ function TextChannelWindow(props) {
     const { value } = e.target;
     setMessage(value);
   };
-  
-  
-  const changeInput = (e) => {
-    const {value} = e.target;
-    if (value === '') {
-      setInput('Send message here.');
-    } else {
-      setInput(value);
-    };
-  };
-  
-  const sendMessageChangeInput = () => {
-    setInput('Send message here.');
-  };
-
 
   const sendMessage = (text, e) => {
     e.preventDefault();
@@ -97,9 +81,8 @@ function TextChannelWindow(props) {
           <div className="main-text-input">
             <form>
               <Input
-                placeholder={input}
+                placeholder={'Send message here.'}
                 onChange={e => {
-                  changeInput(e);
                   createMessage(e);
                 }}
                 value={inputMessage}
@@ -107,7 +90,6 @@ function TextChannelWindow(props) {
               />
               <button
                 onClick={e => {
-                  sendMessageChangeInput();
                   sendMessage(inputMessage, e);
                 }}
                 style={{
@@ -120,7 +102,7 @@ function TextChannelWindow(props) {
           </div>
         </div>
 
-        <aside>Friends:
+        <aside>
                 <UsersInChannel />
         </aside>
       </div>

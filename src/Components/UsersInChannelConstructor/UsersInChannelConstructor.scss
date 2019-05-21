@@ -1,0 +1,20 @@
+div.users-in-channel {
+  display: flex;
+  margin: 5px;
+  div.users-in-channel-status {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--trinary-background-color);
+    position: absolute;
+    margin-left: 27px;
+    margin-top: 27px;
+  };
+  img.users-in-channel-image {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    display: absolute;
+    box-shadow: 2px 2px 1px black;
+  };
+};
