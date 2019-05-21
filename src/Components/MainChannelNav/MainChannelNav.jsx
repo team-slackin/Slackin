@@ -23,6 +23,9 @@ function MainChannelNav(props) {
   const [addChannelFlag, setAddChannelFlag] = useState(false)
   const [searchChannelsFlag, setSearchChannelsFlag] = useState(false)
 
+  useEffect(()=>{
+    props.grabChannels(user.user_id);
+  }, []);
 
 
   const toggleAddChannelFlag = () => {

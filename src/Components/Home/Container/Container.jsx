@@ -25,11 +25,12 @@ function Container(props) {
         </section>
 
         <section className="text-channel-window">
-          {props.currentChannel ? (
+          {/* {props.currentChannel ? (
             <TextChannelWindow />
           ) : (
             <FriendsChatWindow />
-          )}
+          )} */}
+          <TextChannelWindow />
         </section>
       </main>
     </>

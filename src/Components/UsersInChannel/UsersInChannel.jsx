@@ -6,7 +6,7 @@ import UsersInChannelConstructor from './../UsersInChannelConstructor/UsersInCha
 
 function UsersInChannel(props) {
 
-  useEffect(()=>{
+  useEffect(()=> {
     if(props.channelReducer.currentChannel){
       props.grabUsersFromChannel(props.channelReducer.currentChannel)
     }
@@ -18,7 +18,7 @@ function UsersInChannel(props) {
         <>
           <h1>Users In Channel</h1>
             {props.channelReducer.usersFromChannel.map(
-              (user, i)=>(
+              (user, i)=> (
                 <UsersInChannelConstructor key={i} user={user} /> 
               ))}
         </>
