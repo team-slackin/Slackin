@@ -12,12 +12,23 @@ function UsersInChannel(props) {
     }
   }, [props.channelReducer.currentChannel])
 
-  return (<div>
-    { props.channelReducer.usersFromChannel ? props.channelReducer.usersFromChannel.map((user, i)=>{
-    return ( <UsersInChannelConstructor key={i} user={user} /> )
-  }) : <div>Please select a channel</div> }
-  </div>)
-}
+  return (
+    <>
+      {props.channelReducer.usersFromChannel ? (
+        <>
+          <h1>Users In Channel</h1>
+            {props.channelReducer.usersFromChannel.map(
+              (user, i)=>(
+                <UsersInChannelConstructor key={i} user={user} /> 
+              ))}
+        </>
+      ) : (
+        <h1>Please select a channel</h1>
+      )}
+
+  </>
+  );
+};
 
 const mapStateToProps = reduxState => {
   return {
