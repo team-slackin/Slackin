@@ -3,7 +3,9 @@ import axios from "axios"
 import { connect } from "react-redux"
 import { Input } from "@material-ui/core"
 
-import TextChannelMessegeScreen from "./TextChannelMessegeScreen"
+import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
+import _ from "lodash";
+
 
 import Chatkit from "@pusher/chatkit-client"
 import UserToolbar from "../UserToolbar/UserToolbar"
@@ -12,18 +14,16 @@ import UserToolbar from "../UserToolbar/UserToolbar"
 import FriendsList from "./../FriendsList/FriendsList"
 import UsersInChannel from "../UsersInChannel/UsersInChannel"
 
-function TextChannelWindow(props) {
-  const [inputMessage, setMessage] = useState("")
-  const [roomMessages, setRoomMessages] = useState([])
-  const [currentUser, setCurrentUser] = useState({})
+import { setReduxMessage } from './../../Ducks/textChannelReducer'
 
-  useEffect(() => {
-    setRoomMessages([])
-  }, [props.subChannelReducer.currentSubChannelChatKitId])
+function TextChannelWindow(props) {
+  const [inputMessage, setMessage] = useState("");
+  const [roomMessages, setRoomMessages] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   //FIX AUTH ERROR being double ran - look at parent
-  useEffect(() => {
-    if (props.subChannelReducer.currentSubChannelChatKitId) {
+
+
       console.log("am i getting ran over and over")
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
@@ -34,16 +34,21 @@ function TextChannelWindow(props) {
         })
       })
 
+      // _.debounce(setRoomMessages(prevMessages => [...prevMessages, message]), 250)
+
       chatManager
         .connect()
-        .then(currentUser => {
-          setCurrentUser({ currentUser })
-          return currentUser.subscribeToRoom({
+
+        .then(async currentUser => {
+          setCurrentUser({ currentUser });
+          const data = await currentUser.subscribeToRoom({
             roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`,
             messageLimit: 100,
             hooks: {
               onMessage: message => {
-                setRoomMessages(prevMessages => [...prevMessages, message])
+
+                props.setReduxMessage(message)
+
               }
             }
           })
@@ -65,6 +70,8 @@ function TextChannelWindow(props) {
     })
   }
 
+
+  console.log('TEXT CHANNEL REDUCER 1111111111',props)
   return (
     <>
       <div className="text-channel-flex-box">
@@ -72,7 +79,7 @@ function TextChannelWindow(props) {
           <header>Sub Channel name</header>
           {/* Each Individual Messege */}
           <div className="main-screen">
-            {roomMessages.map((message, index) => {
+            {props.textChannelReducer.messages.map((message, index) => {
               return (
                 <TextChannelMessegeScreen key={index} roomMessage={message} />
               )
@@ -120,5 +127,6 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  {}
-)(TextChannelWindow)
+  {setReduxMessage}
+)(TextChannelWindow);
+
