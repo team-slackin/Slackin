@@ -82,11 +82,13 @@ function TextChannelWindow(props) {
           <header>Sub Channel name</header>
           {/* Each Individual Messege */}
           <div className="main-screen">
-            {props.textChannelReducer.messages.map((message, index) => {
-              return (
-                <TextChannelMessegeScreen key={index} roomMessage={message} />
-              )
-            })}
+            <article>
+              {props.textChannelReducer.messages.map((message, index) => {
+                return (
+                  <TextChannelMessegeScreen key={index} roomMessage={message} />
+                )
+              })}
+            </article>
           </div>
           <div className="main-text-input">
             <form>
