@@ -108,7 +108,6 @@ function TextChannelWindow(props) {
                   display: "none"
                 }}
               >
-                Temp Submit
               </button>
             </form>
           </div>

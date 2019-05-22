@@ -13,9 +13,6 @@ div.main-channel-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    ::-webkit-scrollbar {
-      display: none;
-    };
   };
 
   img.main-channel-img {
