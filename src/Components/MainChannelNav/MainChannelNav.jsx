@@ -8,16 +8,38 @@ import { Link } from "react-router-dom"
 import Icon from "@material-ui/core/Icon"
 
 import MainChannelConstructor from "./MainChannelConstructor"
+import CreateChannel from './../CreateChannel/CreateChannel'
+import SearchChannels from './../SearchChannels/SearchChannels'
+import Drop from './../DropZone/DropZone'
+
 
 import "./MainChannelNav.scss"
 
 function MainChannelNav(props) {
-  const { user } = props.userReducer
-  const [borderRadius, setBorderRadius] = useState("25")
 
-  useEffect(() => {
-    props.grabChannels(props.userReducer.user.user_id)
-  }, [])
+  const {user} = props.userReducer;
+  const [borderRadius, setBorderRadius] = useState('25');
+  const [addOrSearchFlag, setAddOrSearchFlag] = useState(false)
+  const [addChannelFlag, setAddChannelFlag] = useState(false)
+  const [searchChannelsFlag, setSearchChannelsFlag] = useState(false)
+
+  useEffect(()=>{
+    props.grabChannels(user.user_id);
+  }, []);
+
+
+  const toggleAddChannelFlag = () => {
+    setAddChannelFlag(!addChannelFlag)
+  }
+
+  const toggleSearchChannelsFlag = () => {
+    setSearchChannelsFlag(!searchChannelsFlag)
+  }
+
+  const toggleAddOrSearchFlag = ()=>{
+    setAddOrSearchFlag((!addOrSearchFlag))
+  }
+
 
   useEffect(() => {
     if (props.channelReducer.currentChannel) {
@@ -47,23 +69,39 @@ function MainChannelNav(props) {
           </Link>
         </div>
 
-        {props.channelReducer.userChannels[0] ? (
-          props.channelReducer.userChannels.map((channel, i) => (
-            <MainChannelConstructor key={i} channel={channel} />
-          ))
-        ) : (
-          <></>
-        )}
+    
+        {props.channelReducer.userChannels[0] ?
+        props.channelReducer.userChannels.map((channel, i) => (
+        <MainChannelConstructor 
+          key={i} 
+          channel={channel} 
+          />
+        )) : (<></>)}
+
+
+
+
+          { addOrSearchFlag ? ( <div>
+            { addChannelFlag ? ( <div>
+              <CreateChannel />
+              <button onClick={()=>{toggleAddChannelFlag()}} >Cancel Creating A Channel</button>
+            </div> ) : (<button onClick={()=>{toggleAddChannelFlag()}} >Create A Channel</button>) }
+            { searchChannelsFlag ? ( <div>
+              <SearchChannels />
+              <button onClick={()=>{toggleSearchChannelsFlag()}} >Cancel Search</button>
+            </div> ) : (<button onClick={()=>{toggleSearchChannelsFlag()}} >Search Channels</button>) }
+            <button onClick={()=>{toggleAddOrSearchFlag()}} >Cancel</button>
+          </div> ) : null }
+
+          
         <div className="plus-sign-div">
-          <Icon
-            style={{
-              fontSize: "3em",
-              color: "var(--main-color)",
-              textShadow: "var(--text-icon-shadow-1)"
-            }}
-          >
-            add
-          </Icon>
+          <Icon 
+          onClick={()=>{toggleAddOrSearchFlag()}} 
+          style={{
+            fontSize: '3em',
+            color: 'var(--main-color)',
+            textShadow: 'var(--text-icon-shadow)'
+          }}>add</Icon>
         </div>
       </div>
     </>

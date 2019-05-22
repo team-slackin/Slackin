@@ -4,9 +4,11 @@ import { grabSubChannels } from "./../../Ducks/subChannelReducer";
 import Search from "../Search/Search";
 import axios from "axios";
 import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+import {Icon} from '@material-ui/core';
 
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
+import Drop from './../DropZone/DropZone'
 
 import "./SubChannelNav.scss";
 
@@ -15,6 +17,14 @@ require('dotenv').config()
 var chatManager;
 
 function SubChannelNav(props) {
+
+  const [updateChannelImageToggle, setUpdateChannelImageToggle] = useState(false);
+
+  const toggleUpdateChannelImageToggle = () => {
+    setUpdateChannelImageToggle(!updateChannelImageToggle)
+  }
+
+
   useEffect(() => {
     props.grabSubChannels(props.channel_id);
   }, [props.channel_id]);
@@ -47,8 +57,10 @@ function SubChannelNav(props) {
     if (input === null || input === undefined) {
       return alert("please put a name");
     } else {
-      chatManager.connect().then((currentUser) => {
-        axios.post("/chatkit/createroom", { user_display_name, roomName: input, roomStatus: false, channel_id });
+
+      chatManager.connect().then(() => {
+        axios.post("/chatkit/createroom", {roomName: input, roomStatus: false, channel_id });
+
       }).then(() => { 
         setTimeout(function(){ props.grabSubChannels(props.channel_id) }, 6000)
       }).catch(err => console.log(err))
@@ -63,17 +75,34 @@ function SubChannelNav(props) {
       } else {
         return;
       }});
-
+  const isUserTheChannelCreator = props.userReducer.user.user_id === props.channelReducer.currentCreator
   return (
     <>
       <div className="sub-nav-search">
         <Search placeholder="Search for a channel" onChange={onChange} />
       </div>
 
+
+      { isUserTheChannelCreator ? ( <div>
+        { updateChannelImageToggle ? (<div>
+          <Drop type={'update'} channel_id={props.channelReducer.currentCreator} />
+          <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
+        </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
+      </div> ) : null }
+
+
       <div className="sub-channel-constructor">
         {displaySearch}
-        <div onClick={() => addSubChannel()} style={{cursor: 'pointer'}}>
-          +Add a room
+        <div>
+          <Icon 
+          onClick={() => addSubChannel()}
+          style={{
+            fontSize: '1.75em',
+            color: 'var(--main-color)',
+            textShadow: 'var(--text-icon-shadow)',
+            width: 'fit-content',
+            cursor: 'pointer'
+          }}>add</Icon>
         </div>
       </div>
 
@@ -85,7 +114,8 @@ function SubChannelNav(props) {
 const mapStateToProps = reduxState => {
   return {
     userReducer: reduxState.userReducer,
-    subChannelReducer: reduxState.subChannelReducer
+    subChannelReducer: reduxState.subChannelReducer,
+    channelReducer: reduxState.channelReducer
   }
 };
 

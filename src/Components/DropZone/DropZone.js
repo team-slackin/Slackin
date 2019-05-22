@@ -6,7 +6,7 @@ import {v4 as randomString} from 'uuid';
 //will aslo import this as well
 import { connect } from 'react-redux';
 import { uploadUserImageToDb } from './../../Ducks/userReducer'
-import { uploadChannelImageToDb } from './../../Ducks/channelReducer'
+import { updateChannelImageToDb } from './../../Ducks/channelReducer'
 import {Button} from '@material-ui/core';
 
 function Drop(props) {
@@ -41,10 +41,10 @@ function Drop(props) {
     //was going to send an object called body, but since for this we only need the url to the image/file uploaded ill just put it in an object.
 
                                                                 //type is either user or channel and the channel_id is added as an option but not needed.
-    if (channel_id && type == 'channel' ){
-      props.uploadChannelImageToDb(type, url, channel_id)
+    if (type == 'update' && channel_id) {
+      props.updateChannelImageToDb(channel_id, url)
     } else if (type == 'user') {
-    props.uploadUserImageToDb(type, url) }
+      props.uploadUserImageToDb(type, url) }
     //this will go to a function on our server which will update our database with the url
     //i do not know what that will look like so i am ending it here.
   };
@@ -70,4 +70,4 @@ const mapStateToProps = (reduxState) => ({
   userReducer: reduxState.userReducer
 })
 
-export default connect(mapStateToProps, { uploadUserImageToDb, uploadChannelImageToDb })(Drop);
+export default connect(mapStateToProps, { uploadUserImageToDb, updateChannelImageToDb })(Drop);

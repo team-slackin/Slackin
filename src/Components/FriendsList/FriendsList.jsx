@@ -10,8 +10,10 @@ import './FriendsList.scss';
 function FriendsList(props) {
 
     useEffect(()=>{
-        props.grabFriends()
-      }, [props.friends])
+      if(props.friendReducer.friends){
+        props.grabFriends() //git hub fix, my code does not look like this right here
+      }
+      }, [])
 
   return (
     <>
@@ -29,4 +31,4 @@ const mapStateToProps = (reduxState) => ({
     userReducer: reduxState.userReducer
 })
 
-export default connect(mapStateToProps, { login, grabFriends })(FriendsList)
+export default connect(mapStateToProps, {login, grabFriends})(FriendsList)
