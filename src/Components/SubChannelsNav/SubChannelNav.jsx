@@ -4,6 +4,7 @@ import { grabSubChannels } from "./../../Ducks/subChannelReducer";
 import Search from "../Search/Search";
 import axios from "axios";
 import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+import {Icon} from '@material-ui/core';
 
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
@@ -92,8 +93,16 @@ function SubChannelNav(props) {
 
       <div className="sub-channel-constructor">
         {displaySearch}
-        <div onClick={() => addSubChannel()} style={{cursor: 'pointer'}}>
-          +Add a room
+        <div>
+          <Icon 
+          onClick={() => addSubChannel()}
+          style={{
+            fontSize: '1.75em',
+            color: 'var(--main-color)',
+            textShadow: 'var(--text-icon-shadow)',
+            width: 'fit-content',
+            cursor: 'pointer'
+          }}>add</Icon>
         </div>
       </div>
 

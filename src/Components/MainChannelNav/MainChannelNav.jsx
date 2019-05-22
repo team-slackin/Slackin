@@ -95,7 +95,9 @@ function MainChannelNav(props) {
 
           
         <div className="plus-sign-div">
-          <Icon onClick={()=>{toggleAddOrSearchFlag()}} style={{
+          <Icon 
+          onClick={()=>{toggleAddOrSearchFlag()}} 
+          style={{
             fontSize: '3em',
             color: 'var(--main-color)',
             textShadow: 'var(--text-icon-shadow)'

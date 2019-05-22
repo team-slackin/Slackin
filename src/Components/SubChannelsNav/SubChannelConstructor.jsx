@@ -10,7 +10,10 @@ function SubChannelConstructor(props) {
       <Link 
       onClick={() => props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id)}
       to={`/container/${props.subChannel.sub_channel_name}`}>
-      <h3>#{props.subChannel.sub_channel_name}</h3>
+      <h3 style={{
+        color: '#858991',
+        margin: '5px'
+      }}>{`# ${props.subChannel.sub_channel_name}`}</h3>
       </Link>
     </>
   );

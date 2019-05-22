@@ -10,9 +10,7 @@ require('dotenv').config()
 function TextChannelMessegeScreen(props) {
   // if (+props.textChannelReducer.prevUser === +props.roomMessage.senderId) {
     return (
-      <div className="main-text-window">{/* Each Individual Messege */}
-        <div className="main-screen">{`${props.roomMessage.senderId}: ${props.roomMessage.text} ${props.roomMessage.updatedAt}`}</div>
-      </div>
+        <p>{`${props.roomMessage.senderId}: ${props.roomMessage.text} ${props.roomMessage.updatedAt}`}</p>
     );
   // } else {
     // props.setPrevUser(props.roomMessage.senderId);
