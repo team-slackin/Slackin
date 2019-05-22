@@ -6,11 +6,6 @@ import './TextChannelWindow.scss';
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
 
-  useEffect(()=>{
-    props.setPrevUserFunc(`${props.roomMessage.senderId}`);
-  }, [])
-  console.log(`${props.roomMessage.senderId}`, props.prevUser);
-
   const image = props.userReducer.images.filter(image=> `${image.user_display_name}` === `${props.roomMessage.senderId}`);
 
   let _image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE8KtKj_zXIxHEt7KjVWuUdjfq_WNbfMf5x3AGaPfkW6iSplZI';//default image
@@ -18,6 +13,8 @@ function TextChannelMessegeScreen(props) {
   if (image[0]) {
     _image = image[0].user_image
   };
+
+  console.log('a')
 
   const time = props.roomMessage.updatedAt.split('').splice(0, 10).join('');
   return (
