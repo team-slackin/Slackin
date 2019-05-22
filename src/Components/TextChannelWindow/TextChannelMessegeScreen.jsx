@@ -9,8 +9,35 @@ import './TextChannelWindow.scss';
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
   // if (+props.textChannelReducer.prevUser === +props.roomMessage.senderId) {
+
+    const indexOfUser = props.channelReducer.usersFromChannel.findIndex(
+      obj=> `${obj.user_display_name}` === `${props.roomMessage.senderId}`
+    );
+
     return (
-        <p>{`${props.roomMessage.senderId}: ${props.roomMessage.text} ${props.roomMessage.updatedAt}`}</p>
+        <>
+          {indexOfUser ?
+            <div>{`${props.roomMessage.updatedAt}`}
+              <p>
+                <span
+                  style={{
+                    color: 'yellow'
+                  }}
+                >{`${props.roomMessage.senderId}`}</span>{`: ${props.roomMessage.text}`}
+              </p>
+            </div>
+          : 
+          <div>{`${props.roomMessage.updatedAt}`}
+            <p>
+              <span
+                style={{
+                  color: `${props.channelReducer.usersFromChannel[indexOfUser].fav_color}`
+                }}
+              >{`${props.roomMessage.senderId}`}</span>{`: ${props.roomMessage.text}`}
+            </p>
+          </div>
+          }
+        </>
     );
   // } else {
     // props.setPrevUser(props.roomMessage.senderId);
@@ -27,7 +54,8 @@ function TextChannelMessegeScreen(props) {
 
 const mapStateToProps = reduxState => ({
   userReducer: reduxState.userReducer,
-  textChannelReducer: reduxState.textChannelReducer
+  textChannelReducer: reduxState.textChannelReducer,
+  channelReducer: reduxState.channelReducer
 });
 
 export default connect(mapStateToProps, {setPrevUser})(TextChannelMessegeScreen);

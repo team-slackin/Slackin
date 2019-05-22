@@ -13,4 +13,4 @@ export default (
   <Route path='/container/account' component={Account} />
   <Route path='/container' component={LandingPage} />
 </>
-)
+);
