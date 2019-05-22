@@ -18,14 +18,14 @@ import {
   resetReduxMessage
 } from "./../../Ducks/textChannelReducer";
 
-
 function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  
   //roomID holder - switched with useEffect that looks for correct channels
   const [roomID, setRoomId] = useState('')
+  const [usersWhoAreTyping, setUsersWhoAreTyping] = useState([]);
+
 
   //FIX AUTH ERROR being double ran - look at parent
 
@@ -56,8 +56,6 @@ function TextChannelWindow(props) {
         })
       });
   
-      // _.debounce(setRoomMessages(prevMessages => [...prevMessages, message]), 250)
-  
       chatManager
         .connect()
   
@@ -69,18 +67,43 @@ function TextChannelWindow(props) {
             hooks: {
               onMessage: message => {
                 props.setReduxMessage(message);
+              },
+              onUserStartedTyping: user => {
+                setUsersWhoAreTyping([
+                  ...usersWhoAreTyping, props.userReducer.user.user_display_name
+                ])
+              },
+              onUserStoppedTyping: user => {
+
+                setUsersWhoAreTyping([
+                  ...usersWhoAreTyping.filter(username => username !== props.userReducer.user.user_display_name)
+                ])
               }
             }
           });
-        })
-        .catch(error => console.error("error", error));
+        }).catch(error => console.log("error", error));
     }
-  }, [roomID]);
+  }, [props.subChannelReducer.currentSubChannel]);
+
+
 
   const createMessage = e => {
     const { value } = e.target;
     setMessage(value);
+    currentUser.currentUser
+      .isTypingIn({
+        roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`
+      })
+      .catch(err => console.log(err));
   };
+
+  // if (this.props.usersWhoAreTyping.length > 0) {
+  // return (
+  // <div>
+  //   {`${this.props.usersWhoAreTyping
+  //     .slice(0, 2)
+  //     .join(' and ')} is typing`}
+  // </div>
 
   const sendMessage = (text, e) => {
     e.preventDefault();
@@ -90,16 +113,22 @@ function TextChannelWindow(props) {
     });
     setMessage("");
   };
-  console.log('SUBCHANNEL CHATKIT ID', props.subChannelReducer.currentSubChannelChatKitId)
-  console.log("CHECK FOR FRIEND CHANNEL ID", props.friendReducer.currentFriend.chatkit_id);
-  console.log('ROOMID FOR FRIENDS CHAT', roomID)
+
+  const isSomeoneTyping = usersWhoAreTyping.length > 0;
+  console.log("TEXT CHANNEL REDUCER 1111111111", props);
   return (
     <>
       <div className="text-channel-flex-box">
         <div className="main-text-window">
           <header>Sub Channel name</header>
           {/* Each Individual Messege */}
+
+          { isSomeoneTyping ? (<div>{`${usersWhoAreTyping
+            .slice(0, 2)
+            .join(' and ')} is typing`}</div>) : (null) }
+
           <div className="main-screen">
+            
             <article>
               {props.textChannelReducer.messages.map((message, index) => {
                 return (
@@ -107,6 +136,7 @@ function TextChannelWindow(props) {
                 );
               })}
             </article>
+
           </div>
           <div className="main-text-input">
             <form>
@@ -126,7 +156,6 @@ function TextChannelWindow(props) {
                   display: "none"
                 }}
               >
-                Temp Submit
               </button>
             </form>
           </div>

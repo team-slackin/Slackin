@@ -25,6 +25,7 @@ module.exports = {
     const db = req.app.get("db");
     const { channel_id } = req.params;
     let usersFromChannel = await db.get_users_from_channel(channel_id);
+    console.log(usersFromChannel)
     res.status(200).send(usersFromChannel);
   },
   createChannel: async(req, res) => {  
