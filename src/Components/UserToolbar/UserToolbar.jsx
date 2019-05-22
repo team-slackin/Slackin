@@ -5,12 +5,10 @@ import { setUserStatus } from "./../../Ducks/userReducer"
 import { Link } from "react-router-dom"
 import Icon from "@material-ui/core/Icon"
 import "./UserToolbar.scss"
-import { Button } from "@material-ui/core"
 
 function UserToolbar(props) {
   const [editStatusFlag, setEditStatusFlag] = useState("none")
   const [fade, setFade] = useState("fadeIn")
-  const [buttonDisplay, setButtonDisplay] = useState("inline-flex")
   const [visable, setVisable] = useState("hidden")
 
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
@@ -21,12 +19,10 @@ function UserToolbar(props) {
     if (editStatusFlag === "none") {
       setEditStatusFlag("flex")
       setFade("fadeIn")
-      setButtonDisplay("inline-flex")
       setVisable("unset")
     } else {
       setFade("fadeOut")
       setEditStatusFlag("none")
-      setButtonDisplay("none")
       setVisable("hidden")
     }
   }
@@ -35,7 +31,6 @@ function UserToolbar(props) {
     setVisable("hidden")
     setEditStatusFlag("none")
     setFade("none")
-    setButtonDisplay("none")
   }, [])
 
   return (
