@@ -116,5 +116,10 @@ module.exports = {
     return res
       .status(200)
       .send({ message: "you have successfully logged out" });
+  },
+  async grabImages(req, res) {
+    const db = req.app.get('db');
+    const urls = await db.grab_all_images().catch(err=> console.log(err));
+    res.status(200).send(urls);
   }
 };

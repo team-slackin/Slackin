@@ -25,7 +25,12 @@ function TextChannelWindow(props) {
   //roomID holder - switched with useEffect that looks for correct channels
   const [roomID, setRoomId] = useState('')
   const [usersWhoAreTyping, setUsersWhoAreTyping] = useState([]);
+  const [prevUser, setPrevUser] = useState('empty');
 
+
+  const setPrevUserFunc = (val) => {
+    setPrevUser(val);
+  };
 
   //FIX AUTH ERROR being double ran - look at parent
 
@@ -115,7 +120,7 @@ function TextChannelWindow(props) {
   };
 
   const isSomeoneTyping = usersWhoAreTyping.length > 0;
-  console.log("TEXT CHANNEL REDUCER 1111111111", props);
+
   return (
     <>
       <div className="text-channel-flex-box">
@@ -132,8 +137,8 @@ function TextChannelWindow(props) {
             <article>
               {props.textChannelReducer.messages.map((message, index) => {
                 return (
-                  <TextChannelMessegeScreen key={index} roomMessage={message} />
-                );
+                  <TextChannelMessegeScreen key={index} roomMessage={message} prevUser={prevUser} setPrevUserFunc={setPrevUserFunc} />
+                )
               })}
             </article>
 
