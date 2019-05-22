@@ -13,24 +13,45 @@ import UserToolbar from "../UserToolbar/UserToolbar";
 import FriendsList from "./../FriendsList/FriendsList";
 import UsersInChannel from "../UsersInChannel/UsersInChannel";
 
-import { setReduxMessage } from "./../../Ducks/textChannelReducer";
+import {
+  setReduxMessage,
+  resetReduxMessage
+} from "./../../Ducks/textChannelReducer";
 
 function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  //roomID holder - switched with useEffect that looks for correct channels
+  const [roomID, setRoomId] = useState('')
   const [usersWhoAreTyping, setUsersWhoAreTyping] = useState([]);
   const [prevUser, setPrevUser] = useState('empty');
+
 
   const setPrevUserFunc = (val) => {
     setPrevUser(val);
   };
+
   //FIX AUTH ERROR being double ran - look at parent
 
 
   useEffect(() => {
-    if (props.subChannelReducer.currentSubChannel) {
+    if(props.subChannelReducer.currentSubChannelChatKitId){
+      setRoomId(`${props.subChannelReducer.currentSubChannelChatKitId}`)
+    }else if (props.friendReducer.currentFriend.chatkit_id){
+      setRoomId(`${props.friendReducer.currentFriend.chatkit_id}`)
+    } else {
+      setRoomId('null')
+    }
+  },[props.subChannelReducer.currentSubChannelChatKitId])
+  
+  useEffect(() => {
+    props.resetReduxMessage()
+  },[roomID])
 
+  useEffect(() => {
+    console.log("am i getting ran over and over");
+    if(roomID !== 'null'){
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
@@ -39,16 +60,14 @@ function TextChannelWindow(props) {
             "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token"
         })
       });
-
-      // _.debounce(setRoomMessages(prevMessages => [...prevMessages, message]), 250)
-
+  
       chatManager
         .connect()
-
+  
         .then(async currentUser => {
           setCurrentUser({ currentUser });
           const data = await currentUser.subscribeToRoom({
-            roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`,
+            roomId: roomID,
             messageLimit: 100,
             hooks: {
               onMessage: message => {
@@ -73,7 +92,6 @@ function TextChannelWindow(props) {
 
 
 
-  
   const createMessage = e => {
     const { value } = e.target;
     setMessage(value);
@@ -96,7 +114,7 @@ function TextChannelWindow(props) {
     e.preventDefault();
     currentUser.currentUser.sendMessage({
       text,
-      roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`
+      roomId: roomID
     });
     setMessage("");
   };
@@ -160,11 +178,12 @@ const mapStateToProps = reduxState => {
   return {
     userReducer: reduxState.userReducer,
     subChannelReducer: reduxState.subChannelReducer,
-    textChannelReducer: reduxState.textChannelReducer
+    textChannelReducer: reduxState.textChannelReducer,
+    friendReducer: reduxState.friendReducer
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setReduxMessage }
+  { setReduxMessage, resetReduxMessage }
 )(TextChannelWindow);

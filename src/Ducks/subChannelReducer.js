@@ -8,6 +8,7 @@ const initialState = {
 
 const GRAB_SUBCHANNELS = "GRAB_SUBCHANNELS"
 const USER_SELECTED_SUBCHANNEL = "USER_SELECTED_SUBCHANNEL"
+const RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID = "RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID"
 
 export const grabSubChannels = channel_id => {
   return {
@@ -24,6 +25,13 @@ export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id) =>
   }
 }
 
+export const resetCurrentSubChannelChatKitId = () => {
+  return {
+    type: RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID,
+    payload: null
+  }
+}
+
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
@@ -36,6 +44,8 @@ export default function reducer(state = initialState, action) {
       }
       case USER_SELECTED_SUBCHANNEL:
       return {...state, currentSubChannel: payload.subchannel_id, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
+      case RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID:
+      return {...state, currentSubChannelChatKitId: payload}
     default:
       return { ...state }
   }
