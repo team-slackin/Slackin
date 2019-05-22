@@ -8,17 +8,19 @@ section.sub-nav {
     overflow-y: scroll;
     flex: 1;
     padding: 20px;
-    ::-webkit-scrollbar {
-      display: none;
-    }
     a {
       text-decoration: none;
-      
+    };
+    h3 {
+      color: #858991;
     }
-  }
+    :hover {
+      color: rgb(162, 167, 177);
+    };
+  };
   div.sub-nav-friends {
     flex: 1;
-  }
+  };
   .sub-nav-search {
     width: 220px;
     height: 50px;
@@ -30,6 +32,6 @@ section.sub-nav {
     .icon-absolute {
       position: absolute;
       margin-left: 185px;
-    }
-  }
-}
+    };
+  };
+};

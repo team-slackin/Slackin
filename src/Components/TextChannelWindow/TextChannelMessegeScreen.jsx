@@ -17,25 +17,26 @@ function TextChannelMessegeScreen(props) {
     return (
         <>
           {indexOfUser ?
-            <div>{`${props.roomMessage.updatedAt}`}
+            <article>{`${props.roomMessage.updatedAt}`}
               <p>
                 <span
                   style={{
-                    color: 'yellow'
+                    color: 'rgba(255, 255, 255, 0.6)'
                   }}
                 >{`${props.roomMessage.senderId}`}</span>{`: ${props.roomMessage.text}`}
               </p>
-            </div>
+            </article>
           : 
-          <div>{`${props.roomMessage.updatedAt}`}
+          <article>{`${props.roomMessage.updatedAt}`}
             <p>
+              {console.log(props.channelReducer.usersFromChannel[indexOfUser])}
               <span
                 style={{
                   color: `${props.channelReducer.usersFromChannel[indexOfUser].fav_color}`
                 }}
               >{`${props.roomMessage.senderId}`}</span>{`: ${props.roomMessage.text}`}
             </p>
-          </div>
+          </article>
           }
         </>
     );
