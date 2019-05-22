@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 import { register } from "../../Ducks/userReducer"
 import { Link } from "react-router-dom"
-import axios from 'axios'
-import RegisterForm from './RegisterForm';
-import './LoginRegister.scss';
+import axios from "axios"
+import RegisterForm from "./RegisterForm"
+import "./LoginRegister.scss"
 
 function Register(props) {
   const [userInfo, setUserInfo] = useState({
@@ -25,7 +25,7 @@ function Register(props) {
   }
 
   function registerChatKitUser(user_display_name) {
-    axios.post("/chatkit/users", { user_display_name });
+    axios.post("/chatkit/users", { user_display_name })
   }
 
   async function handleRegister(e) {
@@ -55,8 +55,13 @@ function Register(props) {
 
   return (
     <div className="login-register">
-      <RegisterForm userInfoHandle={userInfoHandle} handleSubmit={handleRegister} />
-      <Link to="/">Already have an account? Click here to sign in.</Link>
+      <RegisterForm
+        userInfoHandle={userInfoHandle}
+        handleSubmit={handleRegister}
+      />
+      <Link className="register" to="/">
+        Already have an account? Click here to sign in.
+      </Link>
     </div>
   )
 }
