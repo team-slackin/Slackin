@@ -23,9 +23,10 @@ function TextChannelWindow(props) {
 
   //FIX AUTH ERROR being double ran - look at parent
 
+
   useEffect(() => {
     if (props.subChannelReducer.currentSubChannel) {
-      console.log("am i getting ran over and over");
+
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
@@ -62,11 +63,13 @@ function TextChannelWindow(props) {
               }
             }
           });
-        })
-        .catch(error => console.log("error", error));
+        }).catch(error => console.log("error", error));
     }
   }, [props.subChannelReducer.currentSubChannel]);
 
+
+
+  
   const createMessage = e => {
     const { value } = e.target;
     setMessage(value);
@@ -109,11 +112,15 @@ function TextChannelWindow(props) {
             .join(' and ')} is typing`}</div>) : (null) }
 
           <div className="main-screen">
-            {props.textChannelReducer.messages.map((message, index) => {
-              return (
-                <TextChannelMessegeScreen key={index} roomMessage={message} />
-              );
-            })}
+            
+            <article>
+              {props.textChannelReducer.messages.map((message, index) => {
+                return (
+                  <TextChannelMessegeScreen key={index} roomMessage={message} />
+                )
+              })}
+            </article>
+
           </div>
           <div className="main-text-input">
             <form>
@@ -133,7 +140,6 @@ function TextChannelWindow(props) {
                   display: "none"
                 }}
               >
-                Temp Submit
               </button>
             </form>
           </div>

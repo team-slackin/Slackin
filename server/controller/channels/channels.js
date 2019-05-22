@@ -2,7 +2,7 @@ module.exports = {
   async getChannels(req, res) {
     const db = req.app.get("db");
     const { id } = req.params;
-    let userChannels = await db.get_user_channels(id);
+    let userChannels = await db.get_user_channels(id).catch(err=>console.log(err));
     res.status(200).send(userChannels);
   },
   async grabChannelsWithQuery(req, res) {
@@ -25,6 +25,7 @@ module.exports = {
     const db = req.app.get("db");
     const { channel_id } = req.params;
     let usersFromChannel = await db.get_users_from_channel(channel_id);
+    console.log(usersFromChannel)
     res.status(200).send(usersFromChannel);
   },
   createChannel: async(req, res) => {  

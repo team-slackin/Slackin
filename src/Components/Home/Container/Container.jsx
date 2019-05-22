@@ -6,7 +6,6 @@ import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from "../../SubPrivateNav/SubPrivateNav";
 import TextChannelWindow from "../../TextChannelWindow/TextChannelWindow";
 
-
 import "./Container.scss";
 
 function Container(props) {
@@ -24,6 +23,11 @@ function Container(props) {
         </section>
 
         <section className="text-channel-window">
+          {/* {props.currentChannel ? (
+            <TextChannelWindow />
+          ) : (
+            <FriendsChatWindow />
+          )} */}
           <TextChannelWindow />
         </section>
       </main>

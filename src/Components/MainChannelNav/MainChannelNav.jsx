@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react"
-import { connect } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import {
   grabChannels,
   removeSelectedChannel
-} from "./../../Ducks/channelReducer"
-import { Link } from "react-router-dom"
-import Icon from "@material-ui/core/Icon"
+} from "./../../Ducks/channelReducer";
+import { Link } from "react-router-dom";
+import Icon from "@material-ui/core/Icon";
 
-import MainChannelConstructor from "./MainChannelConstructor"
-import CreateChannel from './../CreateChannel/CreateChannel'
-import SearchChannels from './../SearchChannels/SearchChannels'
-import Drop from './../DropZone/DropZone'
-
+import MainChannelConstructor from "./MainChannelConstructor";
+import CreateChannel from './../CreateChannel/CreateChannel';
+import SearchChannels from './../SearchChannels/SearchChannels';
 
 import "./MainChannelNav.scss"
 
@@ -19,37 +17,39 @@ function MainChannelNav(props) {
 
   const {user} = props.userReducer;
   const [borderRadius, setBorderRadius] = useState('25');
-  const [addOrSearchFlag, setAddOrSearchFlag] = useState(false)
-  const [addChannelFlag, setAddChannelFlag] = useState(false)
-  const [searchChannelsFlag, setSearchChannelsFlag] = useState(false)
+  const [addOrSearchFlag, setAddOrSearchFlag] = useState(false);
+  const [addChannelFlag, setAddChannelFlag] = useState(false);
+  const [searchChannelsFlag, setSearchChannelsFlag] = useState(false);
 
+  useEffect(()=>{
+    props.grabChannels(user.user_id);
+  }, []);
 
 
   const toggleAddChannelFlag = () => {
-    setAddChannelFlag(!addChannelFlag)
-  }
+    setAddChannelFlag(!addChannelFlag);
+  };
 
   const toggleSearchChannelsFlag = () => {
-    setSearchChannelsFlag(!searchChannelsFlag)
-  }
+    setSearchChannelsFlag(!searchChannelsFlag);
+  };
 
   const toggleAddOrSearchFlag = ()=>{
-    setAddOrSearchFlag((!addOrSearchFlag))
-  }
+    setAddOrSearchFlag((!addOrSearchFlag));
+  };
 
 
   useEffect(() => {
     if (props.channelReducer.currentChannel) {
-      setBorderRadius("50")
+      setBorderRadius("50");
     } else {
-      setBorderRadius("25")
+      setBorderRadius("25");
     }
-  }, [props.channelReducer.currentChannel])
+  }, [props.channelReducer.currentChannel]);
 
   return (
     <>
       <div className="main-channel-nav">
-        <div className="main-channel-nav-seperator">
           <Link to="/container">
             <img
               src={user.user_image}
@@ -64,17 +64,17 @@ function MainChannelNav(props) {
               }}
             />
           </Link>
+        <div className="main-channel-nav-seperator"></div>
+
+        <div className="main-channel-nav-divider">
+          {props.channelReducer.userChannels[0] ?
+            props.channelReducer.userChannels.map((channel, i) => (
+              <MainChannelConstructor 
+                key={i} 
+                channel={channel} 
+              />
+          )) : (<></>)}
         </div>
-
-    
-        {props.channelReducer.userChannels[0] ?
-        props.channelReducer.userChannels.map((channel, i) => (
-        <MainChannelConstructor 
-          key={i} 
-          channel={channel} 
-          />
-        )) : (<></>)}
-
 
 
 
@@ -91,8 +91,16 @@ function MainChannelNav(props) {
           </div> ) : null }
 
           
+          <div 
+          className="main-channel-nav-seperator "
+          style={{
+            marginTop: '5px'
+          }}
+          ></div>
         <div className="plus-sign-div">
-          <Icon onClick={()=>{toggleAddOrSearchFlag()}} style={{
+          <Icon 
+          onClick={()=>{toggleAddOrSearchFlag()}} 
+          style={{
             fontSize: '3em',
             color: 'var(--main-color)',
             textShadow: 'var(--text-icon-shadow)'

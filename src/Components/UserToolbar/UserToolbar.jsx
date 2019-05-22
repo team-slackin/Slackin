@@ -5,12 +5,10 @@ import { setUserStatus } from "./../../Ducks/userReducer"
 import { Link } from "react-router-dom"
 import Icon from "@material-ui/core/Icon"
 import "./UserToolbar.scss"
-import { Button } from "@material-ui/core"
 
 function UserToolbar(props) {
   const [editStatusFlag, setEditStatusFlag] = useState("none")
   const [fade, setFade] = useState("fadeIn")
-  const [buttonDisplay, setButtonDisplay] = useState("inline-flex")
   const [visable, setVisable] = useState("hidden")
 
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
@@ -21,12 +19,10 @@ function UserToolbar(props) {
     if (editStatusFlag === "none") {
       setEditStatusFlag("flex")
       setFade("fadeIn")
-      setButtonDisplay("inline-flex")
       setVisable("unset")
     } else {
       setFade("fadeOut")
       setEditStatusFlag("none")
-      setButtonDisplay("none")
       setVisable("hidden")
     }
   }
@@ -35,7 +31,6 @@ function UserToolbar(props) {
     setVisable("hidden")
     setEditStatusFlag("none")
     setFade("none")
-    setButtonDisplay("none")
   }, [])
 
   return (
@@ -53,13 +48,25 @@ function UserToolbar(props) {
           onClick={() => {
             props.setUserStatus("Online")
             setCurrentUserStatusColor("#43b581")
+            toggleStatusEdit()
           }}
           style={{
             animationName: fade,
-            animationDuration: "1s"
+            animationDuration: "1s",
+            borderBottom: "1px solid hsla(0,0%,96.1%,.08)"
           }}
         >
-          Online
+          <div
+            className="color"
+            style={{
+              backgroundColor: "#43b581",
+              marginRight: "14px",
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%"
+            }}
+          />
+          <span className="statusMessage">Online</span>
         </div>
 
         <div
@@ -67,13 +74,24 @@ function UserToolbar(props) {
           onClick={() => {
             props.setUserStatus("Idle")
             setCurrentUserStatusColor("#faa61a")
+            toggleStatusEdit()
           }}
           style={{
             animationName: fade,
             animationDuration: "1s"
           }}
         >
-          Idle
+          <div
+            className="color"
+            style={{
+              backgroundColor: "#faa61a",
+              marginRight: "14px",
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%"
+            }}
+          />
+          <span className="statusMessage">Idle</span>
         </div>
 
         <div
@@ -81,13 +99,27 @@ function UserToolbar(props) {
           onClick={() => {
             props.setUserStatus("Do Not Disturb")
             setCurrentUserStatusColor("#f04747")
+            toggleStatusEdit()
           }}
           style={{
             animationName: fade,
             animationDuration: "1s"
           }}
         >
-          Do Not Disturb
+          <div
+            className="color"
+            style={{
+              backgroundColor: "#f04747",
+              marginRight: "14px",
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%"
+            }}
+          />
+          <span className="statusMessage">Do Not Disturb</span>
+          <span className="message">
+            You will not receive any desktop notifications.
+          </span>
         </div>
 
         <div
@@ -95,13 +127,28 @@ function UserToolbar(props) {
           onClick={() => {
             props.setUserStatus("Invisible")
             setCurrentUserStatusColor("#747f8d")
+            toggleStatusEdit()
           }}
           style={{
             animationName: fade,
             animationDuration: "1s"
           }}
         >
-          Invisible
+          <div
+            className="color"
+            style={{
+              backgroundColor: "#747f8d",
+              marginRight: "14px",
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%"
+            }}
+          />
+          <span className="statusMessage">Invisible</span>
+          <span className="message">
+            You will not appear online, but will have full access to all of
+            Discord.
+          </span>
         </div>
       </div>
 

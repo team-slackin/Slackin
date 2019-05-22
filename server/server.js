@@ -93,11 +93,28 @@ app.post("/chatkit/authenticate", (req, res) => {
 });
 
 
+app.post('/chatkit/createroom/friends', (req, res)=> {
+  const {user_display_name, user_id} = req.body;
+  console.log('aaaaaaa', req.session.user.user_display_name, user_display_name)
+  chatkit.createRoom({
+    creatorId: `${req.session.user.user_display_name}`,//current user
+    userIds: [`${user_display_name}`],//friend 
+    name: `${req.session.user.user_display_name} & ${user_display_name}!`,
+    isPrivate: true
+  }).then(
+    res=>{
+      const db = req.app.get('db');
+      db.set_friend_chatkit(res.id, res.name, res.private, user_id, req.session.user.user_id);
+    }
+  ).catch(err=>console.log(err));
+});
+
 app.post("/chatkit/createroom", (req, res) => {
-  const { user_display_name, roomName, roomStatus, channel_id } = req.body;
+  const {roomName, roomStatus, channel_id} = req.body;
+
   chatkit
     .createRoom({
-      creatorId: `${user_display_name}`,
+      creatorId: `${req.session.user.user_display_name}`,
       name: roomName,
       isPrivate: roomStatus
     })
@@ -132,7 +149,7 @@ app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
 
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo);
-
+app.put('/api/friend-room-created', friends.roomCreated)
 // amazon endpoints
 app.post(`/api/amazon`, amazon.getAws);
 

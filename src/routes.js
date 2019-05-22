@@ -4,7 +4,6 @@ import Login from './Components/Login/Login'
 import Register from './Components/Login/Register'
 import Account from './Components/Home/Account/Account'
 import LandingPage from './Components/Home/Container/Container'
-import NotFound from './Components/NotFound/NotFound'
 
 
 export default ( 
@@ -14,4 +13,4 @@ export default (
   <Route path='/container/account' component={Account} />
   <Route path='/container' component={LandingPage} />
 </>
-)
+);
