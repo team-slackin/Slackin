@@ -4,3 +4,11 @@
   border-bottom: 1px solid gray;
   margin: 5px;
 };
+
+.main-screen {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 50px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+};
