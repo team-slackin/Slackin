@@ -146,7 +146,7 @@ app.get(`/api/queriedchannels`, channel.grabChannelsWithQuery);
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
-
+app.get('/text-channel-images/', users.grabImages);
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo);
 app.put('/api/friend-room-created', friends.roomCreated)
