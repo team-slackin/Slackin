@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import { updateIsUserLoggedIn } from "./Ducks/userReducer"
 import slackinLogo from "./Assets/Slackin-word.png"
 
-import NewChannel from './Components/NewChannel/NewChannel';
+import NewChannel from "./Components/NewChannel/NewChannel"
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 // import { orange } from "@material-ui/core/colors"
@@ -54,7 +54,7 @@ function App(props) {
           className="App-header"
           style={{ position: "absolute", zIndex: 2 }}
         >
-          <span>
+          {/* <span>
             <Link
               to="/container"
               style={{
@@ -65,7 +65,7 @@ function App(props) {
             >
               <img style={{ height: "20px" }} src={slackinLogo} />
             </Link>
-          </span>
+          </span> */}
         </header>
       )
     }
