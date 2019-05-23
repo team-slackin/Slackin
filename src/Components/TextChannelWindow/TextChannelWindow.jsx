@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { Input } from "@material-ui/core";
 import {setNeverLoadAgain} from '../../Ducks/subChannelReducer';
@@ -7,13 +6,11 @@ import {setNeverLoadAgain} from '../../Ducks/subChannelReducer';
 import AddingUsersToChannel from './../AddingUsersToChannel/AddingUsersToChannel'
 
 import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
+// eslint-disable-next-line
 import _ from "lodash";
 
 import Chatkit from "@pusher/chatkit-client";
-import UserToolbar from "../UserToolbar/UserToolbar";
-// import UsersInChannel from "../UsersInChannel/UsersInChannel";
 import {CircularProgress} from '@material-ui/core'
-import FriendsList from "./../FriendsList/FriendsList";
 import UsersInChannel from "../UsersInChannel/UsersInChannel";
 
 import {
@@ -23,7 +20,6 @@ import {
 
 function TextChannelWindow(props) {
   const [inputMessage, setMessage] = useState("");
-  const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   //roomID holder - switched with useEffect that looks for correct channels
   const [roomId, setRoomId] = useState('')
@@ -32,6 +28,7 @@ function TextChannelWindow(props) {
   const [dontLoadAgain, setDontLoadAgain] = useState(1);//used to stop when it equals 2
   //FIX AUTH ERROR being double ran - look at parent
 
+  const {resetReduxMessage} = props;
 
   useEffect(() => {
     if(props.subChannelReducer.currentSubChannelChatKitId){
@@ -44,7 +41,8 @@ function TextChannelWindow(props) {
   },[props.subChannelReducer.currentSubChannelChatKitId, props.friendReducer.currentFriend.chatkit_id])
   
   useEffect(() => {
-    props.resetReduxMessage()
+    resetReduxMessage()
+    // eslint-disable-next-line
   },[roomId])
 
   useEffect(() => {
@@ -65,6 +63,7 @@ function TextChannelWindow(props) {
   
         .then(async currentUser => {
           setCurrentUser({ currentUser });
+          // eslint-disable-next-line
           const data = await currentUser.subscribeToRoom({
             roomId: roomId,
             messageLimit: 100,
@@ -72,11 +71,13 @@ function TextChannelWindow(props) {
               onMessage: message => {
                 props.setReduxMessage(message);
               },
+              // eslint-disable-next-line
               onUserStartedTyping: user => {
                 setUsersWhoAreTyping([
                   ...usersWhoAreTyping, props.userReducer.user.user_display_name
                 ])
               },
+              // eslint-disable-next-line
               onUserStoppedTyping: user => {
 
                 setUsersWhoAreTyping([
@@ -87,6 +88,7 @@ function TextChannelWindow(props) {
           });
         }).catch(error => console.log("error", error));
     }
+    // eslint-disable-next-line
   }, [roomId]);
 
   const timeoutLoading = () => {

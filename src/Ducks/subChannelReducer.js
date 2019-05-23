@@ -40,21 +40,24 @@ export const resetCurrentSubChannelChatKitId = () => {
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
-    case LOAD_AGAIN: {
-      return {...state, neverLoadAgain: payload}
-    };
+    case LOAD_AGAIN: 
+      return {...state, neverLoadAgain: payload};
 
     case GRAB_SUBCHANNELS + "_PENDING":
-      return { ...state }
+      return { ...state };
+
     case GRAB_SUBCHANNELS + "_FULFILLED":
       return {
         ...state,
         subChannels: payload.data
-      }
-      case USER_SELECTED_SUBCHANNEL:
-      return {...state, currentSubChannel: payload.subchannel, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
-      case RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID:
-      return {...state, currentSubChannelChatKitId: payload}
+      };
+
+    case USER_SELECTED_SUBCHANNEL:
+      return {...state, currentSubChannel: payload.subchannel_id, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
+      
+    case RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID:
+      return {...state, currentSubChannelChatKitId: payload};
+
     default:
       return { ...state }
   }

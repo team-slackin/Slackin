@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { grabUsersFromChannel } from "./../../Ducks/channelReducer";
 // import { grabUsersInSubChannel } from "./../../Ducks/subChannelReducer";
@@ -10,6 +10,7 @@ function UsersInChannel(props) {
     if(props.channelReducer.currentChannel){
       props.grabUsersFromChannel(props.channelReducer.currentChannel)
     }
+    // eslint-disable-next-line
   }, [props.channelReducer.currentChannel])
 
   return (

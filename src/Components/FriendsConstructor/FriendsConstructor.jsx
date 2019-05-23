@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import Chatkit from "@pusher/chatkit-client"
 import Axios from "axios"
 
 import {makeCurrentFriend, grabFriends} from '../../Ducks/friendReducer'
 import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
-
-
 
 const FriendsConstructor = (props) => {
   const {user_status, room_created, friend_id, user_display_name} = props.friend;
@@ -14,28 +11,28 @@ const FriendsConstructor = (props) => {
   
   useEffect(()=>{
     switch(user_status) {
-      case 'online': {
+      case 'online': 
         setCurrentUserStatusColor('#43b581');
         break;
-      };
-      case 'idle': {
+
+      case 'idle': 
         setCurrentUserStatusColor('#faa61a');
         break;
-      };
-      case 'do not disturb': {
+
+      case 'do not disturb': 
         setCurrentUserStatusColor('#f04747');
         break;
-      };
-      case 'offline': {
+
+      case 'offline': 
         setCurrentUserStatusColor('#747f8d');
         break;
-      };
-      default: {
+
+      default: 
         setCurrentUserStatusColor('#747f8d');
         break;
-      };
+
     };
-  }, []);
+  }, [user_status]);
 
   const friendRoomMakeOrCreate = () => {
     //temp token and instance id

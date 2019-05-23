@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import {userSelectedSubChannel,setNeverLoadAgain} from './../../Ducks/subChannelReducer'
-import { userSelectedChannel } from "./../../Ducks/channelReducer"
 import { resetCurrentFriend } from "./../../Ducks/friendReducer"
 
 function SubChannelConstructor(props) {
@@ -51,10 +50,3 @@ export default connect(mapToPropsState, {
   resetCurrentFriend,
   setNeverLoadAgain
   })(SubChannelConstructor);
-
-{
-  /* <Link>
-      Makes the SubChannels (text chats)
-      <h3>#{props.subChannel.sub_channel_name}</h3>
-</Link>  */
-}

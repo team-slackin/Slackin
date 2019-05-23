@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux'
 import {setPrevUser} from '../../Ducks/textChannelReducer';
 import './TextChannelWindow.scss';
@@ -10,6 +10,7 @@ function TextChannelMessegeScreen(props) {
     const plusPlus = props.dontLoadAgain + 1;
     props.setDontLoadAgain(plusPlus);
     props.timeoutLoading();
+    // eslint-disable-next-line
   },[]);
 
   const image = props.userReducer.images.filter(image=> `${image.user_display_name}` === `${props.roomMessage.senderId}`);
@@ -35,6 +36,7 @@ function TextChannelMessegeScreen(props) {
           
               <img 
                 src={_image} 
+                alt=""
                 />
               <span
                 style={{

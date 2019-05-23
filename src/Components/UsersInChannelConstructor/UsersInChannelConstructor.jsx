@@ -27,7 +27,7 @@ function UsersInChannelConstructor(props) {
         break
       }
     }
-  }, [])
+  }, [user_status])
 
   return (
     <div className="users-in-channel">
