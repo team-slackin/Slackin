@@ -22,8 +22,8 @@ export const grabSubChannels = channel_id => {
   };
 };
 
-export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id) => {
-  const data = {subchannel_id, sub_channel_chatkit_id}
+export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id,subchannel) => {
+  const data = {subchannel_id, sub_channel_chatkit_id, subchannel}
   return {
     type: USER_SELECTED_SUBCHANNEL,
     payload: data
@@ -52,7 +52,7 @@ export default function reducer(state = initialState, action) {
         subChannels: payload.data
       }
       case USER_SELECTED_SUBCHANNEL:
-      return {...state, currentSubChannel: payload.subchannel_id, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
+      return {...state, currentSubChannel: payload.subchannel, currentSubChannelChatKitId: payload.sub_channel_chatkit_id}
       case RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID:
       return {...state, currentSubChannelChatKitId: payload}
     default:
