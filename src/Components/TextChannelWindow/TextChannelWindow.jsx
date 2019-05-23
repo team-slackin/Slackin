@@ -115,7 +115,10 @@ function TextChannelWindow(props) {
     <>
       <div className="text-channel-flex-box">
         <div className="main-text-window">
-          <header className='sub-channel-name'> { props.subChannelReducer.currentSubChannel ? ( <div>Sub Channel: {props.subChannelReducer.currentSubChannel.sub_channel_name}</div> ) : (null) }</header>
+          <header className='sub-channel-name'> { props.subChannelReducer.currentSubChannel ? ( <div> <span className='sub-channel-hashtag'>#</span><div className='subchannelname'>
+          {props.subChannelReducer.currentSubChannel.sub_channel_name}
+          </div>
+          </div> ) : (null) }</header>
           {/* Each Individual Messege */}
 
           { isSomeoneTyping ? (<div>{`${usersWhoAreTyping
