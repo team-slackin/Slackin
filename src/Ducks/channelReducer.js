@@ -17,6 +17,15 @@ const GRAB_CHANNELS_WITH_QUERY = "GRAB_CHANNELS_WITH_QUERY";
 const USER_SELECTED_CHANNEL = "USER_SELECTED_CHANNEL";
 const REMOVE_SELECTED_CHANNEL = 'REMOVE_SELECTED_CHANNEL';
 const GRAB_USERS_FROM_CHANNEL = 'GRAB_USERS_FROM_CHANNEL';
+const ADD_USER_TO_CHANNEL = 'ADD_USER_TO_CHANNEL';
+
+export const addUserToChannel = (user_id, channel_id) => {
+  return {
+    type: ADD_USER_TO_CHANNEL,
+    payload: axios.post(`/api/addusertochannel`, { user_id, channel_id })
+      .then(res=>res.data.usersInChannel).catch(err=>console.log(err))
+  }
+}
 
 
 export const createChannel = (channelName, channelIsPrivate) => ({
@@ -38,8 +47,8 @@ export const grabChannels = user_id => {
   return { type: GRAB_CHANNELS, payload: res }
 }
 
-export const grabChannelsWithQuery = searchInput => {
-  return { type: GRAB_CHANNELS_WITH_QUERY, payload: axios.get(`/api/queriedchannels?search=${searchInput}`)
+export const grabChannelsWithQuery = (searchInput, user_id) => {
+  return { type: GRAB_CHANNELS_WITH_QUERY, payload: axios.post(`/api/queriedchannels?search=${searchInput}`, { user_id })
     .then(res=>res.data).catch(err=>console.log(err)) 
   }
 }
@@ -82,6 +91,13 @@ export default function reducer(state = initialState, action) {
     };
 
     case GRAB_USERS_FROM_CHANNEL + "_FULFILLED": {
+      return {...state, usersFromChannel: payload};
+    };
+    case ADD_USER_TO_CHANNEL + "_PENDING": {
+      return { ...state };
+    };
+
+    case ADD_USER_TO_CHANNEL + "_FULFILLED": {
       return {...state, usersFromChannel: payload};
     };
       

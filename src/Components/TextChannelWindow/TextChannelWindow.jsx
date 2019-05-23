@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Input } from "@material-ui/core";
+import AddingUsersToChannel from './../AddingUsersToChannel/AddingUsersToChannel'
 
 import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
 import _ from "lodash";
@@ -77,13 +78,7 @@ function TextChannelWindow(props) {
       .catch(err => console.log(err));
   };
 
-  // if (this.props.usersWhoAreTyping.length > 0) {
-  // return (
-  // <div>
-  //   {`${this.props.usersWhoAreTyping
-  //     .slice(0, 2)
-  //     .join(' and ')} is typing`}
-  // </div>
+
 
   const sendMessage = (text, e) => {
     e.preventDefault();
@@ -140,6 +135,7 @@ function TextChannelWindow(props) {
         </div>
 
         <aside>
+          <AddingUsersToChannel />
           <UsersInChannel />
         </aside>
       </div>

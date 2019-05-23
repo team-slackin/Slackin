@@ -8,6 +8,7 @@ import './TextChannelWindow.scss';
 
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
+  console.log('props.roomMessage', props.roomMessage)
   // if (+props.textChannelReducer.prevUser === +props.roomMessage.senderId) {
     return (
       <div className="main-text-window">{/* Each Individual Messege */}

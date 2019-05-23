@@ -125,7 +125,8 @@ app.post("/api/setuserstatus", users.setUserStatus);
 // channel endpoints
 app.get(`/api/channels/:id`, channel.getChannels);
 app.get(`/api/grabusersfromchannel/:channel_id`, channel.grabUsersFromChannel);
-app.get(`/api/queriedchannels`, channel.grabChannelsWithQuery);
+app.post(`/api/queriedchannels`, channel.grabChannelsWithQuery);
+app.post(`/api/addusertochannel`, channel.addUserToChannel)
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
@@ -138,3 +139,8 @@ app.post(`/api/amazon`, amazon.getAws);
 
 // friends endpoints
 app.get(`/api/grabfriends`, friends.grabFriends)
+
+
+// grabbing users endpoint
+app.get(`/api/graballusers`, users.grabAllUsers)
+

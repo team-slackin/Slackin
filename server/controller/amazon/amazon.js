@@ -11,7 +11,6 @@ module.exports = {
       accessKeyId: ACCESS_KEY_ID,
       secretAccessKey: SECRET_KEY
     };
-    console.log(`line 14`, aws.config)
   
     const {fileName, fileType} = req.body;
     //we are grabbing these from the front end with dropzone and i will explain more when we get to them
@@ -49,7 +48,6 @@ module.exports = {
       const { url } = req.body;
       let updatedUserInfo = await db.upload_url_for_user(url, req.session.user.user_id)
       .catch(err=>console.log(err));
-      console.log(`hi`)
     req.session.user = {
         user_id: updatedUserInfo[0].user_id,
         email: updatedUserInfo[0].email,
