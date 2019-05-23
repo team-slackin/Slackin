@@ -1,10 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+import Chatkit from "@pusher/chatkit-client";
+import Axios from 'axios';
+
+import {makeCurrentFriend, grabFriends} from '../../Ducks/friendReducer'
+import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
+
+
 
 const FriendsConstructor = (props) => {
-  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38')
-
+  const {user_status, room_created, friend_id, user_display_name} = props.friend;
+  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38');
+  
   useEffect(()=>{
-    const {user_status} = props.friend;
     switch(user_status) {
       case 'online': {
         setCurrentUserStatusColor('#689f38');
@@ -29,8 +37,31 @@ const FriendsConstructor = (props) => {
     };
   }, []);
 
+  const friendRoomMakeOrCreate = () => {//temp token and instance id
+
+
+    /*## Create room if the room hasnt been created##*/
+    if (!room_created) {
+      console.log('FRIENDS CONSTRCUTOR',props)
+      Axios.post("/chatkit/createroom/friends", {user_display_name, friend_id})
+        .catch(err=>console.log(err));
+    } else {
+        // update redux state and make textchannel window watch for a change on either subchannel id OR friends id
+    };
+
+    /*## Continue ##*/
+    // Axios.put('/api/friend-room-created', {user_id})
+    props.resetCurrentSubChannelChatKitId()
+    props.makeCurrentFriend(props.friend);
+    props.grabFriends();
+    //go to friends chat window .jsx
+  };
+
   return (
-    <div className="friends-list-flex-box">
+    <div 
+      className="friends-list-flex-box"
+      onClick={()=>{friendRoomMakeOrCreate()}}
+    >
       <img 
         className="friends-list-image"
         src={props.friend.user_image} 
@@ -44,4 +75,12 @@ const FriendsConstructor = (props) => {
   );
 };
 
-export default FriendsConstructor;
+const mapStateToProps = reduxState => {
+  return {
+    userReducer: reduxState.userReducer,
+    subChannelReducer: reduxState.subChannelReducer
+  }
+}
+
+export default connect(mapStateToProps, {makeCurrentFriend, grabFriends, resetCurrentSubChannelChatKitId}) (FriendsConstructor);
+

@@ -11,18 +11,8 @@ function SubPrivateNav(props) {
   const onChange = (e) => {
     const {value} = e.target;
     setSearch(value)
+    console.log(search)
   };
-
-  // const {friends} = props;
-
-  // const displayFriends = friends.map((friend, index) => {
-  //   const {user_display_name} = friend;
-  //   if (user_display_name.includes(search)) {
-  //     return <div>{/* THE FRIEND */}</div>
-  //   } else {
-  //     return;
-  //   };
-  // });
 
   return (
     <section className="sub-nav">

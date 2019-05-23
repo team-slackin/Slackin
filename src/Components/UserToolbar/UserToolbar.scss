@@ -19,10 +19,11 @@ aside.user-tool-bar {
     visibility: hidden;
     animation-fill-mode: forwards;
     animation-duration: 1s;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.82), 0 1px 4px rgba(0, 0, 0, 0.1);
 
     div.status {
       width: 200px;
-      font-size: 16px;
+      font-size: 15px;
       color: hsla(0, 0%, 100%, 0.6);
       // padding: 3px;
       // margin: 2px;
@@ -31,6 +32,7 @@ aside.user-tool-bar {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
+      flex-wrap: wrap;
       padding: 10px 14px;
       cursor: pointer;
       margin: 0;
@@ -44,6 +46,20 @@ aside.user-tool-bar {
       transition: display 1s;
       animation-fill-mode: forwards;
       animation-duration: 1s;
+    }
+
+    div.status:hover {
+      background-color: #25282d;
+      color: #fff;
+    }
+    span.statusMessage {
+      font-size: 15px;
+    }
+    span.message {
+      margin: 4px 0 0 24px;
+      font-size: 10px;
+      line-height: 12px;
+      white-space: normal;
     }
   }
 
@@ -72,7 +88,7 @@ aside.user-tool-bar {
     }
 
     img.user-tool-bar-image:hover {
-      opacity: 0.5;
+      opacity: 0.7;
     }
 
     div.user-tool-bar-status {
@@ -104,7 +120,7 @@ aside.user-tool-bar {
     }
 
     .user-tool-bar-cog:hover {
-      opacity: 0.5;
+      opacity: 0.7;
     }
   }
 

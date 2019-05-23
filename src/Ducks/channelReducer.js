@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const initialState = {
   userChannels: [],
@@ -7,7 +7,7 @@ const initialState = {
   userSubChannels: [],
   usersFromChannel: [],
   queriedFlag: false
-}
+};
 
 // Eventually we will have deleteChannels and editChannels functions
 const GRAB_CHANNELS = "GRAB_CHANNELS";
@@ -43,9 +43,9 @@ export const removeSelectedChannel = () => ({type: REMOVE_SELECTED_CHANNEL, payl
 
 
 export const grabChannels = user_id => {
-  const res = axios.get(`/api/channels/${user_id}`)
-  return { type: GRAB_CHANNELS, payload: res }
-}
+  const res = axios.get(`/api/channels/${user_id}`);
+  return { type: GRAB_CHANNELS, payload: res };
+};
 
 export const grabChannelsWithQuery = (searchInput, user_id) => {
   return { type: GRAB_CHANNELS_WITH_QUERY, payload: axios.post(`/api/queriedchannels?search=${searchInput}`, { user_id })
@@ -57,8 +57,8 @@ export const grabUsersFromChannel = channel_id => {
   return { 
     type: GRAB_USERS_FROM_CHANNEL, 
     payload: axios.get(`/api/grabusersfromchannel/${channel_id}`).then(res=>res.data).catch(err=>console.log(err)) 
-  }
-}
+  };
+};
 
 export const userSelectedChannel = (channel_id, channel_creator) => ({
   type: USER_SELECTED_CHANNEL,
@@ -66,7 +66,7 @@ export const userSelectedChannel = (channel_id, channel_creator) => ({
 })
 
 export default function reducer(state = initialState, action) {
-  const { type, payload } = action
+  const { type, payload } = action;
 
   switch (type) {
     case GRAB_CHANNELS + "_PENDING": {
@@ -123,6 +123,6 @@ export default function reducer(state = initialState, action) {
       return {...state, userChannels: payload};
     };
     default:
-      return { ...state }
-  }
-}
+      return { ...state };
+  };
+};

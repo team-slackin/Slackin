@@ -93,11 +93,29 @@ app.post("/chatkit/authenticate", (req, res) => {
 });
 
 
+app.post('/chatkit/createroom/friends', (req, res)=> {
+  const {user_display_name, friend_id} = req.body;
+  console.log('actual user', req.session.user.user_display_name, 'added friend',user_display_name)
+  chatkit.createRoom({
+    creatorId: `slackin`,//current user
+    userIds: [`kamalu`],//friend 
+    name: `friends room`,
+    isPrivate: true
+  }).then(
+    async (res)=>{
+      const db = req.app.get("db");
+      db.set_friend_chatkit([res.id, res.name, res.private, friend_id, req.session.user.user_id, user_display_name, req.session.user.user_display_name]);
+      console.log('created friends room successfully')
+    }
+  ).catch(err=>console.log(err));
+});
+
 app.post("/chatkit/createroom", (req, res) => {
-  const { user_display_name, roomName, roomStatus, channel_id } = req.body;
+  const {roomName, roomStatus, channel_id} = req.body;
+
   chatkit
     .createRoom({
-      creatorId: `${user_display_name}`,
+      creatorId: `${req.session.user.user_display_name}`,
       name: roomName,
       isPrivate: roomStatus
     })
@@ -130,10 +148,10 @@ app.post(`/api/addusertochannel`, channel.addUserToChannel)
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
-
+app.get('/text-channel-images/', users.grabImages);
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo);
-
+app.put('/api/friend-room-created', friends.roomCreated)
 // amazon endpoints
 app.post(`/api/amazon`, amazon.getAws);
 
