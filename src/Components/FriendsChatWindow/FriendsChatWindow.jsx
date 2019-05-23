@@ -52,9 +52,6 @@ function FriendsChatWindow(props) {
     });
   };
 
-  console.log('abcdefghijklmnopqrstuvxyz', props);
-  console.log('abcdefghijklmnopqrstuvxyz', roomMessages);
-
   return (
     <>
       <header>{`${props.friendReducer.currentFriend.chatkit_name}`}</header>

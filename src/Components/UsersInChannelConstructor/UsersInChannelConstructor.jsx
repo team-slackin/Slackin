@@ -31,6 +31,7 @@ function UsersInChannelConstructor(props) {
     }
   }, [props.channelReducer.usersFromChannel])
 
+
   return (
     <div className="users-in-channel">
       <img

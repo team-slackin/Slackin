@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import axios from "axios"
 import Dropzone from "react-dropzone"
 //forgot to import react-drop zone will do that now
@@ -43,9 +43,9 @@ function Drop(props) {
     //was going to send an object called body, but since for this we only need the url to the image/file uploaded ill just put it in an object.
 
     //type is either user or channel and the channel_id is added as an option but not needed.
-    if (type == "update" && channel_id) {
+    if (`${type}` === "update" && channel_id) {
       props.updateChannelImageToDb(channel_id, url)
-    } else if (type == "user") {
+    } else if (`${type}` === "user") {
       props.uploadUserImageToDb(type, url)
     }
     //this will go to a function on our server which will update our database with the url

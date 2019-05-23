@@ -32,6 +32,7 @@ function MainChannelNav(props) {
 
 
 
+
   useEffect(() => {
     if (props.channelReducer.currentChannel) {
       setBorderRadius("50");
@@ -55,6 +56,7 @@ function MainChannelNav(props) {
                 width: "80px",
                 height: "80px"
               }}
+              alt=""
             />
           </Link>
         <div className="main-channel-nav-seperator"></div>

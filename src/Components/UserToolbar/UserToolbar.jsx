@@ -160,6 +160,7 @@ function UserToolbar(props) {
             onClick={() => {
               toggleStatusEdit()
             }}
+            alt=""
           />
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { grabUsersFromChannel } from "./../../Ducks/channelReducer";
 // import { grabUsersInSubChannel } from "./../../Ducks/subChannelReducer";
@@ -13,6 +13,7 @@ function UsersInChannel(props) {
       }, 2000)
     }
   }, [props.channelReducer.currentChannel, props.channelReducer.usersFromChannel])
+
 
   return (
     <>
