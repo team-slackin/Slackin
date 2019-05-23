@@ -23,8 +23,11 @@ function MainChannelNav(props) {
 
 
   useEffect(()=>{
-    props.grabChannels(user.user_id);
-  }, []);
+    setTimeout(() => {
+      props.grabChannels(user.user_id);
+    }, 2500)
+  }, [props.channelReducer.userChannels]);
+
 
 
 
@@ -53,6 +56,7 @@ function MainChannelNav(props) {
                 width: "80px",
                 height: "80px"
               }}
+              alt=""
             />
           </Link>
         <div className="main-channel-nav-seperator"></div>

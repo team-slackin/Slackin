@@ -21,25 +21,19 @@ export const toggleAddOrSearchFlag = () => {
 };
 
 export default function reducer(state = initialState, action) {
-  const { type, payload } = action
+  const { type } = action
   switch (type) {
-    case ADD_SEARCH_FLAG: {
-      console.log(payload, type)
+    case ADD_SEARCH_FLAG: 
       return {...state, addOrSearchFlag: !state.addOrSearchFlag}
-    };
 
-    case ADD_CHANNEL_FLAG: {
-      console.log(payload, type)
+    case ADD_CHANNEL_FLAG: 
       return {...state, addChannelFlag: !state.addChannelFlag}
-    };
 
-    case SEARCH_CHANNEL_FLAG: {
-      console.log(payload, type)
+    case SEARCH_CHANNEL_FLAG: 
       return {...state, searchChannelsFlag: !state.searchChannelsFlag}
-    };
 
-    default: {
+    default: 
       return { ...state };
-    };
+
   };
 };

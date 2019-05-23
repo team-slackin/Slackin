@@ -69,59 +69,51 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GRAB_CHANNELS + "_PENDING": {
+    case GRAB_CHANNELS + "_PENDING": 
       return { ...state };
-    };
 
-    case GRAB_CHANNELS + "_FULFILLED": {
+    case GRAB_CHANNELS + "_FULFILLED": 
       return {...state, userChannels: payload.data};
-    };
 
-    case GRAB_CHANNELS_WITH_QUERY + "_PENDING": {
+    case GRAB_CHANNELS_WITH_QUERY + "_PENDING": 
       return { ...state };
-    };
 
-    case GRAB_CHANNELS_WITH_QUERY + "_FULFILLED": {
-      console.log(`from line 63 channelReducer`, payload)
+    case GRAB_CHANNELS_WITH_QUERY + "_FULFILLED": 
       return {...state, userChannels: payload};
-    };
 
-    case GRAB_USERS_FROM_CHANNEL + "_PENDING": {
+    case GRAB_USERS_FROM_CHANNEL + "_PENDING": 
       return { ...state };
-    };
 
-    case GRAB_USERS_FROM_CHANNEL + "_FULFILLED": {
+
+    case GRAB_USERS_FROM_CHANNEL + "_FULFILLED": 
       return {...state, usersFromChannel: payload};
-    };
-    case ADD_USER_TO_CHANNEL + "_PENDING": {
+
+    case ADD_USER_TO_CHANNEL + "_PENDING": 
       return { ...state };
-    };
 
-    case ADD_USER_TO_CHANNEL + "_FULFILLED": {
+
+    case ADD_USER_TO_CHANNEL + "_FULFILLED": 
       return {...state, usersFromChannel: payload};
-    };
+
       
-    case REMOVE_SELECTED_CHANNEL: {
+    case REMOVE_SELECTED_CHANNEL: 
       return {...state, currentChannel: payload};
-    };
 
-    case USER_SELECTED_CHANNEL: {
+    case USER_SELECTED_CHANNEL: 
       return { ...state, currentChannel: payload.channel_id, currentCreator: payload.channel_creator };
-    };
 
-    case CREATE_CHANNEL + '_PENDING': {
+    case CREATE_CHANNEL + '_PENDING': 
       return {...state};
-    };
-    case CREATE_CHANNEL + '_FULFILLED': {
-      return {...state, userChannels: payload};
-    };
 
-    case UPDATE_CHANNEL_IMAGE + '_PENDING': {
-      return {...state};
-    };
-    case UPDATE_CHANNEL_IMAGE + '_FULFILLED': {
+    case CREATE_CHANNEL + '_FULFILLED':
       return {...state, userChannels: payload};
-    };
+
+    case UPDATE_CHANNEL_IMAGE + '_PENDING': 
+      return {...state};
+
+    case UPDATE_CHANNEL_IMAGE + '_FULFILLED': 
+      return {...state, userChannels: payload};
+
     default:
       return { ...state };
   };

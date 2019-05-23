@@ -53,7 +53,7 @@ function LoginForm(props) {
       <Paper className={classes.paper} style={{ marginTop: "0px" }}>
         <Typography component="h1" variant="h5">
           <span>
-            <img className="signIn" style={{ height: "38px" }} src={signIn} />
+            <img className="signIn" style={{ height: "38px" }} src={signIn} alt="" />
           </span>
         </Typography>
         <form className={classes.form}>
@@ -89,6 +89,9 @@ function LoginForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{
+              color: '#fff'
+            }}
             onClick={handleSubmit}
           >
             Sign in
