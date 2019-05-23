@@ -23,6 +23,7 @@ const styles = theme => {
         marginRight: "auto"
       }
     },
+
     paper: {
       backgroundColor: "var(--secondary-background-color)",
       marginTop: theme.spacing.unit * 8,
@@ -42,6 +43,7 @@ const styles = theme => {
   }
 }
 
+
 function LoginForm(props) {
   const { classes, userInfoHandle, handleSubmit } = props
 
@@ -57,6 +59,7 @@ function LoginForm(props) {
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
+
             <Input
               onChange={e => {
                 userInfoHandle(e)
@@ -66,6 +69,7 @@ function LoginForm(props) {
               autoComplete="email"
               autoFocus
             />
+
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
