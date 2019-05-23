@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Input } from "@material-ui/core";
+import {setNeverLoadAgain} from '../../Ducks/subChannelReducer';
+
 import AddingUsersToChannel from './../AddingUsersToChannel/AddingUsersToChannel'
 
 import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
@@ -10,7 +12,7 @@ import _ from "lodash";
 import Chatkit from "@pusher/chatkit-client";
 import UserToolbar from "../UserToolbar/UserToolbar";
 // import UsersInChannel from "../UsersInChannel/UsersInChannel";
-
+import {CircularProgress} from '@material-ui/core'
 import FriendsList from "./../FriendsList/FriendsList";
 import UsersInChannel from "../UsersInChannel/UsersInChannel";
 
@@ -26,8 +28,8 @@ function TextChannelWindow(props) {
   //roomID holder - switched with useEffect that looks for correct channels
   const [roomId, setRoomId] = useState('')
   const [usersWhoAreTyping, setUsersWhoAreTyping] = useState([]);
-  
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [dontLoadAgain, setDontLoadAgain] = useState(1);//used to stop when it equals 2
   //FIX AUTH ERROR being double ran - look at parent
 
 
@@ -87,7 +89,15 @@ function TextChannelWindow(props) {
     }
   }, [roomId]);
 
-
+  const timeoutLoading = () => {
+    if (!isLoading && dontLoadAgain !== 2 && !props.subChannelReducer.neverLoadAgain) {
+      setIsLoading(true)
+      setTimeout(()=>{
+        setIsLoading(false);
+        props.setNeverLoadAgain(true);
+      }, 3000);
+    }; 
+  };
 
   const createMessage = e => {
     const { value } = e.target;
@@ -124,13 +134,35 @@ function TextChannelWindow(props) {
 
           <div className="main-screen">
             
-            <article>
+            {isLoading ? (
+              <div className="loading">
+                <CircularProgress 
+                style={{
+                  color: 'white',
+                }}
+                  size={100} 
+                  color="secondary" 
+                />
+              </div>
+            ) : (
+              <>
+              <article id="jump">
               {props.textChannelReducer.messages.map((message, index) => {
                 return (
-                  <TextChannelMessegeScreen key={index} roomMessage={message} />
+                  <TextChannelMessegeScreen 
+                  key={index} 
+                  roomMessage={message} 
+                  timeoutLoading={timeoutLoading}
+                  setDontLoadAgain={setDontLoadAgain} 
+                  dontLoadAgain={dontLoadAgain}
+                  />
                 )
               })}
             </article>
+            <div>{/* Jump to div */}</div>
+            </>
+            )}
+            
 
           </div>
           <div className="main-text-input">
@@ -176,5 +208,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { setReduxMessage, resetReduxMessage }
+  { setReduxMessage, resetReduxMessage, setNeverLoadAgain}
 )(TextChannelWindow);

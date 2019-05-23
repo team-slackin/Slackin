@@ -160,6 +160,9 @@ function RegisterForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{
+              color: '#fff'
+            }}
             onClick={handleSubmit}
           >
             Create Account

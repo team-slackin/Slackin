@@ -5,6 +5,12 @@ import './TextChannelWindow.scss';
 
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
+  
+  useEffect(()=>{
+    const plusPlus = props.dontLoadAgain + 1;
+    props.setDontLoadAgain(plusPlus);
+    props.timeoutLoading();
+  },[]);
 
   const image = props.userReducer.images.filter(image=> `${image.user_display_name}` === `${props.roomMessage.senderId}`);
 
@@ -13,13 +19,19 @@ function TextChannelMessegeScreen(props) {
   if (image[0]) {
     _image = image[0].user_image
   };
-
-  console.log('a')
-
   const time = props.roomMessage.updatedAt.split('').splice(0, 10).join('');
+
+  let objDiv = document.getElementById("jump");
+  if (objDiv) {
+    objDiv.scrollTop = objDiv.scrollHeight;
+  };
+  
   return (
     <>
-          <section>
+          <section style={{
+            margin: '5px',
+            marginTop: '10px'
+          }}>
           
               <img 
                 src={_image} 
