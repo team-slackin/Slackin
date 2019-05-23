@@ -79,9 +79,7 @@ export default function reducer(state = initialState, action) {
       return { ...state };
 
     case GRAB_CHANNELS_WITH_QUERY + "_FULFILLED": 
-      console.log(`from line 63 channelReducer`, payload)
       return {...state, userChannels: payload};
-
 
     case GRAB_USERS_FROM_CHANNEL + "_PENDING": 
       return { ...state };

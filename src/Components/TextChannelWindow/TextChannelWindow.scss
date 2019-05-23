@@ -5,6 +5,22 @@
   margin: 5px;
 };
 
+.sub-channel-name {
+  display:flex;
+  padding-left: 20px;
+  align-items: center;
+}
+
+.sub-channel-name div {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subchannelname {
+  color: white;
+}
+
 .main-screen {
   flex: 1;
   height: calc(100vh - (160px));
@@ -30,3 +46,8 @@
     }
   };
 };
+
+.sub-channel-hashtag {
+  padding-right: 5px;
+  font-size: 2rem;
+}

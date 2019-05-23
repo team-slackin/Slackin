@@ -1,0 +1,16 @@
+div.list-of-users {
+    overflow: scroll;
+    height: 33vh;
+
+}
+        div.search-user-section {
+            margin-top: 2vh;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+        }
+
+div.add-user-to-channel {
+    margin-top: 2vh;
+}

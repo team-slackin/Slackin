@@ -39,7 +39,7 @@ const FriendsConstructor = (props) => {
 
     /*## Create room if the room hasnt been created##*/
     if (!room_created) {
-      console.log('FRIENDS CONSTRCUTOR',props)
+
       Axios.post("/chatkit/createroom/friends", {user_display_name, friend_id})
         .catch(err=>console.log(err));
     } else {

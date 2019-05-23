@@ -22,8 +22,8 @@ export const grabSubChannels = channel_id => {
   };
 };
 
-export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id) => {
-  const data = {subchannel_id, sub_channel_chatkit_id}
+export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id,subchannel) => {
+  const data = {subchannel_id, sub_channel_chatkit_id, subchannel}
   return {
     type: USER_SELECTED_SUBCHANNEL,
     payload: data
