@@ -89,6 +89,9 @@ function LoginForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{
+              color: '#fff'
+            }}
             onClick={handleSubmit}
           >
             Sign in

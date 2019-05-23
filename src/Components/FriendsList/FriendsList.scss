@@ -2,34 +2,57 @@ div.friends-list-flex-box {
   display: flex;
   flex-direction: row;
   color: #858991;
-  img.friends-list-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-top: 10px;
-    margin-left: 10px;
-    box-shadow: 3px 5px 10px #000;
-    color: rgba(24, 24, 24, 0.619);
+  div.image-status {
+    position: relative;
+    display: flex;
+    img.friends-list-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 10px;
+      margin-left: 10px;
+      box-shadow: 3px 5px 10px #000;
+      color: rgba(24, 24, 24, 0.619);
+    }
+    div.friend-status {
+      position: absolute;
+      margin-top: 35px;
+      margin-left: 38px;
+      border-radius: 50%;
+      padding: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--trinary-background-color);
+      div {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+    }
   }
+ 
   span {
     margin-left: 10px;
     align-self: center;
   }
-  div.friend-status {
-    position: absolute;
-    margin-top: 35px;
-    margin-left: 38px;
-    border-radius: 50%;
-    padding: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--trinary-background-color);
-    div {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-  }
+  
+}
+
+.friends-holder {
+  flex: 1;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.users-holder {
+  flex: 1;
+  max-height: 300px;
+  display: flex; 
+  flex-direction: column;
+  overflow-y: scroll;
 }
