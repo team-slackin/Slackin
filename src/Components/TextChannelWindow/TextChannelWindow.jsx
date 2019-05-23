@@ -47,7 +47,7 @@ function TextChannelWindow(props) {
 
   useEffect(() => {
     if(roomId !== 'null'){
-      console.log("am i getting ran over and over");
+
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
@@ -115,7 +115,7 @@ function TextChannelWindow(props) {
     <>
       <div className="text-channel-flex-box">
         <div className="main-text-window">
-          <header>Sub Channel name</header>
+          <header className='sub-channel-name'> { props.subChannelReducer.currentSubChannel ? ( <div>Sub Channel: {props.subChannelReducer.currentSubChannel.sub_channel_name}</div> ) : (null) }</header>
           {/* Each Individual Messege */}
 
           { isSomeoneTyping ? (<div>{`${usersWhoAreTyping
@@ -157,8 +157,8 @@ function TextChannelWindow(props) {
         </div>
 
         <aside>
-          <AddingUsersToChannel />
           <UsersInChannel />
+          <AddingUsersToChannel />
         </aside>
       </div>
     </>

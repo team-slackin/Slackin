@@ -5,6 +5,12 @@
   margin: 5px;
 };
 
+.sub-channel-name {
+  display:flex;
+  padding-left: 20px;
+  align-items: center;
+}
+
 .main-screen {
   flex: 1;
   height: calc(100vh - (160px));
