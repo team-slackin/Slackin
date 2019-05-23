@@ -8,9 +8,11 @@ function UsersInChannel(props) {
 
   useEffect(()=> {
     if(props.channelReducer.currentChannel){
-      props.grabUsersFromChannel(props.channelReducer.currentChannel)
+      setTimeout(() => {
+        props.grabUsersFromChannel(props.channelReducer.currentChannel)
+      }, 2000)
     }
-  }, [props.channelReducer.currentChannel])
+  }, [props.channelReducer.currentChannel, props.channelReducer.usersFromChannel])
 
   return (
     <>

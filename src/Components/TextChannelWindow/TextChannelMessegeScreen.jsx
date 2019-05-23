@@ -14,7 +14,7 @@ function TextChannelMessegeScreen(props) {
     _image = image[0].user_image
   };
 
-  console.log('a')
+
 
   const time = props.roomMessage.updatedAt.split('').splice(0, 10).join('');
   return (
