@@ -4,6 +4,7 @@ import { HashRouter, Link } from "react-router-dom"
 import routes from "./routes"
 import { connect } from "react-redux"
 import { updateIsUserLoggedIn } from "./Ducks/userReducer"
+import slackinLogo from "./Assets/Slackin-word.png"
 
 import NewChannel from './Components/NewChannel/NewChannel';
 
@@ -29,51 +30,52 @@ const theme = createMuiTheme({
 })
 
 function App(props) {
-
-  const positionHeaderWhenLoggedIn = () =>{
+  const positionHeaderWhenLoggedIn = () => {
     if (props.userReducer.loggedIn) {
       return (
         <header className="App-header">
-        <span>
-          <Link
-            to="/container"
-            style={{
-              color: "white",
-              marginLeft: "20px",
-              textDecorationLine: "none"
-            }}
-          >
-            Slackin
-          </Link>
-        </span>
-      </header>
-      );
+          <span>
+            <Link
+              to="/container"
+              style={{
+                color: "white",
+                marginLeft: "20px",
+                textDecorationLine: "none"
+              }}
+            >
+              <img style={{ height: "20px" }} src={slackinLogo} />
+            </Link>
+          </span>
+        </header>
+      )
     } else {
       return (
-        <header className="App-header" style={{position: 'absolute', zIndex: 2}}>
-        <span>
-          <Link
-            to="/container"
-            style={{
-              color: "white",
-              marginLeft: "20px",
-              textDecorationLine: "none"
-            }}
-          >
-            Slackin
-          </Link>
-        </span>
-      </header>
-      );
-    };
-  };
-
+        <header
+          className="App-header"
+          style={{ position: "absolute", zIndex: 2 }}
+        >
+          <span>
+            <Link
+              to="/container"
+              style={{
+                color: "white",
+                marginLeft: "20px",
+                textDecorationLine: "none"
+              }}
+            >
+              <img style={{ height: "20px" }} src={slackinLogo} />
+            </Link>
+          </span>
+        </header>
+      )
+    }
+  }
 
   return (
     <MuiThemeProvider theme={theme}>
       <HashRouter>
         <div className="App">
-        {positionHeaderWhenLoggedIn()}
+          {positionHeaderWhenLoggedIn()}
           <div className="main-content-flex-box">{routes}</div>
           <NewChannel />
         </div>

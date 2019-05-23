@@ -9,10 +9,12 @@ function SubChannelConstructor(props) {
   return (
     <>
       <Link 
+
       onClick={() => {
         props.resetCurrentFriend()
         props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id)
       }}
+        
       to={`/container/${props.subChannel.sub_channel_name}`}>
       <h3 
         style={{

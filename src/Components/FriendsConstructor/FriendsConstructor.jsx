@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import Chatkit from "@pusher/chatkit-client";
-import Axios from 'axios';
+import React, { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import Chatkit from "@pusher/chatkit-client"
+import Axios from "axios"
 
 import {makeCurrentFriend, grabFriends} from '../../Ducks/friendReducer'
 import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
@@ -10,35 +10,35 @@ import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
 
 const FriendsConstructor = (props) => {
   const {user_status, room_created, friend_id, user_display_name} = props.friend;
-  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38');
+  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#43b581');
   
   useEffect(()=>{
     switch(user_status) {
       case 'online': {
-        setCurrentUserStatusColor('#689f38');
+        setCurrentUserStatusColor('#43b581');
         break;
       };
       case 'idle': {
-        setCurrentUserStatusColor('yellow');
+        setCurrentUserStatusColor('#faa61a');
         break;
       };
       case 'do not disturb': {
-        setCurrentUserStatusColor('red');
+        setCurrentUserStatusColor('#f04747');
         break;
       };
       case 'offline': {
-        setCurrentUserStatusColor('gray');
+        setCurrentUserStatusColor('#747f8d');
         break;
       };
       default: {
-        setCurrentUserStatusColor('gray');
+        setCurrentUserStatusColor('#747f8d');
         break;
       };
     };
   }, []);
 
-  const friendRoomMakeOrCreate = () => {//temp token and instance id
-
+  const friendRoomMakeOrCreate = () => {
+    //temp token and instance id
 
     /*## Create room if the room hasnt been created##*/
     if (!room_created) {
@@ -55,25 +55,27 @@ const FriendsConstructor = (props) => {
     props.makeCurrentFriend(props.friend);
     props.grabFriends();
     //go to friends chat window .jsx
-  };
+  }
 
   return (
-    <div 
+    <div
       className="friends-list-flex-box"
-      onClick={()=>{friendRoomMakeOrCreate()}}
+      onClick={() => {
+        friendRoomMakeOrCreate()
+      }}
     >
-      <img 
+      <img
         className="friends-list-image"
-        src={props.friend.user_image} 
-        alt={props.friend.user_display_name} 
+        src={props.friend.user_image}
+        alt={props.friend.user_display_name}
       />
       <span>{`${props.friend.user_display_name}`}</span>
       <div className="friend-status">
-        <div style={{backgroundColor: `${currentUserStatusColor}`}}></div>
+        <div style={{ backgroundColor: `${currentUserStatusColor}` }} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = reduxState => {
   return {

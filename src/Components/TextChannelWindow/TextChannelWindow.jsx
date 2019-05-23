@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Input } from "@material-ui/core";
+import AddingUsersToChannel from './../AddingUsersToChannel/AddingUsersToChannel'
 
 import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
 import _ from "lodash";
@@ -23,7 +24,7 @@ function TextChannelWindow(props) {
   const [roomMessages, setRoomMessages] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   //roomID holder - switched with useEffect that looks for correct channels
-  const [roomID, setRoomId] = useState('')
+  const [roomId, setRoomId] = useState('')
   const [usersWhoAreTyping, setUsersWhoAreTyping] = useState([]);
   
 
@@ -38,15 +39,15 @@ function TextChannelWindow(props) {
     } else {
       setRoomId('null')
     }
-  },[props.subChannelReducer.currentSubChannelChatKitId])
+  },[props.subChannelReducer.currentSubChannelChatKitId, props.friendReducer.currentFriend.chatkit_id])
   
   useEffect(() => {
     props.resetReduxMessage()
-  },[roomID])
+  },[roomId])
 
   useEffect(() => {
-    console.log("am i getting ran over and over");
-    if(roomID !== 'null'){
+    if(roomId !== 'null'){
+      console.log("am i getting ran over and over");
       const chatManager = new Chatkit.ChatManager({
         instanceLocator: "v1:us1:80870939-de37-40f2-aadc-dd3ee990b173",
         userId: `${props.userReducer.user.user_display_name}`,
@@ -55,14 +56,15 @@ function TextChannelWindow(props) {
             "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token"
         })
       });
-  
+
+ 
       chatManager
         .connect()
   
         .then(async currentUser => {
           setCurrentUser({ currentUser });
           const data = await currentUser.subscribeToRoom({
-            roomId: roomID,
+            roomId: roomId,
             messageLimit: 100,
             hooks: {
               onMessage: message => {
@@ -83,7 +85,7 @@ function TextChannelWindow(props) {
           });
         }).catch(error => console.log("error", error));
     }
-  }, [props.subChannelReducer.currentSubChannel]);
+  }, [roomId]);
 
 
 
@@ -97,19 +99,12 @@ function TextChannelWindow(props) {
       .catch(err => console.log(err));
   };
 
-  // if (this.props.usersWhoAreTyping.length > 0) {
-  // return (
-  // <div>
-  //   {`${this.props.usersWhoAreTyping
-  //     .slice(0, 2)
-  //     .join(' and ')} is typing`}
-  // </div>
 
   const sendMessage = (text, e) => {
     e.preventDefault();
     currentUser.currentUser.sendMessage({
       text,
-      roomId: roomID
+      roomId: roomId
     });
     setMessage("");
   };
@@ -162,6 +157,7 @@ function TextChannelWindow(props) {
         </div>
 
         <aside>
+          <AddingUsersToChannel />
           <UsersInChannel />
         </aside>
       </div>
