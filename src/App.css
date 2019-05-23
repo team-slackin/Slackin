@@ -192,13 +192,17 @@ div.App ::placeholder {
 
 ::-webkit-scrollbar {
   width: 1px;
-};
+}
 ::-webkit-scrollbar-track {
-  background: rgb(0,0,0,0); 
+  background: rgb(0, 0, 0, 0);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(97, 97, 97, 0.353); 
+  background: rgba(97, 97, 97, 0.353);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(144, 144, 144, 0.353); 
+  background: rgba(144, 144, 144, 0.353);
+}
+
+.logo {
+  height: 20px;
 }

@@ -5,7 +5,6 @@ import './TextChannelWindow.scss';
 
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
-
   useEffect(()=>{
     props.setPrevUserFunc(`${props.roomMessage.senderId}`);
   }, [])

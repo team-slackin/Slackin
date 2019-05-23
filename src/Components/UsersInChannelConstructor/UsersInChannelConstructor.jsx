@@ -4,7 +4,7 @@ import "./UsersInChannelConstructor.scss"
 
 function UsersInChannelConstructor(props) {
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
-    "#689f38"
+    "#43b581"
   )
 
   const { user_image, user_display_name, user_status } = props.user

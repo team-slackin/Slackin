@@ -88,6 +88,7 @@ function Account(props) {
                       }}
                       name="username"
                       placeholder=""
+                      fullWidth
                     />
                   </div>
                 </div>
@@ -102,6 +103,7 @@ function Account(props) {
                       name="password"
                       type="password"
                       placeholder=""
+                      fullWidth
                     />
                   </div>
                 </div>
@@ -115,6 +117,7 @@ function Account(props) {
                       name="confirmPassword"
                       type="password"
                       placeholder=""
+                      fullWidth
                     />
                   </div>
                 </div>

@@ -61,7 +61,8 @@ function TextChannelWindow(props) {
             "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/80870939-de37-40f2-aadc-dd3ee990b173/token"
         })
       });
-  
+
+ 
       chatManager
         .connect()
   
@@ -102,7 +103,6 @@ function TextChannelWindow(props) {
       })
       .catch(err => console.log(err));
   };
-
 
 
   const sendMessage = (text, e) => {

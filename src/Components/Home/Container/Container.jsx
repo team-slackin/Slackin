@@ -6,6 +6,7 @@ import SubChannelNav from "../../SubChannelsNav/SubChannelNav";
 import SubPrivateNav from "../../SubPrivateNav/SubPrivateNav";
 import TextChannelWindow from "../../TextChannelWindow/TextChannelWindow";
 import {grabAllImages} from '../../../Ducks/userReducer';
+
 import "./Container.scss";
 
 function Container(props) {
