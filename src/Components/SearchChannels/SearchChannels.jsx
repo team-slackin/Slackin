@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { grabChannelsWithQuery } from "./../../Ducks/channelReducer";
+import { login } from "./../../Ducks/userReducer";
 
 function SearchChannels(props) {
   const [searchInput, setSearchInput] = useState("");
@@ -14,7 +15,7 @@ function SearchChannels(props) {
 
   const submitSearchInput = e => {
     e.preventDefault();
-    props.grabChannelsWithQuery(searchInput);
+    props.grabChannelsWithQuery(searchInput, props.userReducer.user.user_id);
     setSearchInput("");
   };
 
@@ -37,9 +38,12 @@ function SearchChannels(props) {
   );
 }
 
-const mapStateToProps = reduxState => reduxState.channelReducer;
+const mapStateToProps = reduxState => ({
+  channelReducer: reduxState.channelReducer,
+  userReducer: reduxState.userReducer
+})
 
 export default connect(
   mapStateToProps,
-  { grabChannelsWithQuery }
+  { grabChannelsWithQuery, login }
 )(SearchChannels);

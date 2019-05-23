@@ -1,0 +1,1 @@
+SELECT user_image, user_display_name FROM users;

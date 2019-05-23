@@ -103,7 +103,8 @@ function MainChannelNav(props) {
           style={{
             fontSize: '3em',
             color: 'var(--main-color)',
-            textShadow: 'var(--text-icon-shadow)'
+            textShadow: 'var(--text-icon-shadow)',
+            cursor: 'pointer'
           }}>add</Icon>
         </div>
       </div>
