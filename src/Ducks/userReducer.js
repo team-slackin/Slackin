@@ -41,10 +41,6 @@ export const grabAllImages = () => (
   {type: GRAB_ALL_IMAGES, payload: axios.get('/text-channel-images/').then(res=>res.data).catch(err=>console.log(err))}
 );
 
-export const grabAllImages = () => (
-  {type: GRAB_ALL_IMAGES, payload: axios.get('/text-channel-images/').then(res=>res.data).catch(err=>console.log(err))}
-);
-
 export const updateUserInfo = (userInfoObject) =>{
   return {
     type: UPDATE_USER_INFO,
@@ -118,7 +114,7 @@ export default function reducer(state = initialState, action) {
     case UPDATE_USER_INFO + "_FULFILLED":
       return { ...state, user: payload };
 
-    case LOGOUT: {
+    case LOGOUT: 
       return { ...state, user: {}, message: "", loggedIn: false }
 
     case SET_USER_STATUS: 

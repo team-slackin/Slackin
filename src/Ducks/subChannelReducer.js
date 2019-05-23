@@ -38,13 +38,6 @@ export const resetCurrentSubChannelChatKitId = () => {
   }
 }
 
-export const resetCurrentSubChannelChatKitId = () => {
-  return {
-    type: RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID,
-    payload: null
-  }
-}
-
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
