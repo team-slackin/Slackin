@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 import { createChannel } from "./../../Ducks/channelReducer";
 import { login } from "./../../Ducks/userReducer";
-import Drop from './../DropZone/DropZone'
 
 function CreateChannel(props) {
 

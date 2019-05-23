@@ -13,6 +13,7 @@ function Container(props) {
 
   useEffect(() => {
     props.grabAllImages();
+    // eslint-disable-next-line
   }, [])
 
   return (

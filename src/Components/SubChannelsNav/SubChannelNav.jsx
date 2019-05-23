@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { grabSubChannels } from "./../../Ducks/subChannelReducer";
 import Search from "../Search/Search";
 import axios from "axios";
-import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+import Chatkit from '@pusher/chatkit-client'
 import {Icon} from '@material-ui/core';
 
 import SubChannelConstructor from "./SubChannelConstructor";
@@ -13,7 +13,7 @@ import Drop from './../DropZone/DropZone'
 import "./SubChannelNav.scss";
 
 require('dotenv').config()
-
+// eslint-disable-next-line
 var chatManager;
 
 function SubChannelNav(props) {
@@ -24,16 +24,16 @@ function SubChannelNav(props) {
     setUpdateChannelImageToggle(!updateChannelImageToggle)
   }
 
-
+  const {grabSubChannels, channel_id} = props;
   useEffect(() => {
-    props.grabSubChannels(props.channel_id);
-  }, [props.channel_id]);
+    grabSubChannels(channel_id);
+  }, [channel_id, grabSubChannels]);
 
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     ChangeChatManager()
-  }, [])
+  })
 
   const ChangeChatManager = () => {
     chatManager = new Chatkit.ChatManager({
@@ -52,7 +52,6 @@ function SubChannelNav(props) {
 
   const addSubChannel = () => {
     const { channel_id } = props
-    const {user_display_name } = props.userReducer.user
     let input = prompt("input channel name");
     if (input === null || input === undefined) {
       return alert("please put a name");
@@ -73,7 +72,7 @@ function SubChannelNav(props) {
       if (subChannel.sub_channel_name.toLowerCase().includes(search.toLowerCase())) {
         return <SubChannelConstructor key={`SubChannel:${index}`} subChannel={subChannel} />;
       } else {
-        return;
+        return <></>;
       }});
   const isUserTheChannelCreator = props.userReducer.user.user_id === props.channelReducer.currentCreator
   return (

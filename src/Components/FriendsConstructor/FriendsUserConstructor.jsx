@@ -12,27 +12,28 @@ const FriendsConstructor = (props) => {
   
   useEffect(()=>{
     switch(user_status) {
-      case 'online': {
+      case 'online': 
         setCurrentUserStatusColor('#43b581');
         break;
-      };
-      case 'idle': {
+
+      case 'idle': 
         setCurrentUserStatusColor('#faa61a');
         break;
-      };
-      case 'do not disturb': {
+
+      case 'do not disturb': 
         setCurrentUserStatusColor('#f04747');
         break;
-      };
-      case 'offline': {
+
+      case 'offline': 
         setCurrentUserStatusColor('#747f8d');
         break;
-      };
-      default: {
+
+      default: 
         setCurrentUserStatusColor('#747f8d');
         break;
-      };
+
     };
+    // eslint-disable-next-line
   }, []);
   return (
     <div

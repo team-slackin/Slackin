@@ -21,6 +21,7 @@ function FriendsList(props) {
       if(props.friendReducer.friends){
         props.grabFriends() //git hub fix, my code does not look like this right here
       }
+      // eslint-disable-next-line
       }, [])
 
   return (
@@ -63,6 +64,7 @@ function FriendsList(props) {
                   <FriendsUserConstructor key={i} user={user} />
                 );
               };
+              return <></>;
             })}
 
             </>

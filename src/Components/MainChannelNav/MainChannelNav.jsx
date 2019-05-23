@@ -24,6 +24,7 @@ function MainChannelNav(props) {
 
   useEffect(()=>{
     props.grabChannels(user.user_id);
+    // eslint-disable-next-line
   }, []);
 
 
@@ -53,6 +54,7 @@ function MainChannelNav(props) {
                 width: "80px",
                 height: "80px"
               }}
+              alt=""
             />
           </Link>
         <div className="main-channel-nav-seperator"></div>
