@@ -79,7 +79,7 @@ function TextChannelWindow(props) {
               },
               // eslint-disable-next-line
               onUserStoppedTyping: user => {
-
+                
                 setUsersWhoAreTyping([
                   ...usersWhoAreTyping.filter(username => username !== props.userReducer.user.user_display_name)
                 ])
@@ -109,6 +109,7 @@ function TextChannelWindow(props) {
         roomId: `${props.subChannelReducer.currentSubChannelChatKitId}`
       })
       .catch(err => console.log(err));
+      console.log(props.userReducer.user)
   };
 
 
@@ -133,9 +134,7 @@ function TextChannelWindow(props) {
           </div> ) : (null) }</header>
           {/* Each Individual Messege */}
 
-          { isSomeoneTyping ? (<div>{`${usersWhoAreTyping
-            .slice(0, 2)
-            .join(' and ')} is typing`}</div>) : (null) }
+          { isSomeoneTyping ? (<div>Someone is typing ...</div>) : (null) }
 
           <div className="main-screen">
             

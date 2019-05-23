@@ -20,6 +20,7 @@ function TextChannelMessegeScreen(props) {
   if (image[0]) {
     _image = image[0].user_image
   };
+  
   const time = props.roomMessage.updatedAt.split('').splice(0, 10).join('');
 
   let objDiv = document.getElementById("jump");
