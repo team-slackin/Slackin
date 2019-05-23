@@ -11,18 +11,17 @@ function SubPrivateNav(props) {
   const onChange = (e) => {
     const {value} = e.target;
     setSearch(value)
-    console.log(search)
   };
 
   return (
     <section className="sub-nav">
 
       <div className="sub-nav-search">
-        <Search placeholder="Search for a friend" onChange={onChange} />
+        <Search placeholder="Search for a User" onChange={onChange} />
       </div>
 
       <div className="sub-nav-friends">
-        <FriendsList />
+        <FriendsList search={search} />
       </div>
       
       <UserToolbar />

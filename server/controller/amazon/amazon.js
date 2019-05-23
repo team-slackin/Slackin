@@ -63,9 +63,7 @@ module.exports = {
     const db = req.app.get('db');
     const { url, channel_id } = req.body;
     const { user_id } = req.session.user;
-    console.log(`line 68`, url, channel_id, user_id)
     let updatedUserChannels = await db.upload_url_for_channel([url, channel_id, user_id]).catch(err=>console.log(err))
-    console.log(`line 69 from amazon.js`, updatedUserChannels)
     return res.status(200).send(updatedUserChannels)
   }
   

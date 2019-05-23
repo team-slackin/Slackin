@@ -14,6 +14,7 @@ function MainChannelConstructor(props) {
     } else {
       setBorderRadius('50');
     };
+    // eslint-disable-next-line
   }, [props.currentChannel])
 
   
@@ -28,6 +29,7 @@ function MainChannelConstructor(props) {
             src={props.channel.channel_image} 
             className="main-channel-img" 
             style={{borderRadius: `${borderRadius}%`}}
+            alt=""
             />
         </div>
       </Link>

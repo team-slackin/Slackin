@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import "./App.css"
 import { HashRouter, Link } from "react-router-dom"
 import routes from "./routes"
-import axios from "axios"
 import { connect } from "react-redux"
 import { updateIsUserLoggedIn } from "./Ducks/userReducer"
 import slackinLogo from "./Assets/Slackin-word.png"
+import NewChannel from "./Components/NewChannel/NewChannel"
+
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 // import { orange } from "@material-ui/core/colors"
@@ -42,7 +43,7 @@ function App(props) {
                 textDecorationLine: "none"
               }}
             >
-              <img className="logo" src={slackinLogo} />
+              <img style={{ height: "20px" }} src={slackinLogo} alt="" />
             </Link>
           </span>
         </header>
@@ -53,7 +54,7 @@ function App(props) {
           className="App-header"
           style={{ position: "absolute", zIndex: 2 }}
         >
-          <span>
+          {/* <span>
             <Link
               to="/container"
               style={{
@@ -62,9 +63,9 @@ function App(props) {
                 textDecorationLine: "none"
               }}
             >
-              <img className="logo" src={slackinLogo} />
+              <img style={{ height: "20px" }} src={slackinLogo} alt="" />
             </Link>
-          </span>
+          </span> */}
         </header>
       )
     }
@@ -76,6 +77,7 @@ function App(props) {
         <div className="App">
           {positionHeaderWhenLoggedIn()}
           <div className="main-content-flex-box">{routes}</div>
+          <NewChannel />
         </div>
       </HashRouter>
     </MuiThemeProvider>

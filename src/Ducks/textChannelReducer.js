@@ -27,20 +27,17 @@ export const setPrevUser = id => ({ type: SET_PREV_USER, payload: id });
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case SET_PREV_USER: {
+    case SET_PREV_USER: 
       return { ...state, prevUser: payload };
-    }
 
-    case SET_MESSAGES: {
+
+    case SET_MESSAGES: 
       return { ...state, messages: [...state.messages, payload] };
-    }
 
-    case RESET_MESSAGES: {
+    case RESET_MESSAGES: 
       return { ...state, messages: payload}
-    }
 
-    default: {
+    default: 
       return { ...state };
-    }
-  }
-}
+  };
+};

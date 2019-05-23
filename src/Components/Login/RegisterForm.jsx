@@ -1,83 +1,157 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import React from "react"
+import PropTypes from "prop-types"
+import Button from "@material-ui/core/Button"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import FormControl from "@material-ui/core/FormControl"
+import Input from "@material-ui/core/Input"
+import InputLabel from "@material-ui/core/InputLabel"
+import Paper from "@material-ui/core/Paper"
+import Typography from "@material-ui/core/Typography"
+import withStyles from "@material-ui/core/styles/withStyles"
+import register from "./../../Assets/register.png"
 
 const styles = theme => {
   return {
-  main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    main: {
+      width: "auto",
+      display: "block", // Fix IE 11 issue.
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+      [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+        width: 400,
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
     },
-  },
-  paper: {
-    backgroundColor: 'var(--secondary-background-color)',
-    marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: '0px',
-  },
-  submit: {
-    marginTop: theme.spacing.unit * 3,
-  },
-}};
+    paper: {
+      backgroundColor: "var(--secondary-background-color)",
+      marginTop: theme.spacing.unit * 8,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+        .spacing.unit * 3}px`
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: "0px"
+    },
+    submit: {
+      marginTop: theme.spacing.unit * 3
+    }
+  }
+}
 
 function RegisterForm(props) {
-  const { classes, userInfoHandle, handleSubmit } = props;
-  
+  const { classes, userInfoHandle, handleSubmit } = props
+
   return (
-    <main className={classes.main} style={{marginTop: '0px'}}>
+    <main className={classes.main} style={{ marginTop: "0px" }}>
       <CssBaseline />
-      <Paper className={classes.paper} style={{marginTop: '0px'}}>
-        <Typography component="h1" variant="h5" >
-          <span style={{color: 'white'}}>Register</span>
+      <Paper className={classes.paper} style={{ marginTop: "0px" }}>
+        <Typography component="h1" variant="h5">
+          <span>
+            <img className="signIn" style={{ height: "38px" }} src={register} alt="" />
+          </span>
         </Typography>
-        <form className={classes.form} >
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+        <form className={classes.form}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} id="email" name="email" autoComplete="email" autoFocus/>
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              id="email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel>Display Name</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} name="user_display_name"/>
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              name="user_display_name"
+            />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel>First Name</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} name="first_name"/>
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              name="first_name"
+            />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel>Last Name</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} name="last_name"/>
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              name="last_name"
+            />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} name="password" type="password" id="password" autoComplete="current-password" />
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth style={{marginBottom: '0px'}}>
+          <FormControl
+            margin="normal"
+            required
+            fullWidth
+            style={{ marginBottom: "0px" }}
+          >
             <InputLabel htmlFor="password">Confirm Password</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} name="confirm_password" type="password" id="password" autoComplete="current-password" />
+            <Input
+              onChange={e => {
+                userInfoHandle(e)
+              }}
+              name="confirm_password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
           </FormControl>
 
           <Button
@@ -86,6 +160,9 @@ function RegisterForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{
+              color: '#fff'
+            }}
             onClick={handleSubmit}
           >
             Create Account
@@ -93,11 +170,11 @@ function RegisterForm(props) {
         </form>
       </Paper>
     </main>
-  );
+  )
 }
 
 RegisterForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired
+}
 
-export default withStyles(styles)(RegisterForm);
+export default withStyles(styles)(RegisterForm)

@@ -20,23 +20,26 @@ export const updateIsUserLoggedIn = (data)=>{
   return {
     type: UPDATE_IS_USER_LOGGED_IN,
     payload: data
-  }
-}
+  };
+};
 
 export const uploadUserImageToDb = (type, url)=>{
   return { 
     type: UPLOAD_USER_IMAGE_TO_DB,
     payload: axios.post(`/api/database/amazon-url/${type}`, { url }).then(res => res.data).catch(err=>console.log(err))
-   }
-}
+   };
+};
 
 export const setUserStatus = (status)=>{
-  let data = axios.post(`/api/setuserstatus`, { status }).then(res=>console.log(res.data)).catch(err=>console.log(err))
   return { 
     type: SET_USER_STATUS,
     payload: status
-   } 
-}
+   }; 
+};
+
+export const grabAllImages = () => (
+  {type: GRAB_ALL_IMAGES, payload: axios.get('/text-channel-images/').then(res=>res.data).catch(err=>console.log(err))}
+);
 
 export const grabAllImages = () => (
   {type: GRAB_ALL_IMAGES, payload: axios.get('/text-channel-images/').then(res=>res.data).catch(err=>console.log(err))}
@@ -48,8 +51,8 @@ export const updateUserInfo = (userInfoObject) =>{
     payload: axios.put(`/api/updateuserinfo`, userInfoObject)
     .then(res => res.data.user)
     .catch((err)=>console.log(err))
-  }
-}
+  };
+};
 
 export const login = ({ email, password }) => {
   return {
@@ -90,44 +93,35 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action
 
   switch (type) {
-    case LOGIN + "_PENDING": {
+    case LOGIN + "_PENDING":
       return { ...state };
-    };
 
-    case LOGIN + "_FULFILLED": {
+    case LOGIN + "_FULFILLED": 
       return { ...state, ...payload };
-    };
 
-    case UPLOAD_USER_IMAGE_TO_DB + "_PENDING": {
+
+    case UPLOAD_USER_IMAGE_TO_DB + "_PENDING":
       return { ...state };
-    };
 
-    case UPLOAD_USER_IMAGE_TO_DB + "_FULFILLED": {
+    case UPLOAD_USER_IMAGE_TO_DB + "_FULFILLED":
       return { ...state, ...payload };
-    };
 
-    case REGISTER + "_PENDING": {
+    case REGISTER + "_PENDING":
       return { ...state };
-    };
 
-    case REGISTER + "_FULFILLED": {
+    case REGISTER + "_FULFILLED":
       return { ...state, ...payload };
-    };
 
-    case UPDATE_USER_INFO + "_PENDING": {
+    case UPDATE_USER_INFO + "_PENDING":
       return { ...state };
-    };
 
-    case UPDATE_USER_INFO + "_FULFILLED": {
+    case UPDATE_USER_INFO + "_FULFILLED":
       return { ...state, user: payload };
-    };
 
     case LOGOUT: {
       return { ...state, user: {}, message: "", loggedIn: false }
-    };
 
-
-    case SET_USER_STATUS: {
+    case SET_USER_STATUS: 
       return { 
         ...state, 
         user: { 
@@ -140,20 +134,17 @@ export default function reducer(state = initialState, action) {
           user_status: payload
         }
       };
-    };
     
-      case UPDATE_IS_USER_LOGGED_IN: {
+      case UPDATE_IS_USER_LOGGED_IN: 
         return {...state, user: payload, loggedIn: true};
-      };
 
-      case GRAB_ALL_IMAGES + '_PENDING': {
+      case GRAB_ALL_IMAGES + '_PENDING': 
         return {...state};
-      };
 
-      case GRAB_ALL_IMAGES + '_FULFILLED': {
+      case GRAB_ALL_IMAGES + '_FULFILLED': 
         return {...state, images: payload};
-      };
+
     default:
-      return { ...state }
-  }
-}
+      return { ...state };
+  };
+};
