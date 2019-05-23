@@ -42,7 +42,7 @@ function App(props) {
                 textDecorationLine: "none"
               }}
             >
-              <img className="logo" src={slackinLogo} />
+              <img style={{ height: "20px" }} src={slackinLogo} />
             </Link>
           </span>
         </header>
@@ -62,7 +62,7 @@ function App(props) {
                 textDecorationLine: "none"
               }}
             >
-              <img className="logo" src={slackinLogo} />
+              <img style={{ height: "20px" }} src={slackinLogo} />
             </Link>
           </span>
         </header>
