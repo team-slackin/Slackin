@@ -11,7 +11,7 @@ function SubPrivateNav(props) {
   const onChange = (e) => {
     const {value} = e.target;
     setSearch(value)
-    console.log(search)
+
   };
 
   return (
