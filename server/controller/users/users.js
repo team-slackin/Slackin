@@ -116,5 +116,20 @@ module.exports = {
     return res
       .status(200)
       .send({ message: "you have successfully logged out" });
+  },
+
+  async grabAllUsers(req, res){
+    let db = req.app.get('db');
+    let allUsers = await db.get_all_users()
+      .catch(err=>console.log(err))
+    // console.log('line 124 from users.js:', allUsers);
+    return res.status(200).send(allUsers)
+  },
+    
+  async grabImages(req, res) {
+    const db = req.app.get('db');
+    const urls = await db.grab_all_images().catch(err=> console.log(err));
+    res.status(200).send(urls);
+
   }
 };

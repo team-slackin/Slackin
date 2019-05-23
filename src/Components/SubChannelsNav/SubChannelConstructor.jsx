@@ -3,17 +3,37 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import {userSelectedSubChannel} from './../../Ducks/subChannelReducer'
 import { userSelectedChannel } from "./../../Ducks/channelReducer"
+import { resetCurrentFriend } from "./../../Ducks/friendReducer"
 
 function SubChannelConstructor(props) {
   return (
     <>
       <Link 
-      onClick={() => props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id)}
+
+      onClick={() => {
+        props.resetCurrentFriend()
+        props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id)
+      }}
+        
       to={`/container/${props.subChannel.sub_channel_name}`}>
-      <h3 style={{
-        color: '#858991',
-        margin: '5px'
-      }}>{`# ${props.subChannel.sub_channel_name}`}</h3>
+      <h3 
+        style={{
+          margin: '8px',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        <span
+          style={{
+            fontSize: '1.25em'
+          }}
+        >#</span>
+        <span
+          style={{
+            marginLeft: '10px'
+          }}
+        >{`${props.subChannel.sub_channel_name}`}</span>
+      </h3>
       </Link>
     </>
   );
@@ -21,10 +41,11 @@ function SubChannelConstructor(props) {
 
 const mapToPropsState = reduxState => ({
   channelReducer: reduxState.channelReducer,
-  subChannelReducer: reduxState.subChannelReducer
+  subChannelReducer: reduxState.subChannelReducer,
+  friendReducer: reduxState.friendReducer
 })
 
-export default connect(mapToPropsState, {userSelectedSubChannel})(SubChannelConstructor);
+export default connect(mapToPropsState, {userSelectedSubChannel, resetCurrentFriend})(SubChannelConstructor);
 
 {
   /* <Link>

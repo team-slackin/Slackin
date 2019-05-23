@@ -4,7 +4,25 @@ div.login-register {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--main-background-color) url("../../Assets/lady.svg");
+  background: var(--main-background-color) url("../../Assets/lady-2.svg");
   background-position: center;
   background-size: cover;
+
+  .register {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    cursor: pointer;
+    text-shadow: 5px 3px 8px #000;
+    text-decoration: none;
+  }
+
+  .register:hover {
+    color: #e96745;
+  }
+
+  .register:active {
+    transform: scale(0.95);
+  }
 }

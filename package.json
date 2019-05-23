@@ -38,7 +38,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dev" : "nf start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,6 +57,11 @@
       "last 1 safari version"
     ]
   },
-  "main": "server/server.js",
-  "proxy": "http://localhost:3838"
+  "main": "src/electron-starter.js",
+  "proxy": "http://localhost:3838",
+  "homepage": "./",
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "foreman": "^3.0.1"
+  }
 }

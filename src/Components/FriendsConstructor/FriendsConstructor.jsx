@@ -1,75 +1,88 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import Chatkit from "@pusher/chatkit-client";
-import Axios from 'axios';
+import React, { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import Chatkit from "@pusher/chatkit-client"
+import Axios from "axios"
 
 import {makeCurrentFriend, grabFriends} from '../../Ducks/friendReducer'
+import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
+
+
+
 const FriendsConstructor = (props) => {
-  const {user_status, room_created, user_id, user_display_name} = props.friend;
-  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#689f38');
+  const {user_status, room_created, friend_id, user_display_name} = props.friend;
+  const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#43b581');
   
   useEffect(()=>{
     switch(user_status) {
       case 'online': {
-        setCurrentUserStatusColor('#689f38');
+        setCurrentUserStatusColor('#43b581');
         break;
       };
       case 'idle': {
-        setCurrentUserStatusColor('yellow');
+        setCurrentUserStatusColor('#faa61a');
         break;
       };
       case 'do not disturb': {
-        setCurrentUserStatusColor('red');
+        setCurrentUserStatusColor('#f04747');
         break;
       };
       case 'offline': {
-        setCurrentUserStatusColor('gray');
+        setCurrentUserStatusColor('#747f8d');
         break;
       };
       default: {
-        setCurrentUserStatusColor('gray');
+        setCurrentUserStatusColor('#747f8d');
         break;
       };
     };
   }, []);
 
-  const friendRoomMakeOrCreate = () => {//temp token and instance id
-
+  const friendRoomMakeOrCreate = () => {
+    //temp token and instance id
 
     /*## Create room if the room hasnt been created##*/
     if (!room_created) {
-      Axios.post("/chatkit/createroom/friends", {user_display_name, user_id})
+      console.log('FRIENDS CONSTRCUTOR',props)
+      Axios.post("/chatkit/createroom/friends", {user_display_name, friend_id})
         .catch(err=>console.log(err));
     } else {
-
+        // update redux state and make textchannel window watch for a change on either subchannel id OR friends id
     };
 
     /*## Continue ##*/
-    Axios.put('/api/friend-room-created', {user_id})
+    // Axios.put('/api/friend-room-created', {user_id})
+    props.resetCurrentSubChannelChatKitId()
     props.makeCurrentFriend(props.friend);
     props.grabFriends();
     //go to friends chat window .jsx
-  };
+  }
 
   return (
-    <div 
+    <div
       className="friends-list-flex-box"
-      onClick={()=>{friendRoomMakeOrCreate()}}
+      onClick={() => {
+        friendRoomMakeOrCreate()
+      }}
     >
-      <img 
+      <img
         className="friends-list-image"
-        src={props.friend.user_image} 
-        alt={props.friend.user_display_name} 
+        src={props.friend.user_image}
+        alt={props.friend.user_display_name}
       />
       <span>{`${props.friend.user_display_name}`}</span>
       <div className="friend-status">
-        <div style={{backgroundColor: `${currentUserStatusColor}`}}></div>
+        <div style={{ backgroundColor: `${currentUserStatusColor}` }} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-const mapStateToProps = reduxState => reduxState.userReducer
+const mapStateToProps = reduxState => {
+  return {
+    userReducer: reduxState.userReducer,
+    subChannelReducer: reduxState.subChannelReducer
+  }
+}
 
-export default connect(mapStateToProps, {makeCurrentFriend, grabFriends}) (FriendsConstructor);
+export default connect(mapStateToProps, {makeCurrentFriend, grabFriends, resetCurrentSubChannelChatKitId}) (FriendsConstructor);
 

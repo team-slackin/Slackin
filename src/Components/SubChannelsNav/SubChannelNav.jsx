@@ -85,7 +85,7 @@ function SubChannelNav(props) {
 
       { isUserTheChannelCreator ? ( <div>
         { updateChannelImageToggle ? (<div>
-          <Drop type={'update'} channel_id={props.channelReducer.currentCreator} />
+          <Drop type={'update'} channel_id={props.channelReducer.currentChannel} />
           <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
         </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
       </div> ) : null }

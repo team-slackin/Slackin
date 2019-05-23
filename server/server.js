@@ -94,17 +94,18 @@ app.post("/chatkit/authenticate", (req, res) => {
 
 
 app.post('/chatkit/createroom/friends', (req, res)=> {
-  const {user_display_name, user_id} = req.body;
-  console.log('aaaaaaa', req.session.user.user_display_name, user_display_name)
+  const {user_display_name, friend_id} = req.body;
+  console.log('actual user', req.session.user.user_display_name, 'added friend',user_display_name)
   chatkit.createRoom({
-    creatorId: `${req.session.user.user_display_name}`,//current user
-    userIds: [`${user_display_name}`],//friend 
-    name: `${req.session.user.user_display_name} & ${user_display_name}!`,
+    creatorId: `slackin`,//current user
+    userIds: [`kamalu`],//friend 
+    name: `friends room`,
     isPrivate: true
   }).then(
-    res=>{
-      const db = req.app.get('db');
-      db.set_friend_chatkit(res.id, res.name, res.private, user_id, req.session.user.user_id);
+    async (res)=>{
+      const db = req.app.get("db");
+      db.set_friend_chatkit([res.id, res.name, res.private, friend_id, req.session.user.user_id, user_display_name, req.session.user.user_display_name]);
+      console.log('created friends room successfully')
     }
   ).catch(err=>console.log(err));
 });
@@ -142,11 +143,12 @@ app.post("/api/setuserstatus", users.setUserStatus);
 // channel endpoints
 app.get(`/api/channels/:id`, channel.getChannels);
 app.get(`/api/grabusersfromchannel/:channel_id`, channel.grabUsersFromChannel);
-app.get(`/api/queriedchannels`, channel.grabChannelsWithQuery);
+app.post(`/api/queriedchannels`, channel.grabChannelsWithQuery);
+app.post(`/api/addusertochannel`, channel.addUserToChannel)
 
 //subchannel endpoints
 app.get(`/api/subchannels/:channel_id`, subChannels.getSubChannels);
-
+app.get('/text-channel-images/', users.grabImages);
 // functions in account page
 app.put(`/api/updateuserinfo`, users.updateUserInfo);
 app.put('/api/friend-room-created', friends.roomCreated)
@@ -155,3 +157,8 @@ app.post(`/api/amazon`, amazon.getAws);
 
 // friends endpoints
 app.get(`/api/grabfriends`, friends.grabFriends)
+
+
+// grabbing users endpoint
+app.get(`/api/graballusers`, users.grabAllUsers)
+
