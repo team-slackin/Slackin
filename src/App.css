@@ -11,7 +11,7 @@
 :root {
   --main-color: #e96745;
   --main-background-color: #202225;
-  --secondary-background-color: #36393fd9; /*#36393f*/
+  --secondary-background-color: #ecececd9; /*#36393f*/
   --trinary-background-color: #2f3136;
   --text-icon-shadow: 1px 1px 4px black;
   --text-icon-shadow-1: 3px 5px 10px #000;
@@ -201,8 +201,4 @@ div.App ::placeholder {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(144, 144, 144, 0.353);
-}
-
-.logo {
-  height: 20px;
 }
