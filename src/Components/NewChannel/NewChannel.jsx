@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from 'react';
-import {connect} from 'react-redux';
-import {Button} from '@material-ui/core';
+import React, { useState, useEffect } from "react"
+import { Link, Route } from "react-router-dom"
+import { connect } from "react-redux"
 
 import CreateChannel from '../CreateChannel/CreateChannel';
 
@@ -8,87 +8,59 @@ import {
   toggleAddChannelFlag,
   toggleAddOrSearchFlag,
   toggleSearchChannelsFlag
-} from '../../Ducks/addChannelReducer';
+} from "../../Ducks/addChannelReducer"
 
-import './NewChannel.scss';
+import Icon from "@material-ui/core/Icon"
+
+import "./NewChannel.scss"
 
 function NewChannel(props) {
-const [addChannelReducer, setUpdateState] = useState();
-  
-  useEffect(
-    ()=> {
-      setUpdateState(props.addChannelReducer);
-    }, [props.addChannelReducer]
-  )
+  const [addChannelReducer, setUpdateState] = useState()
+
+  useEffect(() => {
+    setUpdateState(props.addChannelReducer)
+  }, [props.addChannelReducer])
 
   const display = () => {
-    if(addChannelReducer) {
-      if (
-        addChannelReducer.addOrSearchFlag && 
-        addChannelReducer.addChannelFlag && 
-        addChannelReducer.searchChannelsFlag) {
+    if (addChannelReducer) {
+      if (addChannelReducer.searchChannelsFlag) {
         return (
           <section className="new-channel-window">
             <div className="new-channel-window-div">
+              <div className="box-1">
+                <h2>Add New Channel</h2>
+                <Link
+                  className="close"
+                  onClick={() => {
+                    props.toggleAddOrSearchFlag()
+                  }}
+                  to="/container"
+                >
+                  <Icon className="icon">cancel</Icon>
+                </Link>
+              </div>
               <div className="create-channels">
                 <CreateChannel />
-                <Button onClick={()=>{ props.toggleAddChannelFlag()}} >Cancel Creating A Channel</Button>
-              </div> 
-              <Button onClick={()=>{ props.toggleAddOrSearchFlag()}} >Cancel</Button>
+              </div>
             </div>
           </section>
-        );
-      } else if (
-        addChannelReducer.searchChannelsFlag && 
-        addChannelReducer.addChannelFlag){
-        return (
-          <section className="new-channel-window">
-            <div className="new-channel-window-div">
-              <div className="create-channels">
-                <CreateChannel />
-                <Button onClick={()=>{ props.toggleAddChannelFlag()}} >Cancel Creating A Channel</Button>
-              </div> 
-              <Button onClick={()=>{ props.toggleAddOrSearchFlag()}} >Cancel</Button>
-            </div>
-          </section>
-        );
-      } else if (
-        addChannelReducer.addOrSearchFlag && 
-        addChannelReducer.searchChannelsFlag) {
-        return (
-          <section className="new-channel-window">
-            <div className="new-channel-window-div">
-              <Button onClick={()=>{ props.toggleAddChannelFlag()}} >Create A Channel</Button>
-              <Button onClick={()=>{ props.toggleAddOrSearchFlag()}} >Cancel</Button>
-            </div>
-          </section>
-        );
-      } else if (addChannelReducer.searchChannelsFlag) {
-        return (
-          <section className="new-channel-window">
-            <div className="new-channel-window-div">
-              <Button onClick={()=>{ props.toggleAddChannelFlag()}} >Create A Channel</Button>
-              <Button onClick={()=>{ props.toggleAddOrSearchFlag()}} >Cancel</Button>
-            </div>
-          </section>
-        );
-      } else {
-        return <></>
-      };
-    } else {
-      return <></>
+        )
+      }
     }
-  };
+  }
 
-  return <>
-  {display()}
-  </>
-};
+  return <>{display()}</>
+}
 
-const mapStateToProps = (reduxState) => ({addChannelReducer: reduxState.addChannelReducer});
+const mapStateToProps = reduxState => ({
+  addChannelReducer: reduxState.addChannelReducer
+})
 
-export default connect (mapStateToProps, {
-  toggleAddChannelFlag,
-  toggleAddOrSearchFlag,
-  toggleSearchChannelsFlag
-}) (NewChannel);
+export default connect(
+  mapStateToProps,
+  {
+    toggleAddChannelFlag,
+    toggleAddOrSearchFlag,
+    toggleSearchChannelsFlag
+  }
+)(NewChannel)
