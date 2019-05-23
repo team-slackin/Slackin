@@ -35,11 +35,6 @@ function AddingUsersToChannelConstructor(props) {
 
     return (
         <div onClick={()=>{props.handleAddUser(user_id, props.currentChannel)}} style={{ cursor: 'pointer' }}>
-<<<<<<< HEAD
-            <img src={user_image} alt='of each user' width='25' height='25' style={{ borderRadius:'50%' }}   />
-            <div>{user_display_name}</div>
-            <div>{user_status}</div>
-=======
             <img 
                 className="friends-list-image"
                 src={user_image} 
@@ -49,7 +44,6 @@ function AddingUsersToChannelConstructor(props) {
             <div className="friend-status">
                 <div style={{backgroundColor: `${currentUserStatusColor}`}}></div>
             </div>
->>>>>>> master
         </div>
     )
 }

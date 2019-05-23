@@ -5,8 +5,8 @@ import routes from "./routes"
 import { connect } from "react-redux"
 import { updateIsUserLoggedIn } from "./Ducks/userReducer"
 import slackinLogo from "./Assets/Slackin-word.png"
-
 import NewChannel from "./Components/NewChannel/NewChannel"
+
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 // import { orange } from "@material-ui/core/colors"

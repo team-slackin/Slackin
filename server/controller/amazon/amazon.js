@@ -63,9 +63,7 @@ module.exports = {
     const db = req.app.get('db');
     const { url, channel_id } = req.body;
     const { user_id } = req.session.user;
-
     let updatedUserChannels = await db.upload_url_for_channel([url, channel_id, user_id]).catch(err=>console.log(err))
-
     return res.status(200).send(updatedUserChannels)
   }
   

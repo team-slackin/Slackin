@@ -10,6 +10,7 @@ const initialState = {
 const GRAB_SUBCHANNELS = "GRAB_SUBCHANNELS"
 const USER_SELECTED_SUBCHANNEL = "USER_SELECTED_SUBCHANNEL"
 const RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID = "RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID"
+
 const LOAD_AGAIN = 'LOAD_AGAIN';
 
 export const setNeverLoadAgain = (boolean) => {
@@ -29,6 +30,13 @@ export const userSelectedSubChannel = (subchannel_id, sub_channel_chatkit_id,sub
     payload: data
   };
 };
+
+export const resetCurrentSubChannelChatKitId = () => {
+  return {
+    type: RESET_CURRENT_SUB_CHANNEL_CHAT_KIT_ID,
+    payload: null
+  }
+}
 
 export const resetCurrentSubChannelChatKitId = () => {
   return {

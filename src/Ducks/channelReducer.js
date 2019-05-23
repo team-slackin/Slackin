@@ -94,7 +94,6 @@ export default function reducer(state = initialState, action) {
 
     case ADD_USER_TO_CHANNEL + "_FULFILLED": 
       return {...state, usersFromChannel: payload};
-
       
     case REMOVE_SELECTED_CHANNEL: 
       return {...state, currentChannel: payload};
