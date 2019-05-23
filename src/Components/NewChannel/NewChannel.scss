@@ -1,0 +1,34 @@
+section.new-channel-window {
+  width: 100vw;
+  height: calc(100vh - 20px);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.671);
+  z-index: 4;
+  overflow: hidden;
+  div.new-channel-window-div {
+    width: 70%;
+    padding: 50px;
+    background-color: var(--main-backround-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div.create-channels {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      margin: 5px;
+    };
+    div.search-channels {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      margin: 5px;
+    }
+  };
+};

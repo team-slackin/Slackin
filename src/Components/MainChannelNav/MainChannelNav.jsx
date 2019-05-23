@@ -4,12 +4,15 @@ import {
   grabChannels,
   removeSelectedChannel
 } from "./../../Ducks/channelReducer";
+
+import {
+  toggleAddOrSearchFlag
+} from '../../Ducks/addChannelReducer';
+
 import { Link } from "react-router-dom";
 import Icon from "@material-ui/core/Icon";
 
 import MainChannelConstructor from "./MainChannelConstructor";
-import CreateChannel from './../CreateChannel/CreateChannel';
-import SearchChannels from './../SearchChannels/SearchChannels';
 
 import "./MainChannelNav.scss"
 
@@ -17,26 +20,14 @@ function MainChannelNav(props) {
 
   const {user} = props.userReducer;
   const [borderRadius, setBorderRadius] = useState('25');
-  const [addOrSearchFlag, setAddOrSearchFlag] = useState(false);
-  const [addChannelFlag, setAddChannelFlag] = useState(false);
-  const [searchChannelsFlag, setSearchChannelsFlag] = useState(false);
+
 
   useEffect(()=>{
     props.grabChannels(user.user_id);
   }, []);
 
 
-  const toggleAddChannelFlag = () => {
-    setAddChannelFlag(!addChannelFlag);
-  };
 
-  const toggleSearchChannelsFlag = () => {
-    setSearchChannelsFlag(!searchChannelsFlag);
-  };
-
-  const toggleAddOrSearchFlag = ()=>{
-    setAddOrSearchFlag((!addOrSearchFlag));
-  };
 
 
   useEffect(() => {
@@ -75,21 +66,6 @@ function MainChannelNav(props) {
               />
           )) : (<></>)}
         </div>
-
-
-
-          { addOrSearchFlag ? ( <div>
-            { addChannelFlag ? ( <div>
-              <CreateChannel />
-              <button onClick={()=>{toggleAddChannelFlag()}} >Cancel Creating A Channel</button>
-            </div> ) : (<button onClick={()=>{toggleAddChannelFlag()}} >Create A Channel</button>) }
-            { searchChannelsFlag ? ( <div>
-              <SearchChannels />
-              <button onClick={()=>{toggleSearchChannelsFlag()}} >Cancel Search</button>
-            </div> ) : (<button onClick={()=>{toggleSearchChannelsFlag()}} >Search Channels</button>) }
-            <button onClick={()=>{toggleAddOrSearchFlag()}} >Cancel</button>
-          </div> ) : null }
-
           
           <div 
           className="main-channel-nav-seperator "
@@ -99,7 +75,7 @@ function MainChannelNav(props) {
           ></div>
         <div className="plus-sign-div">
           <Icon 
-          onClick={()=>{toggleAddOrSearchFlag()}} 
+          onClick={()=>{props.toggleAddOrSearchFlag(props.addChannelReducer.addOrSearchFlag)}} 
           style={{
             fontSize: '3em',
             color: 'var(--main-color)',
@@ -114,10 +90,11 @@ function MainChannelNav(props) {
 const mapStateToProps = reduxState => ({
   channelReducer: reduxState.channelReducer,
   userReducer: reduxState.userReducer,
-  mainChannelReducer: reduxState.mainChannelReducer
+  mainChannelReducer: reduxState.mainChannelReducer,
+  addChannelReducer: reduxState.addChannelReducer
 })
 
 export default connect(
   mapStateToProps,
-  { grabChannels, removeSelectedChannel }
+  { grabChannels, removeSelectedChannel,toggleAddOrSearchFlag }
 )(MainChannelNav)

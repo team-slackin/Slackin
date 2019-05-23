@@ -37,6 +37,10 @@ const styles = theme => {
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+  input: {
+    color: 'white',
+    '::-webkit-input-placeholder': 'white'
+  }
 }};
 
 function LoginForm(props) {
@@ -52,7 +56,7 @@ function LoginForm(props) {
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input onChange={e=>{userInfoHandle(e)}} id="email" name="email" autoComplete="email" autoFocus/>
+            <Input className={classes.input} onChange={e=>{userInfoHandle(e)}} id="email" name="email" autoComplete="email" autoFocus/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>

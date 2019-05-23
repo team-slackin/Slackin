@@ -186,8 +186,19 @@ div.App button.button {
   padding: 16px;
 }
 
+div.App input {
+  color: var(--main-color);
+}
+div.App ::-webkit-input-placeholder {
+  color: var(--main-color);
+}
+
+div.App :placeholder-shown {
+  color: var(--main-color);
+}
+
 div.App ::placeholder {
-  color: white;
+  color: var(--main-color);
 }
 
 ::-webkit-scrollbar {

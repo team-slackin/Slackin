@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react"
 import "./App.css"
 import { HashRouter, Link } from "react-router-dom"
 import routes from "./routes"
-import axios from "axios"
 import { connect } from "react-redux"
 import { updateIsUserLoggedIn } from "./Ducks/userReducer"
+
+import NewChannel from './Components/NewChannel/NewChannel';
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 // import { orange } from "@material-ui/core/colors"
@@ -74,6 +75,7 @@ function App(props) {
         <div className="App">
         {positionHeaderWhenLoggedIn()}
           <div className="main-content-flex-box">{routes}</div>
+          <NewChannel />
         </div>
       </HashRouter>
     </MuiThemeProvider>
