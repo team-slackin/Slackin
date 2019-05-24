@@ -46,7 +46,7 @@ function Drop(props) {
     if (`${type}` === "update" && channel_id) {
       props.updateChannelImageToDb(channel_id, url)
     } else if (`${type}` === "user") {
-      props.uploadUserImageToDb(type, url)
+      props.uploadUserImageToDb(type, url, props.userReducer.user.user_id)
     }
     //this will go to a function on our server which will update our database with the url
     //i do not know what that will look like so i am ending it here.

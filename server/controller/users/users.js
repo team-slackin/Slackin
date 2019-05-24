@@ -100,8 +100,7 @@ module.exports = {
       });
   },
   setUserStatus: (req, res) => {
-    let { status: user_status } = req.body;
-    let { user_id } = req.session.user;
+    let { status: user_status, user_id } = req.body;
     let db = req.app.get("db");
     db.update_user_status([user_id, user_status]);
     return res
