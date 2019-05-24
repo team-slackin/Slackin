@@ -34,26 +34,25 @@ export default function reducer(state=initialState, action) {
   const {type, payload} = action;
   
   switch(type) {
-    case FRIENDS + '_PENDING': {
+    case FRIENDS + '_PENDING': 
       return {...state};
-    };
-    case FRIENDS + '_FULFILLED': {
+
+    case FRIENDS + '_FULFILLED': 
       return {...state, ...payload};
-    };
-    case GRAB_FRIENDS + '_PENDING': {
+
+    case GRAB_FRIENDS + '_PENDING': 
       return {...state};
-    };
-    case GRAB_FRIENDS + '_FULFILLED': {
+
+    case GRAB_FRIENDS + '_FULFILLED': 
       return {...state, friends: payload};
-    };
-    case SET_CURRENT_FRIEND: {
+
+    case SET_CURRENT_FRIEND: 
       return {...state, currentFriend: payload};
-    };
-    case RESET_CURRENT_FRIEND: {
+
+    case RESET_CURRENT_FRIEND: 
       return {...state, currentFriend: payload}
-    }
-    default: {
+
+    default: 
       return {...state};
-    };
   };
 };

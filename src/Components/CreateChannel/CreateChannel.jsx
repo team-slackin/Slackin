@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react"
-import Axios from "axios"
 import { connect } from "react-redux"
 import { createChannel } from "./../../Ducks/channelReducer"
 import { login } from "./../../Ducks/userReducer"
 import { Input } from "@material-ui/core"
-import Drop from "./../DropZone/DropZone"
 
 import "./CreateChannel.scss"
 

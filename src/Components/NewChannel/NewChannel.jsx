@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, Route } from "react-router-dom"
 import { connect } from "react-redux"
 
-import CreateChannel from "../CreateChannel/CreateChannel"
-import SearchChannels from "../SearchChannels/SearchChannels"
+import CreateChannel from '../CreateChannel/CreateChannel';
 
 import {
   toggleAddChannelFlag,
