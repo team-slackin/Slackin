@@ -3,11 +3,12 @@ import { connect } from "react-redux"
 
 import {makeCurrentFriend, grabFriends} from '../../Ducks/friendReducer'
 import { resetCurrentSubChannelChatKitId } from '../../Ducks/subChannelReducer'
+import Axios from "axios";
 
 
 
 const FriendsConstructor = (props) => {
-  const {user_status, user_display_name, user_image} = props.user;
+  const {user_status, user_display_name, user_image, user_id} = props.user;
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState('#43b581');
   
   useEffect(()=>{
@@ -39,7 +40,8 @@ const FriendsConstructor = (props) => {
     <div
       className="friends-list-flex-box"
       onClick={() => {
-        console.log('add friend')
+        Axios.put(`/add-friend/${user_id}/${props.userReducer.user.user_id}`)
+        console.log(user_id, props.userReducer.user.user_id)
       }}
     >
       <div className="image-status">

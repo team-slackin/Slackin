@@ -9,7 +9,7 @@ import {Icon} from '@material-ui/core';
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
 import Drop from './../DropZone/DropZone'
-
+import {Button} from '@material-ui/core';
 import "./SubChannelNav.scss";
 
 require('dotenv').config()
@@ -82,11 +82,11 @@ function SubChannelNav(props) {
       </div>
 
 
-      { isUserTheChannelCreator ? ( <div>
-        { updateChannelImageToggle ? (<div>
+      { isUserTheChannelCreator ? ( <div style={{margin: '0 auto', marginTop: '10px'}}>
+        { updateChannelImageToggle ? (<div style={{margin: '0 auto'}}>
           <Drop type={'update'} channel_id={props.channelReducer.currentChannel} />
-          <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
-        </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
+          <Button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</Button>
+        </div>) : (<Button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</Button>)}
       </div> ) : null }
 
 

@@ -18,11 +18,13 @@ function FriendsList(props) {
   },[])
 
     useEffect(()=>{
-      if(props.friendReducer.friends){
-        props.grabFriends() //git hub fix, my code does not look like this right here
-      }
+      setTimeout(()=>{
+        if(props.friendReducer.friends){
+          props.grabFriends();
+        }
+      }, 3000)
       // eslint-disable-next-line
-      }, [])
+      }, [props.friendReducer.friends])
 
   return (
     <>
@@ -61,7 +63,7 @@ function FriendsList(props) {
             {listOfUsers.map((user, i) => {
               if (user.user_display_name.includes(props.search)) {
                 return (
-                  <FriendsUserConstructor key={i} user={user} />
+                  <FriendsUserConstructor key={`${i}: friends`} user={user} />
                 );
               };
               return <></>;
