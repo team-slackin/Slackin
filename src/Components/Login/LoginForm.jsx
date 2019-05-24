@@ -23,7 +23,6 @@ const styles = theme => {
         marginRight: "auto"
       }
     },
-
     paper: {
       backgroundColor: "var(--secondary-background-color)",
       marginTop: theme.spacing.unit * 8,
@@ -43,7 +42,6 @@ const styles = theme => {
   }
 }
 
-
 function LoginForm(props) {
   const { classes, userInfoHandle, handleSubmit } = props
 
@@ -53,45 +51,53 @@ function LoginForm(props) {
       <Paper className={classes.paper} style={{ marginTop: "0px" }}>
         <Typography component="h1" variant="h5">
           <span>
-            <img className="signIn" style={{ height: "38px" }} src={signIn} alt="" />
+            <img className="signIn" style={{ height: "38px" }} src={signIn} />
           </span>
         </Typography>
         <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              id="email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-          </FormControl>
+          <div className="box">
+            <FormControl margin="normal" required fullWidth>
+              {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
+              <div className="input-border">
+                <Input
+                  className="color-input"
+                  onChange={e => {
+                    userInfoHandle(e)
+                  }}
+                  id="email"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  placeholder="Email Address"
+                  fullWidth
+                />
+              </div>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
+              <div className="input-border">
+                <Input
+                  className="color-input"
+                  style={{ color: "white" }}
+                  onChange={e => {
+                    userInfoHandle(e)
+                  }}
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  placeholder="Password"
+                  fullWidth
+                />
+              </div>
+            </FormControl>
+          </div>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{
-              color: '#fff'
-            }}
             onClick={handleSubmit}
           >
             Sign in

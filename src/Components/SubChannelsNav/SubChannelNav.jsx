@@ -5,11 +5,11 @@ import Search from "../Search/Search";
 import axios from "axios";
 import Chatkit from '@pusher/chatkit-client'
 import {Icon} from '@material-ui/core';
-
+import {Input} from '@material-ui/core';
 import SubChannelConstructor from "./SubChannelConstructor";
 import UserToolbar from '../UserToolbar/UserToolbar';
 import Drop from './../DropZone/DropZone'
-
+import {Button} from '@material-ui/core';
 import "./SubChannelNav.scss";
 
 require('dotenv').config()
@@ -17,7 +17,7 @@ require('dotenv').config()
 var chatManager;
 
 function SubChannelNav(props) {
-
+  const [input, setInput] = useState('');
   const [updateChannelImageToggle, setUpdateChannelImageToggle] = useState(false);
 
   const toggleUpdateChannelImageToggle = () => {
@@ -52,9 +52,8 @@ function SubChannelNav(props) {
 
   const addSubChannel = () => {
     const { channel_id } = props
-    let input = prompt("input channel name");
     if (input === null || input === undefined) {
-      return alert("please put a name");
+      console.log("please put a name");
     } else {
 
       chatManager.connect().then(() => {
@@ -82,11 +81,11 @@ function SubChannelNav(props) {
       </div>
 
 
-      { isUserTheChannelCreator ? ( <div>
-        { updateChannelImageToggle ? (<div>
+      { isUserTheChannelCreator ? ( <div style={{margin: '0 auto', marginTop: '10px'}}>
+        { updateChannelImageToggle ? (<div style={{margin: '0 auto'}}>
           <Drop type={'update'} channel_id={props.channelReducer.currentChannel} />
-          <button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</button>
-        </div>) : (<button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</button>)}
+          <Button onClick={()=>{toggleUpdateChannelImageToggle()}}>Cancel</Button>
+        </div>) : (<Button onClick={()=>{toggleUpdateChannelImageToggle()}}>Update Channel Image</Button>)}
       </div> ) : null }
 
 
@@ -102,6 +101,9 @@ function SubChannelNav(props) {
             width: 'fit-content',
             cursor: 'pointer'
           }}>add</Icon>
+        </div>
+        <div>
+          <Input onChange={(e)=>{setInput(e.target.value)}} placeholder="Input Channel Name"></Input>
         </div>
       </div>
 

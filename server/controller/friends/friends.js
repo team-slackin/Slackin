@@ -19,6 +19,12 @@ module.exports = {
           console.log(err);
           res.status(500);
       });
+    },
+    addFriend: async(req, res) => {
+      const db = req.app.get('db');
+      const {id, userID} = req.params;
+      await db.add_friend(id, userID).catch(err=>console.log(err));
+      res.sendStatus(200);
     }
   };
   

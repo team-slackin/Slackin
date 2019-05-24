@@ -24,7 +24,7 @@ const styles = theme => {
       }
     },
     paper: {
-      backgroundColor: "var(--secondary-background-color)",
+      backgroundColor: "rgba(204, 204, 204, 0.36)",
       marginTop: theme.spacing.unit * 8,
       display: "flex",
       flexDirection: "column",
@@ -51,7 +51,12 @@ function RegisterForm(props) {
       <Paper className={classes.paper} style={{ marginTop: "0px" }}>
         <Typography component="h1" variant="h5">
           <span>
-            <img className="signIn" style={{ height: "38px" }} src={register} alt="" />
+            <img
+              className="signIn"
+              style={{ height: "38px" }}
+              src={register}
+              alt=""
+            />
           </span>
         </Typography>
         <form className={classes.form}>
@@ -61,16 +66,20 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              id="email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
+            {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                id="email"
+                name="email"
+                autoFocus
+                placeholder="Email Address"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <FormControl
@@ -79,13 +88,18 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel>Display Name</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="user_display_name"
-            />
+            {/* <InputLabel>Display Name</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                name="user_display_name"
+                placeholder="Display Name"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <FormControl
@@ -94,13 +108,18 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel>First Name</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="first_name"
-            />
+            {/* <InputLabel>First Name</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                name="first_name"
+                placeholder="First Name"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <FormControl
@@ -109,13 +128,18 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel>Last Name</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="last_name"
-            />
+            {/* <InputLabel>Last Name</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                name="last_name"
+                placeholder="Last Name"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <FormControl
@@ -124,16 +148,20 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            {/* <InputLabel htmlFor="password">Password</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                name="password"
+                type="password"
+                id="password"
+                placeholder="Password"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <FormControl
@@ -142,16 +170,20 @@ function RegisterForm(props) {
             fullWidth
             style={{ marginBottom: "0px" }}
           >
-            <InputLabel htmlFor="password">Confirm Password</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="confirm_password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            {/* <InputLabel htmlFor="password">Confirm Password</InputLabel> */}
+            <div className="input-border">
+              <Input
+                className="color-input"
+                onChange={e => {
+                  userInfoHandle(e)
+                }}
+                name="confirm_password"
+                type="password"
+                id="password"
+                placeholder="Confirm Password"
+                fullWidth
+              />
+            </div>
           </FormControl>
 
           <Button
@@ -161,7 +193,7 @@ function RegisterForm(props) {
             color="primary"
             className={classes.submit}
             style={{
-              color: '#fff'
+              color: "#fff"
             }}
             onClick={handleSubmit}
           >

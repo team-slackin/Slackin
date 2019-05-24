@@ -189,7 +189,6 @@ function TextChannelWindow(props) {
 
         <aside>
           <UsersInChannel />
-          <AddingUsersToChannel />
         </aside>
       </div>
     </>
