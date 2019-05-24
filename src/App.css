@@ -213,6 +213,20 @@ div.App button.button {
   background: rgba(144, 144, 144, 0.353);
 }
 
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--main-color);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: var(--main-color);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: var(--main-color);
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: var(--main-color);
+}
+
 .logo {
   height: 20px;
+  color: rgba(204, 204, 204, 0.36);
 }
