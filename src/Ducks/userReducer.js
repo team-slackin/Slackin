@@ -23,14 +23,15 @@ export const updateIsUserLoggedIn = (data)=>{
   };
 };
 
-export const uploadUserImageToDb = (type, url)=>{
+export const uploadUserImageToDb = (type, url, user_id)=>{
   return { 
     type: UPLOAD_USER_IMAGE_TO_DB,
-    payload: axios.post(`/api/database/amazon-url/${type}`, { url }).then(res => res.data).catch(err=>console.log(err))
+    payload: axios.post(`/api/database/amazon-url/${type}`, { url, user_id }).then(res => res.data).catch(err=>console.log(err))
    };
 };
 
-export const setUserStatus = (status)=>{
+export const setUserStatus = (status, user_id)=>{
+  axios.post(`/api/setuserstatus`, { status, user_id }).then(()=>{console.log(`from line 34 of userReducer.js`)}).catch(err=>console.log(err))
   return { 
     type: SET_USER_STATUS,
     payload: status

@@ -24,7 +24,7 @@ const styles = theme => {
       }
     },
     paper: {
-      backgroundColor: "var(--secondary-background-color)",
+      backgroundColor: "rgba(204, 204, 204, 0.36)",
       marginTop: theme.spacing.unit * 8,
       display: "flex",
       flexDirection: "column",

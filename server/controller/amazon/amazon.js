@@ -45,9 +45,10 @@ module.exports = {
     uploadFileToDbForUser: async(req, res) => {
       //uploads our user profile picture
       const db = req.app.get('db');
-      const { url } = req.body;
-      let updatedUserInfo = await db.upload_url_for_user(url, req.session.user.user_id)
+      const { url, user_id } = req.body;
+      let updatedUserInfo = await db.upload_url_for_user(url, user_id)
       .catch(err=>console.log(err));
+      console.log('line 51 from amazon.js:', updatedUserInfo);
     req.session.user = {
         user_id: updatedUserInfo[0].user_id,
         email: updatedUserInfo[0].email,

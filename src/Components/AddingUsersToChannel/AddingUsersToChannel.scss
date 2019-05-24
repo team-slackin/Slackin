@@ -11,6 +11,19 @@ div.list-of-users {
             flex-direction: column;
         }
 
+        div.search-user-section input {
+            background-color: lightgray;
+            border: 0;
+            border-radius: 2px;
+        }
+
+        ::-webkit-input-placeholder {
+            text-align: center;
+         }
+
+
+
+
 div.add-user-to-channel {
     margin-top: 2vh;
 }
