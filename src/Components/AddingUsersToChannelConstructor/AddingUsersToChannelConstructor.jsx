@@ -44,7 +44,6 @@ function AddingUsersToChannelConstructor(props) {
             <div className="friend-status">
                 <div style={{backgroundColor: `${currentUserStatusColor}`}}></div>
             </div>
-
         </div>
     )
 }

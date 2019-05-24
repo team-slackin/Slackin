@@ -23,7 +23,6 @@ module.exports = {
     const db = req.app.get("db");
     const { channel_id } = req.params;
     let usersFromChannel = await db.get_users_from_channel(channel_id);
-
     res.status(200).send(usersFromChannel);
   },
   createChannel: async(req, res) => {  
@@ -39,7 +38,6 @@ module.exports = {
     const db = req.app.get('db');
     const { user_id, channel_id } = req.body;
     let checkIfUserIsInChannel = await db.check_user_in_channel([user_id, channel_id]).catch(err=>console.log(err))
-
     if (checkIfUserIsInChannel[0]){
       let usersFromChannel = await db.get_users_from_channel(channel_id)
         .catch(err=>console.log(err))
@@ -47,7 +45,6 @@ module.exports = {
       return res.status(200).send({ message:'user already in channel', usersInChannel: usersFromChannel});
     }
     let updatedUsersInChannel = await db.add_user_to_channel_two([user_id, channel_id]).catch(err=>console.log(err))
-
     return res.status(200).send({ message:'updated list of users in the channel has been sent', usersInChannel: updatedUsersInChannel })
   }
 };

@@ -34,7 +34,6 @@ export default function reducer(state = initialState, action) {
     case SET_MESSAGES: 
       return { ...state, messages: [...state.messages, payload] };
 
-
     case RESET_MESSAGES: 
       return { ...state, messages: payload}
 

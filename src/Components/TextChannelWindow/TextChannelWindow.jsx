@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Input } from "@material-ui/core";
 import {setNeverLoadAgain} from '../../Ducks/subChannelReducer';
-
 import AddingUsersToChannel from './../AddingUsersToChannel/AddingUsersToChannel'
 
 import TextChannelMessegeScreen from "./TextChannelMessegeScreen";
@@ -79,7 +78,6 @@ function TextChannelWindow(props) {
               },
               // eslint-disable-next-line
               onUserStoppedTyping: user => {
-
                 setUsersWhoAreTyping([
                   ...usersWhoAreTyping.filter(username => username !== props.userReducer.user.user_display_name)
                 ])
@@ -132,10 +130,7 @@ function TextChannelWindow(props) {
           </div>
           </div> ) : (null) }</header>
           {/* Each Individual Messege */}
-
-          { isSomeoneTyping ? (<div>{`${usersWhoAreTyping
-            .slice(0, 2)
-            .join(' and ')} is typing`}</div>) : (null) }
+          { isSomeoneTyping ? (<div>Someone is typing ...</div>) : (null) }
 
           <div className="main-screen">
             
@@ -167,7 +162,6 @@ function TextChannelWindow(props) {
             <div>{/* Jump to div */}</div>
             </>
             )}
-            
 
           </div>
           <div className="main-text-input">
@@ -194,6 +188,7 @@ function TextChannelWindow(props) {
         </div>
 
         <aside>
+          <AddingUsersToChannel />
           <UsersInChannel />
           <AddingUsersToChannel />
         </aside>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
+import {connect} from 'react-redux'
 
 import "./UsersInChannelConstructor.scss"
+import { grabUsersFromChannel } from './../../Ducks/channelReducer'
 
 function UsersInChannelConstructor(props) {
   const [currentUserStatusColor, setCurrentUserStatusColor] = useState(
@@ -27,7 +29,8 @@ function UsersInChannelConstructor(props) {
         break
       }
     }
-  }, [user_status])
+  }, [props.channelReducer.usersFromChannel])
+
 
   return (
     <div className="users-in-channel">
@@ -52,4 +55,10 @@ function UsersInChannelConstructor(props) {
   )
 }
 
-export default UsersInChannelConstructor
+const mapStateToProps = (reduxState) => {
+  return {
+    channelReducer: reduxState.channelReducer
+  }
+}
+
+export default connect( mapStateToProps, { grabUsersFromChannel } )(UsersInChannelConstructor)

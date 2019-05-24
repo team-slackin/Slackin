@@ -5,7 +5,6 @@ import './TextChannelWindow.scss';
 
 require('dotenv').config()
 function TextChannelMessegeScreen(props) {
-  
   useEffect(()=>{
     const plusPlus = props.dontLoadAgain + 1;
     props.setDontLoadAgain(plusPlus);

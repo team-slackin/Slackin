@@ -30,7 +30,6 @@ const FriendsConstructor = (props) => {
       default: 
         setCurrentUserStatusColor('#747f8d');
         break;
-
     };
   }, [user_status]);
 
@@ -39,7 +38,6 @@ const FriendsConstructor = (props) => {
 
     /*## Create room if the room hasnt been created##*/
     if (!room_created) {
-
       Axios.post("/chatkit/createroom/friends", {user_display_name, friend_id})
         .catch(err=>console.log(err));
     } else {

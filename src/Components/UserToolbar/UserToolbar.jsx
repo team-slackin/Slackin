@@ -46,7 +46,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("Online")
+            props.setUserStatus("online")
             setCurrentUserStatusColor("#43b581")
             toggleStatusEdit()
           }}
@@ -72,7 +72,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("Idle")
+            props.setUserStatus("idle")
             setCurrentUserStatusColor("#faa61a")
             toggleStatusEdit()
           }}
@@ -97,7 +97,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("Do Not Disturb")
+            props.setUserStatus("do not disturb")
             setCurrentUserStatusColor("#f04747")
             toggleStatusEdit()
           }}

@@ -38,7 +38,6 @@ function AddingUsersToChannel(props) {
         
         { props.currentChannel ? ( <div>
           { addUserToChannelFlag ? (<div>
-
             <form >
               <input name='userQuery' onChange={(e)=>{handleUserQueryChange(e)}} value={userQuery} placeholder="filter users by name" />
               <div style={{cursor: 'pointer'}} onClick={()=>{toggleAddUserFlag()}} >Cancel</div>
