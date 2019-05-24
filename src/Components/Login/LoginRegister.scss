@@ -25,4 +25,19 @@ div.login-register {
   .register:active {
     transform: scale(0.95);
   }
+  div.input-border {
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: rgba(156, 156, 156, 0.555);
+
+    .color-input {
+      padding-left: 10px;
+      // background-color: #fff;
+      border-radius: 3px;
+    }
+    ::placeholder {
+      color: #f4f3f1;
+      opacity: 1;
+    }
+  }
 }

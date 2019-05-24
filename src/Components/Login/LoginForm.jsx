@@ -12,18 +12,6 @@ import signIn from "./../../Assets/sign-in.png"
 
 const styles = theme => {
   return {
-    root: {
-      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      '::-webkit-input-placeholder': {
-        color: 'green'
-      }
-    },
     main: {
       width: "auto",
       display: "block", // Fix IE 11 issue.
@@ -35,7 +23,6 @@ const styles = theme => {
         marginRight: "auto"
       }
     },
-
     paper: {
       backgroundColor: "var(--secondary-background-color)",
       marginTop: theme.spacing.unit * 8,
@@ -55,55 +42,62 @@ const styles = theme => {
   }
 }
 
-
 function LoginForm(props) {
   const { classes, userInfoHandle, handleSubmit } = props
 
   return (
-    <main className={classes.main} className={classes.root['::-webkit-input-placeholder']}>
+    <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper} style={{ marginTop: "0px" }}>
         <Typography component="h1" variant="h5">
           <span>
-            <img className="signIn" style={{ height: "38px" }} src={signIn} alt="" />
+            <img className="signIn" style={{ height: "38px" }} src={signIn} />
           </span>
         </Typography>
         <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              id="email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              onChange={e => {
-                userInfoHandle(e)
-              }}
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-          </FormControl>
+          <div className="box">
+            <FormControl margin="normal" required fullWidth>
+              {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
+              <div className="input-border">
+                <Input
+                  className="color-input"
+                  onChange={e => {
+                    userInfoHandle(e)
+                  }}
+                  id="email"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  placeholder="Email Address"
+                  fullWidth
+                />
+              </div>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
+              <div className="input-border">
+                <Input
+                  className="color-input"
+                  style={{ color: "white" }}
+                  onChange={e => {
+                    userInfoHandle(e)
+                  }}
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  placeholder="Password"
+                  fullWidth
+                />
+              </div>
+            </FormControl>
+          </div>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{
-              color: '#fff'
-            }}
             onClick={handleSubmit}
           >
             Sign in
