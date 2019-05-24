@@ -43,7 +43,6 @@ const styles = theme => {
   }
 }
 
-
 function LoginForm(props) {
   const { classes, userInfoHandle, handleSubmit } = props
 
@@ -69,7 +68,6 @@ function LoginForm(props) {
               autoComplete="email"
               autoFocus
             />
-
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
