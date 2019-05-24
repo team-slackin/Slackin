@@ -46,7 +46,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("online")
+            props.setUserStatus("online", props.userReducer.user.user_id)
             setCurrentUserStatusColor("#43b581")
             toggleStatusEdit()
           }}
@@ -72,7 +72,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("idle")
+            props.setUserStatus("idle", props.userReducer.user.user_id)
             setCurrentUserStatusColor("#faa61a")
             toggleStatusEdit()
           }}
@@ -97,7 +97,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("do not disturb")
+            props.setUserStatus("do not disturb", props.userReducer.user.user_id)
             setCurrentUserStatusColor("#f04747")
             toggleStatusEdit()
           }}
@@ -125,7 +125,7 @@ function UserToolbar(props) {
         <div
           className="status"
           onClick={() => {
-            props.setUserStatus("Invisible")
+            props.setUserStatus("invisible", props.userReducer.user.user_id)
             setCurrentUserStatusColor("#747f8d")
             toggleStatusEdit()
           }}

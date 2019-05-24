@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link} from "react-router-dom"
 import { connect } from "react-redux"
 import {
@@ -8,6 +8,7 @@ import {
   updateUserInfo
 } from "./../../../Ducks/userReducer"
 import { removeSelectedChannel } from "../../../Ducks/channelReducer"
+
 import { Input } from "@material-ui/core"
 import Icon from "@material-ui/core/Icon"
 
@@ -19,10 +20,14 @@ function Account(props) {
   const [editFlag, setEditFlag] = useState(false)
 
   const [userInfo, setUserInfo] = useState({
-    username: `${props.user.user_display_name}`,
+    username: `${props.userReducer.user.user_display_name}`,
     password: "",
     confirmPassword: ""
   })
+
+  useEffect(()=>{
+    // just listens to whenever user object in REDUX state changes, such as updating the user's profile image
+  }, [props.userReducer.user])
 
   async function handleLogout() {
     await props.logout()
@@ -46,8 +51,8 @@ function Account(props) {
       userInfo.confirmPassword
     ) {
       await props.updateUserInfo({
-        id: props.user.user_id,
-        username: userInfo.username || props.user.user_display_name,
+        id: props.userReducer.user.user_id,
+        username: userInfo.username || props.userReducer.user.user_display_name,
         password: userInfo.password
       })
       alert(`Updated password!`)
@@ -72,7 +77,7 @@ function Account(props) {
               <div className="image-box">
                 <img
                   style={{ borderRadius: "50%" }}
-                  src={props.user.user_image}
+                  src={props.userReducer.user.user_image}
                   alt="change avatar"
                   width="100"
                 />
@@ -156,15 +161,15 @@ function Account(props) {
           <div className="account-settings">
             <div className="image-name-holder">
               <div>
-                <img src={props.user.user_image} alt="users profile pic" />
+                <img src={props.userReducer.user.user_image} alt="users profile pic" />
                 <div-1>
                   <div-2>
                     <h5>Username</h5>
-                    <div-4>{props.user.user_display_name}</div-4>
+                    <div-4>{props.userReducer.user.user_display_name}</div-4>
                   </div-2>
                   <div-3>
                     <h5>Email</h5>
-                    <div-4>{props.user.email}</div-4>
+                    <div-4>{props.userReducer.user.email}</div-4>
                   </div-3>
                 </div-1>
               </div>
@@ -193,7 +198,10 @@ function Account(props) {
   )
 }
 
-const mapStateToProps = reduxState => reduxState.userReducer
+const mapStateToProps = reduxState => ({
+  channelReducer: reduxState.channelReducer,
+  userReducer: reduxState.userReducer
+})
 
 export default connect(
   mapStateToProps,

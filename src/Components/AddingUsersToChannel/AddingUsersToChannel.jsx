@@ -34,18 +34,18 @@ function AddingUsersToChannel(props) {
 
 
   return (
-    <div>
+    <div className='add-user-to-channel'>
         
         { props.currentChannel ? ( <div>
           { addUserToChannelFlag ? (<div>
-            <form style={{
-              height: '30vh',
-              overflow: 'scroll'
-            }}>
-              <input name='userQuery' onChange={(e)=>{handleUserQueryChange(e)}} value={userQuery} placeholder="filter users by name" />
-              <div style={{cursor: 'pointer'}} onClick={()=>{toggleAddUserFlag()}} >Cancel</div>
+            <form >
+              <div className='search-user-section'>
+                <input name='userQuery' onChange={(e)=>{handleUserQueryChange(e)}} value={userQuery} placeholder="filter users by name" />
+                <div style={{cursor: 'pointer'}} onClick={()=>{toggleAddUserFlag()}} >Cancel</div>
+              </div>
+
               { listOfUsers[0] ? ( 
-              <div>{ listOfUsers.filter(( user, i )=>{ 
+              <div className='list-of-users'>{ listOfUsers.filter(( user, i )=>{ 
                 return user.user_display_name.includes(userQuery) }).map(( user, i )=>{
                 return <AddingUsersToChannelConstructor currentChannel={props.currentChannel} handleAddUser={handleAddUser} key={i} user={user} />
               }) }</div> ) : (<div>No Users To Display</div>) }
