@@ -70,6 +70,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
@@ -92,6 +93,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
@@ -112,6 +114,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
@@ -132,6 +135,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
@@ -152,6 +156,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
@@ -174,6 +179,7 @@ function RegisterForm(props) {
             <div className="input-border">
               <Input
                 className="color-input"
+                style={{ color: "white" }}
                 onChange={e => {
                   userInfoHandle(e)
                 }}
