@@ -55,7 +55,7 @@ function TextChannelMessegeScreen(props) {
                 }}
               >{`${time}`}</span>
 
-            <p>{` ${props.roomMessage.text}`}</p>
+            <p className='each-message-text'>{` ${props.roomMessage.text}`}</p>
             
           </section>
         </>

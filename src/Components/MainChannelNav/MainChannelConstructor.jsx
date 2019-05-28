@@ -21,7 +21,7 @@ function MainChannelConstructor(props) {
   
   return (
     <>
-      <Link onClick={() => props.userSelectedChannel(props.channel.channel_id, props.channel.channel_creator)}
+      <Link className='each-channel' onClick={() => props.userSelectedChannel(props.channel.channel_id, props.channel.channel_creator)}
         to={`/container/${props.channel.channel_name}`}
       >
         <div>

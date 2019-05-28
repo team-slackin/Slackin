@@ -61,6 +61,7 @@
   "proxy": "http://localhost:3838",
   "homepage": "./",
   "devDependencies": {
+    "cypress": "^3.3.1",
     "electron": "^5.0.2",
     "foreman": "^3.0.1"
   }

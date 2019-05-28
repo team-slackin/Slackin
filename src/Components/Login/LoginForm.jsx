@@ -60,8 +60,10 @@ function LoginForm(props) {
               {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
               <div className="input-border">
                 <Input
-                  className="color-input"
+                  className="color-input login-email-address-input"
+
                   style={{ color: "white" }}
+
                   onChange={e => {
                     userInfoHandle(e)
                   }}
@@ -78,7 +80,7 @@ function LoginForm(props) {
               {/* <InputLabel htmlFor="email">Email Address</InputLabel> */}
               <div className="input-border">
                 <Input
-                  className="color-input"
+                  className="color-input login-password-input"
                   style={{ color: "white" }}
                   onChange={e => {
                     userInfoHandle(e)
