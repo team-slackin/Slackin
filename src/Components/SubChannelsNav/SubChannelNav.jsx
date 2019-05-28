@@ -69,7 +69,7 @@ function SubChannelNav(props) {
 
   const displaySearch =  subChannels.map((subChannel, index)=>{
       if (subChannel.sub_channel_name.toLowerCase().includes(search.toLowerCase())) {
-        return <SubChannelConstructor key={`SubChannel:${index}`} subChannel={subChannel} />;
+        return <SubChannelConstructor className='each-sub-channel'  key={`SubChannel:${index}`} subChannel={subChannel} />;
       } else {
         return <></>;
       }});

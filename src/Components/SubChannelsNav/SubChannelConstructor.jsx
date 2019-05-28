@@ -8,7 +8,7 @@ function SubChannelConstructor(props) {
   return (
     <>
       <Link 
-
+      className='each-sub-channel'
       onClick={() => {
         props.resetCurrentFriend();
         props.userSelectedSubChannel(props.subChannel.sub_channel_id,props.subChannel.sub_channel_chatkit_id, props.subChannel)
