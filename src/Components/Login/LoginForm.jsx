@@ -61,6 +61,9 @@ function LoginForm(props) {
               <div className="input-border">
                 <Input
                   className="color-input login-email-address-input"
+
+                  style={{ color: "white" }}
+
                   onChange={e => {
                     userInfoHandle(e)
                   }}
