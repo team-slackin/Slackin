@@ -33,9 +33,7 @@ app.use(cors());
 // app.use(express.static(`${__dirname}/../build`)); Uncomment when hosting
 
 
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+app.use( express.static( `${__dirname}/../build` ) );
 
 
 massive(CONNECTION_STRING).then(db => {
