@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const amazon = require("./controller/amazon/amazon");
 const friends = require('./controller/friends/friends');
+const path = require('path'); // Usually moved to the start of file
 
 const {
   SERVER_PORT,
@@ -30,6 +31,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 // app.use(express.static(`${__dirname}/../build`)); Uncomment when hosting
+
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);

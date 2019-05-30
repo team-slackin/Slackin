@@ -1,5 +1,8 @@
 import Chatkit from '@pusher/chatkit-client';
 import axios from 'axios';
+require('dotenv').config();
+const { REACT_APP_LOCALHOST } = process.env;
+
 
 function sendMessage(event) {
   event.preventDefault();
@@ -90,7 +93,7 @@ function connectToChatkit(event) {
     .post('/api/chatkitusers', { userId })
     .then(() => {
       const tokenProvider = new Chatkit.TokenProvider({
-        url: 'http://localhost:3838/api/chatkitauthenticate',
+        url: `${REACT_APP_LOCALHOST}/api/chatkitauthenticate`,
       });
 
       const chatManager = new Chatkit.ChatManager({
