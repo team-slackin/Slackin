@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "nf start"
@@ -58,11 +58,11 @@
     ]
   },
   "main": "src/electron-starter.js",
-  "proxy": "http://localhost:3838",
-  "homepage": "./",
+  "proxy": "http://localhost:3838", 
   "devDependencies": {
     "cypress": "^3.3.1",
     "electron": "^5.0.2",
-    "foreman": "^3.0.1"
+    "foreman": "^3.0.1",
+    "jest": "^24.8.0"
   }
 }
