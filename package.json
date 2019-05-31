@@ -58,11 +58,13 @@
     ]
   },
   "main": "src/electron-starter.js",
-  "proxy": "http://localhost:3838", 
+  "proxy": "http://localhost:3838",
   "devDependencies": {
     "cypress": "^3.3.1",
     "electron": "^5.0.2",
+    "enzyme": "^3.9.0",
     "foreman": "^3.0.1",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "react-addons-test-utils": "^15.6.2"
   }
 }
