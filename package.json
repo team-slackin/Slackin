@@ -18,7 +18,7 @@
     "express-session": "^1.16.1",
     "lodash": "^4.17.11",
     "massive": "^5.8.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
