@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "dropzone": "^5.5.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-session": "^1.16.1",
     "lodash": "^4.17.11",
     "massive": "^5.8.0",
